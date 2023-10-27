@@ -12,6 +12,6 @@ public class Main {
         ao.setMutrumdau(true);
         ao.setHoatiet("Hoa hong do");
 
-        ao.PrintData();
+        System.out.println(ao);
     }
 }

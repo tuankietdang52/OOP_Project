@@ -8,7 +8,7 @@ public abstract class Product {
     private String size;
     private String chatlieu;
 
-    public void setDefaultValue(){
+    public Product(){
         masp = "";
         loaisp = new ProductType();
         sltonkho = 0;
@@ -17,7 +17,15 @@ public abstract class Product {
         chatlieu = "";
     }
 
-    public abstract void PrintData();
+    public Product(String masp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size){
+        this.masp = masp;
+        this.loaisp = loaisp;
+        this.sltonkho = sltonkho;
+        this.dongia = dongia;
+        this.chatlieu = chatlieu;
+        this.size = size;
+    }
+
 
     public String getMasp() {
         return masp;
