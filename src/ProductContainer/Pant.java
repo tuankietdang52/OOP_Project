@@ -1,5 +1,6 @@
 package ProductContainer;
 
+import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
 public class Pant extends Product{
@@ -8,12 +9,12 @@ public class Pant extends Product{
         thunquan = false;
     }
 
-    public Pant(String masp, String tensp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan){
-        super(masp, tensp, loaisp, sltonkho, dongia, chatlieu, size);
+    public Pant(String masp, String tensp, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan){
+        super(masp, tensp, sltonkho, dongia, chatlieu, size);
         this.thunquan = thunquan;
     }
     public Pant(@NotNull Pant pant){
-        super(pant.getMasp(), pant.getTensp(), pant.getLoaisp(), pant.getSltonkho(), pant.getDongia(), pant.getChatlieu(), pant.getSize());
+        super(pant.getMasp(), pant.getTensp(), pant.getSltonkho(), pant.getDongia(), pant.getChatlieu(), pant.getSize());
         thunquan = pant.thunquan;
     }
     public void setThunquan(boolean IsHave) {
@@ -24,13 +25,14 @@ public class Pant extends Product{
         return thunquan;
     }
 
+    @Override public void setByInput(){
+        super.setByInput();
+        System.out.print("Thun quan: ");
+        thunquan = Input.getBoolean();
+    }
+
     @Override public String toString(){
-        System.out.println("Ma sp: " + getMasp());
-        System.out.println("Ten sp: " + getTensp());
-        getLoaisp().PrintData();
-        System.out.println("So luong ton kho: " + getSltonkho());
-        System.out.println("Don gia: " + getDongia());
-        System.out.println("Size: " + getSize());
+        PrintBasicElement();
         System.out.println("Chat lieu: " + getChatlieu());
         System.out.println("Thun quan: " + getThunquan());
         return "";

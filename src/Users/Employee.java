@@ -1,5 +1,6 @@
 package Users;
 
+import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
 public class Employee {
@@ -109,6 +110,20 @@ public class Employee {
 
     public Permission getPermission() {return permission;}
 
+    public void setByInput(){
+        System.out.print("Nhap ma nhan vien: ");
+        manv = Input.getString();
+        System.out.print("Nhap ten nhan vien: ");
+        tennv = Input.getString();
+        System.out.print("CMND: ");
+        cmnd = Input.getString();
+        System.out.print("Nhap sdt: ");
+        sdt = Input.getString();
+        System.out.print("Email: ");
+        email = Input.getString();
+        permission.setByInput();
+    }
+
     @Override public String toString() {
         System.out.println("Ma nhan vien: " + manv);
         System.out.println("Ten nhan vien: " + tennv);
@@ -164,6 +179,15 @@ public class Employee {
 
         public String getMota() {
             return mota;
+        }
+
+        public void setByInput(){
+            System.out.print("Nhap ma quyen: ");
+            maquyen = Input.getString();
+            System.out.print("Nhap ten quyen: ");
+            tenquyen = Input.getString();
+            System.out.print("Nhap mo ta: ");
+            mota = Input.getString();
         }
 
         @Override public @NotNull String toString() {

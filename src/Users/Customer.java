@@ -1,5 +1,6 @@
 package Users;
 
+import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
 public class Customer {
@@ -71,6 +72,19 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setByInput(){
+        System.out.print("Nhap ma khach hang: ");
+        makh = Input.getString();
+        System.out.print("Nhap ten khach hang: ");
+        tenkh = Input.getString();
+        System.out.print("Nhap Dia chi: ");
+        diachi = Input.getString();
+        System.out.print("Nhap sdt: ");
+        sdt = Input.getString();
+        System.out.print("Email: ");
+        email = Input.getString();
     }
 
     @Override public String toString(){
