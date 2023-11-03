@@ -33,6 +33,16 @@ public class Employee {
         this.permission = permission;
     }
 
+    public Employee(@NotNull Employee employee){
+        manv = employee.manv;
+        tennv = employee.tennv;
+        cmnd = employee.cmnd;
+        sdt = employee.sdt;
+        usernames = employee.usernames;
+        password = employee.password;
+        permission = employee.permission;
+    }
+
     public void setManv(String manv) {
         this.manv = manv;
     }
@@ -124,6 +134,12 @@ public class Employee {
             this.maquyen = maquyen;
             this.tenquyen = tenquyen;
             this.mota = mota;
+        }
+
+        public Permission(@NotNull Permission permission){
+            maquyen = permission.maquyen;
+            tenquyen = permission.tenquyen;
+            mota = permission.mota;
         }
 
         public void setMaquyen(String maquyen) {

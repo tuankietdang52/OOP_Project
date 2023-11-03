@@ -1,7 +1,10 @@
 package ProductContainer;
 
+import org.jetbrains.annotations.NotNull;
+
 public abstract class Product {
     private String masp;
+    private String tensp;
     private ProductType loaisp;
     private int sltonkho;
     private double dongia;
@@ -17,8 +20,9 @@ public abstract class Product {
         chatlieu = "";
     }
 
-    public Product(String masp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size){
+    public Product(String masp, String tensp ,ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size){
         this.masp = masp;
+        this.tensp = tensp;
         this.loaisp = loaisp;
         this.sltonkho = sltonkho;
         this.dongia = dongia;
@@ -26,10 +30,21 @@ public abstract class Product {
         this.size = size;
     }
 
+    public Product(@NotNull Product product){
+        masp = product.masp;
+        tensp = product.tensp;
+        loaisp = product.loaisp;
+        sltonkho = product.sltonkho;
+        dongia = product.dongia;
+        chatlieu = product.chatlieu;
+        size = product.size;
+    }
 
     public String getMasp() {
         return masp;
     }
+
+    public String getTensp() { return tensp; }
 
     public ProductType getLoaisp(){
         return loaisp;
@@ -53,6 +68,10 @@ public abstract class Product {
 
     public void setMasp(String masp) {
         this.masp = masp;
+    }
+
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
     }
 
     public void setLoaisp(ProductType loaisp) {

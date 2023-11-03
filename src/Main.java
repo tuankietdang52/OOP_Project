@@ -2,7 +2,12 @@ import ProductContainer.Shirt;
 import Users.Customer;
 import Users.Employee;
 
+import java.util.Scanner;
+
 public class Main {
+
+    public static Scanner scint = new Scanner(System.in);
+    public static Scanner scstring = new Scanner(System.in);
     public static void main(String[] args) {
         Employee employee = new Employee();
         employee.setManv("adsa31");
@@ -28,5 +33,8 @@ public class Main {
         customer.setSdt("0310310");
 
         System.out.println(customer);
+
+        scint.close();
+        scstring.close();
     }
 }

@@ -1,5 +1,7 @@
 package ProductContainer;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ProductType {
     private String maloaisp;
     private String tenloaisp;
@@ -15,6 +17,12 @@ public class ProductType {
         this.maloaisp = maloaisp;
         this.tenloaisp = tenloaisp;
         this.gioitinh = gioitinh;
+    }
+
+    public ProductType(@NotNull ProductType producttype){
+        maloaisp = producttype.maloaisp;
+        tenloaisp = producttype.tenloaisp;
+        gioitinh = producttype.gioitinh;
     }
 
     public void PrintData(){

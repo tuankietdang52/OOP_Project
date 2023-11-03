@@ -1,5 +1,7 @@
 package Users;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Customer {
     private String makh;
     private String tenkh;
@@ -13,6 +15,22 @@ public class Customer {
         diachi = "";
         sdt = "";
         email = "";
+    }
+
+    public Customer(String makh, String tenkh, String diachi, String sdt, String email){
+        this.makh = makh;
+        this.tenkh = tenkh;
+        this.diachi = diachi;
+        this.sdt = sdt;
+        this.email = email;
+    }
+
+    public Customer(@NotNull Customer customer){
+        makh = customer.makh;
+        tenkh = customer.tenkh;
+        diachi = customer.diachi;
+        sdt = customer.sdt;
+        email = customer.email;
     }
 
     public void setMakh(String makh) {
