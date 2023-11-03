@@ -1,3 +1,4 @@
+import ProductContainer.DSSP;
 import ProductContainer.Shirt;
 import Users.Customer;
 import Users.Employee;
@@ -28,5 +29,8 @@ public class Main {
         customer.setSdt("0310310");
 
         System.out.println(customer);
+        DSSP a = new DSSP();
+        a.nhap();
+        System.out.print(a);
     }
 }

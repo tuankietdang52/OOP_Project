@@ -1,6 +1,5 @@
 package Users;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Employee {
     private String manv;
@@ -150,7 +149,7 @@ public class Employee {
             return mota;
         }
 
-        @Override public @NotNull String toString() {
+        @Override public String toString() {
             System.out.println("Ma quyen: " + maquyen);
             System.out.println("Ten quyen: " + tenquyen);
             System.out.println("Mo ta: " + mota);

@@ -1,5 +1,5 @@
 package ProductContainer;
-
+import java.util.Scanner;
 public class ProductType {
     private String maloaisp;
     private String tenloaisp;
@@ -45,5 +45,14 @@ public class ProductType {
 
     public String getTenloaisp() {
         return tenloaisp;
+    }
+    public void nhap(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Nhập mã loại sp: ");
+        maloaisp = input.nextLine();
+        System.out.print("Nhập tên loại sp: ");
+        tenloaisp = input.nextLine();
+        System.out.print("Sp cho giới tính: ");
+        gioitinh = input.nextLine();
     }
 }

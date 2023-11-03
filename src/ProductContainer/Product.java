@@ -1,5 +1,5 @@
 package ProductContainer;
-
+import java.util.Scanner;
 public abstract class Product {
     private String masp;
     private ProductType loaisp;
@@ -47,9 +47,7 @@ public abstract class Product {
         return dongia;
     }
 
-    public String getChatlieu() {
-        return chatlieu;
-    }
+    public String getChatlieu() { return chatlieu; }
 
     public void setMasp(String masp) {
         this.masp = masp;
@@ -77,5 +75,21 @@ public abstract class Product {
 
     public void setSltonkho(int sltonkho) {
         this.sltonkho = sltonkho;
+    }
+    public void nhap(){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Nhập masp: ");
+        masp=input.nextLine();
+        System.out.println("Nhập loại sp: ");
+        loaisp.nhap();
+        System.out.print("Nhập số lượng tồn: ");
+        sltonkho=input.nextInt();
+        System.out.print("Nhập đơn giá: ");
+        dongia=input.nextDouble();
+        input.nextLine();
+        System.out.print("Nhập size: ");
+        size=input.nextLine();
+        System.out.print("Nhập chất liệu: ");
+        chatlieu=input.nextLine();
     }
 }
