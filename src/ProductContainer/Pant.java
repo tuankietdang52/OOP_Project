@@ -1,22 +1,30 @@
 package ProductContainer;
 import java.util.Scanner;
-public class Pant extends Product{
+public class Pant extends Product {
     private boolean thunquan;
-    public Pant(){
-        thunquan = false;
+    public Pant() {
+        this.thunquan = false;
     }
-
-    public Pant(String masp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan){
-        super(masp, loaisp, sltonkho, dongia, chatlieu, size);
+    public Pant(String masp, String tensp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan) {
+        super(masp, tensp, loaisp, sltonkho, dongia, chatlieu, size);
         this.thunquan = thunquan;
+    }
+    public Pant(String masp, String tensp, String maloaisp, String tenloaisp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan) {
+        super(masp, tensp, maloaisp, tenloaisp, gioitinh, sltonkho, dongia, chatlieu, size);
+        this.thunquan = thunquan;
+    }
+    public Pant(Pant a) {
+        super(a);
+        thunquan = a.thunquan;
     }
     public String getMasp() {
         return super.getMasp();
     }
-    public ProductType getLoaisp(){
+    public String getTensp() {return super.getTensp();}
+    public ProductType getLoaisp() {
         return super.getLoaisp();
     }
-    public int getSltonkho(){
+    public int getSltonkho() {
         return super.getSltonkho();
     }
     public String getSize() {
@@ -25,16 +33,23 @@ public class Pant extends Product{
     public double getDongia() {
         return super.getDongia();
     }
-    public String getChatlieu() { return super.getChatlieu(); }
-    public boolean getThunquan(){
-        return thunquan;
+    public String getChatlieu() {
+        return super.getChatlieu();
     }
-    public void setMasp(String masp) { super.setMasp(masp); }
-    public void setLoaisp(ProductType loaisp) {super.setLoaisp(loaisp);}
-    public void setLoaisp(String maloaisp, String tenloaisp, String gioitinh){
-        getLoaisp().setMaloaisp(maloaisp);
-        getLoaisp().setTenloaisp(tenloaisp);
-        getLoaisp().setGioitinh(gioitinh);
+    public boolean getThunquan() {
+        return this.thunquan;
+    }
+    public void setMasp(String masp) {
+        super.setMasp(masp);
+    }
+    public void setTensp(String tensp) {super.setTensp(tensp);}
+    public void setLoaisp(ProductType loaisp) {
+        super.setLoaisp(loaisp);
+    }
+    public void setLoaisp(String maloaisp, String tenloaisp, String gioitinh) {
+        this.getLoaisp().setMaloaisp(maloaisp);
+        this.getLoaisp().setTenloaisp(tenloaisp);
+        this.getLoaisp().setGioitinh(gioitinh);
     }
     public void setChatlieu(String chatlieu) {
         super.setChatlieu(chatlieu);
@@ -49,22 +64,23 @@ public class Pant extends Product{
         super.setSltonkho(sltonkho);
     }
     public void setThunquan(boolean IsHave) {
-        thunquan = IsHave;
+        this.thunquan = IsHave;
     }
-    @Override public String toString(){
-        System.out.println("Ma sp: " + getMasp());
-        getLoaisp().PrintData();
-        System.out.println("So luong ton kho: " + getSltonkho());
-        System.out.println("Don gia: " + getDongia());
-        System.out.println("Size: " + getSize());
-        System.out.println("Chat lieu: " + getChatlieu());
-        System.out.println("Thun quan: " + getThunquan());
+    public String toString() {
+        System.out.println("Ma sp: " + this.getMasp());
+        System.out.println("Ten sp: " + this.getTensp());
+        this.getLoaisp().PrintData();
+        System.out.println("So luong ton kho: " + this.getSltonkho());
+        System.out.println("Don gia: " + this.getDongia());
+        System.out.println("Size: " + this.getSize());
+        System.out.println("Chat lieu: " + this.getChatlieu());
+        System.out.println("Thun quan: " + this.getThunquan());
         return "";
     }
     public void nhap() {
-        Scanner input =new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         super.nhap();
-        System.out.print("Có thun quần không: ");
-        thunquan=input.nextBoolean();
+        System.out.print("Co thun quan khong: ");
+        this.thunquan = input.nextBoolean();
     }
 }

@@ -2,94 +2,109 @@ package ProductContainer;
 import java.util.Scanner;
 public abstract class Product {
     private String masp;
+    private String tensp;
     private ProductType loaisp;
     private int sltonkho;
     private double dongia;
     private String size;
     private String chatlieu;
-
-    public Product(){
-        masp = "";
-        loaisp = new ProductType();
-        sltonkho = 0;
-        dongia = 0;
-        size = "";
-        chatlieu = "";
+    public Product() {
+        this.masp = "";
+        this.tensp = "";
+        this.loaisp = new ProductType();
+        this.sltonkho = 0;
+        this.dongia = 0.0;
+        this.size = "";
+        this.chatlieu = "";
     }
-
-    public Product(String masp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size){
+    public Product(String masp, String tensp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size) {
         this.masp = masp;
+        this.tensp = tensp;
         this.loaisp = loaisp;
         this.sltonkho = sltonkho;
         this.dongia = dongia;
         this.chatlieu = chatlieu;
         this.size = size;
     }
-
-
+    public Product(String masp, String tensp, String maloaisp, String tenloaisp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size) {
+        this.masp = masp;
+        this.tensp = tensp;
+        loaisp=new ProductType(maloaisp,tenloaisp,gioitinh);
+        this.sltonkho = sltonkho;
+        this.dongia = dongia;
+        this.chatlieu = chatlieu;
+        this.size = size;
+    }
+    public Product(Product a){
+        this.masp = a.masp;
+        this.tensp = a.tensp;
+        this.loaisp = a.loaisp;
+        this.sltonkho = a.sltonkho;
+        this.dongia = a.dongia;
+        this.chatlieu = a.chatlieu;
+        this.size = a.size;
+    }
     public String getMasp() {
-        return masp;
+        return this.masp;
     }
-
-    public ProductType getLoaisp(){
-        return loaisp;
+    public String getTensp() {
+        return this.tensp;
     }
-
-    public int getSltonkho(){
-        return sltonkho;
+    public ProductType getLoaisp() {
+        return this.loaisp;
     }
-
+    public int getSltonkho() {
+        return this.sltonkho;
+    }
     public String getSize() {
-        return size;
+        return this.size;
     }
-
     public double getDongia() {
-        return dongia;
+        return this.dongia;
     }
-
-    public String getChatlieu() { return chatlieu; }
-
+    public String getChatlieu() {
+        return this.chatlieu;
+    }
     public void setMasp(String masp) {
         this.masp = masp;
     }
-
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
+    }
     public void setLoaisp(ProductType loaisp) {
         this.loaisp = loaisp;
     }
-
-    public void setLoaisp(String maloaisp, String tenloaisp, String gioitinh){
-        loaisp = new ProductType(maloaisp, tenloaisp, gioitinh);
+    public void setLoaisp(String maloaisp, String tenloaisp, String gioitinh) {
+        this.loaisp = new ProductType(maloaisp, tenloaisp, gioitinh);
     }
-
     public void setChatlieu(String chatlieu) {
         this.chatlieu = chatlieu;
     }
-
     public void setDongia(double dongia) {
         this.dongia = dongia;
     }
-
     public void setSize(String size) {
         this.size = size;
     }
-
     public void setSltonkho(int sltonkho) {
         this.sltonkho = sltonkho;
     }
-    public void nhap(){
+    public void nhap() {
         Scanner input = new Scanner(System.in);
-        System.out.print("Nhập masp: ");
-        masp=input.nextLine();
-        System.out.println("Nhập loại sp: ");
-        loaisp.nhap();
-        System.out.print("Nhập số lượng tồn: ");
-        sltonkho=input.nextInt();
-        System.out.print("Nhập đơn giá: ");
-        dongia=input.nextDouble();
+        System.out.print("Nhap masp: ");
+        this.masp = input.nextLine();
+        System.out.print("Nhap ten sp: ");
+        this.tensp = input.nextLine();
+        System.out.println("Nhap loai sp: ");
+        this.loaisp.nhap();
+        System.out.print("Nhap so luong ton: ");
+        this.sltonkho = input.nextInt();
+        System.out.print("Nhap don gia: ");
+        this.dongia = input.nextDouble();
         input.nextLine();
-        System.out.print("Nhập size: ");
-        size=input.nextLine();
-        System.out.print("Nhập chất liệu: ");
-        chatlieu=input.nextLine();
+        System.out.println("Nhap size: ");
+        this.size = input.nextLine();
+        System.out.println("Nhap chat lieu: ");
+        this.chatlieu = input.nextLine();
     }
 }
