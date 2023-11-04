@@ -13,14 +13,14 @@ public class Shirt extends Product {
         hoatiet = "";
     }
 
-    public Shirt(String masp, String tensp, int sltonkho, double dongia, String chatlieu, String size, boolean mutrumdau, String hoatiet){
-        super(masp, tensp, sltonkho, dongia, chatlieu, size);
+    public Shirt(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size, boolean mutrumdau, String hoatiet){
+        super(masp, tensp, gioitinh, sltonkho, dongia, chatlieu, size);
         this.mutrumdau = mutrumdau;
         this.hoatiet = hoatiet;
     }
 
     public Shirt(@NotNull Shirt shirt){
-        super(shirt.getMasp(), shirt.getTensp(), shirt.getSltonkho(), shirt.getDongia(), shirt.getChatlieu(), shirt.getSize());
+        super(shirt.getMasp(), shirt.getTensp(), shirt.getGioitinh(), shirt.getSltonkho(), shirt.getDongia(), shirt.getChatlieu(), shirt.getSize());
         mutrumdau = shirt.mutrumdau;
         hoatiet = shirt.hoatiet;
     }

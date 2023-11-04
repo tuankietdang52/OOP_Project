@@ -9,12 +9,12 @@ public class Pant extends Product{
         thunquan = false;
     }
 
-    public Pant(String masp, String tensp, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan){
-        super(masp, tensp, sltonkho, dongia, chatlieu, size);
+    public Pant(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan){
+        super(masp, tensp, gioitinh, sltonkho, dongia, chatlieu, size);
         this.thunquan = thunquan;
     }
     public Pant(@NotNull Pant pant){
-        super(pant.getMasp(), pant.getTensp(), pant.getSltonkho(), pant.getDongia(), pant.getChatlieu(), pant.getSize());
+        super(pant.getMasp(), pant.getTensp(), pant.getGioitinh(), pant.getSltonkho(), pant.getDongia(), pant.getChatlieu(), pant.getSize());
         thunquan = pant.thunquan;
     }
     public void setThunquan(boolean IsHave) {

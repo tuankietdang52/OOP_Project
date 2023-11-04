@@ -7,6 +7,7 @@ import java.util.Scanner;
 public abstract class Product {
     private String masp;
     private String tensp;
+    private String gioitinh;
     private int sltonkho;
     private double dongia;
     private String size;
@@ -14,15 +15,18 @@ public abstract class Product {
 
     public Product(){
         masp = "";
+        tensp = "";
+        gioitinh = "";
         sltonkho = 0;
         dongia = 0;
         size = "";
         chatlieu = "";
     }
 
-    public Product(String masp, String tensp, int sltonkho, double dongia, String chatlieu, String size){
+    public Product(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size){
         this.masp = masp;
         this.tensp = tensp;
+        this.gioitinh = gioitinh;
         this.sltonkho = sltonkho;
         this.dongia = dongia;
         this.chatlieu = chatlieu;
@@ -32,6 +36,7 @@ public abstract class Product {
     public Product(@NotNull Product product){
         masp = product.masp;
         tensp = product.tensp;
+        gioitinh = product.gioitinh;
         sltonkho = product.sltonkho;
         dongia = product.dongia;
         chatlieu = product.chatlieu;
@@ -43,6 +48,10 @@ public abstract class Product {
     }
 
     public String getTensp() { return tensp; }
+
+    public String getGioitinh() {
+        return gioitinh;
+    }
 
     public int getSltonkho(){
         return sltonkho;
@@ -68,6 +77,10 @@ public abstract class Product {
         this.tensp = tensp;
     }
 
+    public void setGioitinh(String gioitinh) {
+        this.gioitinh = gioitinh;
+    }
+
     public void setChatlieu(String chatlieu) {
         this.chatlieu = chatlieu;
     }
@@ -90,6 +103,8 @@ public abstract class Product {
         masp = Input.getString();
         System.out.print("Nhap ten san pham: ");
         tensp = Input.getString();
+        System.out.println("Nhap gioi tinh: ");
+        Input.getString();
         System.out.print("Nhap so luong ton kho: ");
         sltonkho = Input.getInt();
         System.out.print("Nhap don gia: ");
@@ -103,6 +118,7 @@ public abstract class Product {
     public void PrintBasicElement(){
         System.out.println("Ma sp: " + masp);
         System.out.println("Ten sp: " + tensp);
+        System.out.println("Gioi tinh: " + gioitinh);
         System.out.println("So luong ton kho: " + sltonkho);
         System.out.println("Don gia: " + dongia);
         System.out.println("Size: " + size);
