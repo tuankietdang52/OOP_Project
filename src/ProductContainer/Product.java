@@ -1,8 +1,13 @@
 package ProductContainer;
 
+import InputManage.Input;
+import org.jetbrains.annotations.NotNull;
+import java.util.Scanner;
+
 public abstract class Product {
     private String masp;
-    private ProductType loaisp;
+    private String tensp;
+    private String gioitinh;
     private int sltonkho;
     private double dongia;
     private String size;
@@ -10,29 +15,42 @@ public abstract class Product {
 
     public Product(){
         masp = "";
-        loaisp = new ProductType();
+        tensp = "";
+        gioitinh = "";
         sltonkho = 0;
         dongia = 0;
         size = "";
         chatlieu = "";
     }
 
-    public Product(String masp, ProductType loaisp, int sltonkho, double dongia, String chatlieu, String size){
+    public Product(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size){
         this.masp = masp;
-        this.loaisp = loaisp;
+        this.tensp = tensp;
+        this.gioitinh = gioitinh;
         this.sltonkho = sltonkho;
         this.dongia = dongia;
         this.chatlieu = chatlieu;
         this.size = size;
     }
 
+    public Product(@NotNull Product product){
+        masp = product.masp;
+        tensp = product.tensp;
+        gioitinh = product.gioitinh;
+        sltonkho = product.sltonkho;
+        dongia = product.dongia;
+        chatlieu = product.chatlieu;
+        size = product.size;
+    }
 
     public String getMasp() {
         return masp;
     }
 
-    public ProductType getLoaisp(){
-        return loaisp;
+    public String getTensp() { return tensp; }
+
+    public String getGioitinh() {
+        return gioitinh;
     }
 
     public int getSltonkho(){
@@ -55,12 +73,12 @@ public abstract class Product {
         this.masp = masp;
     }
 
-    public void setLoaisp(ProductType loaisp) {
-        this.loaisp = loaisp;
+    public void setTensp(String tensp) {
+        this.tensp = tensp;
     }
 
-    public void setLoaisp(String maloaisp, String tenloaisp, String gioitinh){
-        loaisp = new ProductType(maloaisp, tenloaisp, gioitinh);
+    public void setGioitinh(String gioitinh) {
+        this.gioitinh = gioitinh;
     }
 
     public void setChatlieu(String chatlieu) {
@@ -77,5 +95,33 @@ public abstract class Product {
 
     public void setSltonkho(int sltonkho) {
         this.sltonkho = sltonkho;
+    }
+
+    public void setByInput(){
+        Scanner scint = new Scanner(System.in);
+        System.out.print("Nhap ma san pham: ");
+        masp = Input.getString();
+        System.out.print("Nhap ten san pham: ");
+        tensp = Input.getString();
+        System.out.println("Nhap gioi tinh: ");
+        Input.getString();
+        System.out.print("Nhap so luong ton kho: ");
+        sltonkho = Input.getInt();
+        System.out.print("Nhap don gia: ");
+        dongia = Input.getDouble();
+        System.out.print("Nhap chat lieu: ");
+        chatlieu = Input.getString();
+        System.out.print("Nhap size: ");
+        size = Input.getString();
+    }
+
+    public void PrintBasicElement(){
+        System.out.println("Ma sp: " + masp);
+        System.out.println("Ten sp: " + tensp);
+        System.out.println("Gioi tinh: " + gioitinh);
+        System.out.println("So luong ton kho: " + sltonkho);
+        System.out.println("Don gia: " + dongia);
+        System.out.println("Size: " + size);
+        System.out.println("Chat lieu: " + chatlieu);
     }
 }

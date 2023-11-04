@@ -1,5 +1,8 @@
 package Users;
 
+import InputManage.Input;
+import org.jetbrains.annotations.NotNull;
+
 public class Customer {
     private String makh;
     private String tenkh;
@@ -13,6 +16,22 @@ public class Customer {
         diachi = "";
         sdt = "";
         email = "";
+    }
+
+    public Customer(String makh, String tenkh, String diachi, String sdt, String email){
+        this.makh = makh;
+        this.tenkh = tenkh;
+        this.diachi = diachi;
+        this.sdt = sdt;
+        this.email = email;
+    }
+
+    public Customer(@NotNull Customer customer){
+        makh = customer.makh;
+        tenkh = customer.tenkh;
+        diachi = customer.diachi;
+        sdt = customer.sdt;
+        email = customer.email;
     }
 
     public void setMakh(String makh) {
@@ -53,6 +72,19 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+
+    public void setByInput(){
+        System.out.print("Nhap ma khach hang: ");
+        makh = Input.getString();
+        System.out.print("Nhap ten khach hang: ");
+        tenkh = Input.getString();
+        System.out.print("Nhap Dia chi: ");
+        diachi = Input.getString();
+        System.out.print("Nhap sdt: ");
+        sdt = Input.getString();
+        System.out.print("Email: ");
+        email = Input.getString();
     }
 
     @Override public String toString(){
