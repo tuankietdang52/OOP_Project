@@ -3,6 +3,8 @@ package Users;
 import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
+import java.security.Permission;
+
 public class Employee {
     private String manv;
     private String tennv;
@@ -11,7 +13,6 @@ public class Employee {
     private String email;
     private String usernames;
     private String password;
-    private Permission permission;
 
     public Employee(){
         manv = "";
@@ -21,7 +22,6 @@ public class Employee {
         email = "";
         usernames = "";
         password = "";
-        permission = new Permission();
     }
 
     public Employee(String manv, String tennv, String cmnd, String sdt, String usernames, String password, Permission permission){
@@ -31,7 +31,6 @@ public class Employee {
         this.sdt = sdt;
         this.usernames = usernames;
         this.password = password;
-        this.permission = permission;
     }
 
     public Employee(@NotNull Employee employee){
@@ -41,7 +40,6 @@ public class Employee {
         sdt = employee.sdt;
         usernames = employee.usernames;
         password = employee.password;
-        permission = employee.permission;
     }
 
     public void setManv(String manv) {
@@ -72,14 +70,6 @@ public class Employee {
         this.password = password;
     }
 
-    public void setPermission(Permission permission) {
-        this.permission = permission;
-    }
-
-    public void setPermission(String maquyen, String tenquyen, String mota){
-        permission = new Permission(maquyen, tenquyen, mota);
-    }
-
     public String getManv() {
         return manv;
     }
@@ -108,8 +98,6 @@ public class Employee {
         return password;
     }
 
-    public Permission getPermission() {return permission;}
-
     public void setByInput(){
         System.out.print("Nhap ma nhan vien: ");
         manv = Input.getString();
@@ -121,7 +109,6 @@ public class Employee {
         sdt = Input.getString();
         System.out.print("Email: ");
         email = Input.getString();
-        permission.setByInput();
     }
 
     @Override public String toString() {
@@ -130,71 +117,6 @@ public class Employee {
         System.out.println("CMND: " + cmnd);
         System.out.println("SDT: " + sdt);
         System.out.println("Email: " + email);
-        System.out.println(permission);
         return "";
-    }
-
-    public static class Permission {
-        private String maquyen;
-        private String tenquyen;
-        private String mota;
-
-        public Permission(){
-            maquyen = "none";
-            tenquyen = "none";
-            mota = "";
-        }
-
-        public Permission(String maquyen, String tenquyen, String mota){
-            this.maquyen = maquyen;
-            this.tenquyen = tenquyen;
-            this.mota = mota;
-        }
-
-        public Permission(@NotNull Permission permission){
-            maquyen = permission.maquyen;
-            tenquyen = permission.tenquyen;
-            mota = permission.mota;
-        }
-
-        public void setMaquyen(String maquyen) {
-            this.maquyen = maquyen;
-        }
-
-        public void setTenquyen(String tenquyen) {
-            this.tenquyen = tenquyen;
-        }
-
-        public void setMota(String mota) {
-            this.mota = mota;
-        }
-
-        public String getMaquyen() {
-            return maquyen;
-        }
-
-        public String getTenquyen() {
-            return tenquyen;
-        }
-
-        public String getMota() {
-            return mota;
-        }
-
-        public void setByInput(){
-            System.out.print("Nhap ma quyen: ");
-            maquyen = Input.getString();
-            System.out.print("Nhap ten quyen: ");
-            tenquyen = Input.getString();
-            System.out.print("Nhap mo ta: ");
-            mota = Input.getString();
-        }
-
-        @Override public @NotNull String toString() {
-            System.out.println("Ma quyen: " + maquyen);
-            System.out.println("Ten quyen: " + tenquyen);
-            System.out.println("Mo ta: " + mota);
-            return "";
-        }
     }
 }
