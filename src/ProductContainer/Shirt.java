@@ -33,13 +33,13 @@ public class Shirt extends Product {
         this.hoatiet = hoatiet;
     }
 
-     public boolean getMutrumdau(){
+    public boolean getMutrumdau(){
         return mutrumdau;
-     }
+    }
 
-     public String getHoatiet(){
+    public String getHoatiet(){
         return hoatiet;
-     }
+    }
 
     @Override
     public void setByInput() {
@@ -51,9 +51,9 @@ public class Shirt extends Product {
     }
 
     @Override public String toString(){
-         PrintBasicElement();
-         System.out.println("Mu trum dau: " + getMutrumdau());
-         System.out.println("Hoa tiet: " + getHoatiet());
-         return "";
-     }
+        PrintBasicElement();
+        System.out.println("Mu trum dau: " + getMutrumdau());
+        System.out.println("Hoa tiet: " + getHoatiet());
+        return "";
+    }
 }
