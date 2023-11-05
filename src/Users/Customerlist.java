@@ -1,4 +1,6 @@
 package Users;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Scanner;
 import java.util.*;
 public class Customerlist {
@@ -32,7 +34,7 @@ public class Customerlist {
         this.ds = ds;
     }
 
-    public Customerlist(Customerlist a) {
+    public Customerlist(@NotNull Customerlist a) {
         n = a.n;
         ds = a.ds;
     }
@@ -107,7 +109,7 @@ public class Customerlist {
         System.out.println("Ma khach hang can tim: ");
         String makh = input.nextLine();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getMakh().equals(Xoa_khoang_trang_thua(makh)))
+            if (ds[i].getMakh().equals(makh))
                 System.out.print(i + " ");
         }
         System.out.println("\n");
@@ -121,11 +123,11 @@ public class Customerlist {
         return -1;
     }
 
-    public void timkiemMakh_Cuatomer() {
+    public void timkiemMakh_Customer() {
         System.out.println("Ma khach hang can tim: ");
         String makh = input.nextLine();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getMakh().equals(Xoa_khoang_trang_thua(makh)))
+            if (ds[i].getMakh().equals(makh))
                 System.out.print(ds[i] + "/n");
         }
         System.out.println("\n");
@@ -165,7 +167,7 @@ public class Customerlist {
     }
     public Customer timkiemTenkh_Customer(String tenkh) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getTenkh().contains(Xoa_khoang_trang_thua(tenkh)))
+            if (ds[i].getTenkh().contains(tenkh))
                 return ds[i];
         }
         return null;

@@ -1,4 +1,6 @@
 package ProductContainer;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Scanner;
 import java.util.*;
 public class DSSP {
@@ -38,7 +40,7 @@ public class DSSP {
         this.ds = ds;
     }
 
-    public DSSP(DSSP a) {
+    public DSSP(@NotNull DSSP a) {
         n = a.n;
         ds = a.ds;
     }
