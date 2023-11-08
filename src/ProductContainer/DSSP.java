@@ -1,20 +1,19 @@
 package ProductContainer;
+import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Scanner;
 import java.util.*;
 public class DSSP {
     private Product[] ds;
     private int n;
-    Scanner input = new Scanner(System.in);
     public void nhap() {
         System.out.print("Nhap so luong san pham: ");
-        n = input.nextInt();
+        n = Input.getInt();
         ds = new Product[n];
         for (int i = 0; i < n; ++i) {
             System.out.println("San pham thu " + (i + 1));
             System.out.print("Day la quan(0) hay ao(1)?: ");
-            int opt = input.nextInt();
+            int opt = Input.getInt();
             if (opt == 0) {
                 ds[i] = new Pant();
             } else {
@@ -48,7 +47,7 @@ public class DSSP {
     public void them() {
         ds = Arrays.copyOf(ds, n + 1);
         System.out.print("Quan(0) / ao(1)");
-        int opt = input.nextInt();
+        int opt = Input.getInt();
         if (opt == 0) {
             ds[n] = new Pant();
         } else {
@@ -75,7 +74,7 @@ public class DSSP {
         int i = 0;
         while (i < k) {
             System.out.print("Day la quan(0) hay ao(1)?: ");
-            int opt = input.nextInt();
+            int opt = Input.getInt();
             if (opt == 0) {
                 ds[n] = new Pant();
             } else {
@@ -121,7 +120,7 @@ public class DSSP {
 
     public void timkiemMasp() {
         System.out.println("Ma sp can tim: ");
-        String masp = input.nextLine();
+        String masp = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getMasp().equals(masp))
                 System.out.print(i + " ");
@@ -139,7 +138,7 @@ public class DSSP {
 
     public void timkiemMasp_Product() {
         System.out.println("Ma sp can tim: ");
-        String masp = input.nextLine();
+        String masp = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getMasp().equals(masp))
                 System.out.print(ds[i] + "/n");
@@ -156,7 +155,7 @@ public class DSSP {
     }
     public void timkiemTensp() {
         System.out.println("Ten sp can tim: ");
-        String tensp = input.nextLine();
+        String tensp = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTensp().contains(Xoa_khoang_trang_thua(tensp)))
                 System.out.print(i + " ");
@@ -172,7 +171,7 @@ public class DSSP {
     }
     public void timkiemTensp_Product() {
         System.out.println("Ten sp can tim: ");
-        String tensp = input.nextLine();
+        String tensp = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTensp().contains(Xoa_khoang_trang_thua(tensp)))
                 System.out.print(ds[i] + "/n");
@@ -188,7 +187,7 @@ public class DSSP {
     }
     public DSSP timkiemTensp_DSSP() {
         System.out.print("Ten sp can tim: ");
-        String tensp = input.nextLine();
+        String tensp = Input.getString();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -228,7 +227,7 @@ public class DSSP {
     }
     public void timkiemGioitinh() {
         System.out.println("Gioi tinh can tim: ");
-        String gioitinh = input.nextLine();
+        String gioitinh = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getGioitinh().contains(Xoa_khoang_trang_thua(gioitinh)))
                 System.out.print(i + " ");
@@ -244,7 +243,7 @@ public class DSSP {
     }
     public void timkiemGioitinh_Product() {
         System.out.println("Gioi tinh can tim: ");
-        String gioitinh = input.nextLine();
+        String gioitinh = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getGioitinh().contains(Xoa_khoang_trang_thua(gioitinh)))
                 System.out.print(ds[i] + "/n");
@@ -260,7 +259,7 @@ public class DSSP {
     }
     public DSSP timkiemGioitinh_DSSP() {
         System.out.print("Gioi tinh can tim: ");
-        String gioitinh = input.nextLine();
+        String gioitinh = Input.getString();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -300,7 +299,7 @@ public class DSSP {
     }
     public void timkiemSize() {
         System.out.println("Size can tim: ");
-        String size = input.nextLine();
+        String size = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSize().contains(size))
                 System.out.print(i + " ");
@@ -318,7 +317,7 @@ public class DSSP {
 
     public void timkiemSize_Product() {
         System.out.println("Size can tim: ");
-        String size = input.nextLine();
+        String size = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSize().contains(size))
                 System.out.print(ds[i] + "/n");
@@ -336,7 +335,7 @@ public class DSSP {
 
     public DSSP timkiemSize_DSSP() {
         System.out.print("Size can tim: ");
-        String size = input.nextLine();
+        String size = Input.getString();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -378,7 +377,7 @@ public class DSSP {
 
     public void timkiemChatlieu() {
         System.out.println("Chat lieu can tim: ");
-        String chatlieu = input.nextLine();
+        String chatlieu = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getChatlieu().contains(Xoa_khoang_trang_thua(chatlieu)))
                 System.out.print(i + " ");
@@ -396,7 +395,7 @@ public class DSSP {
 
     public void timkiemChatlieu_Product() {
         System.out.println("Chat lieu can tim: ");
-        String chatlieu = input.nextLine();
+        String chatlieu = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getChatlieu().contains(Xoa_khoang_trang_thua(chatlieu)))
                 System.out.print(ds[i] + "/n");
@@ -414,7 +413,7 @@ public class DSSP {
 
     public DSSP timkiemChatlieu_DSSP() {
         System.out.print("Chat lieu can tim: ");
-        String chatlieu = input.nextLine();
+        String chatlieu = Input.getString();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -456,7 +455,7 @@ public class DSSP {
 
     public void timkiemDongia() {
         System.out.println("Don gia can tim: ");
-        double dongia = input.nextDouble();
+        double dongia = Input.getDouble();
         for (int i = 0; i < n; i++) {
             if (Double.compare(ds[i].getDongia(), dongia) == 0)
                 System.out.print(i + " ");
@@ -474,7 +473,7 @@ public class DSSP {
 
     public void timkiemDongia_Product() {
         System.out.println("Size can tim: ");
-        double dongia = input.nextDouble();
+        double dongia = Input.getDouble();
         for (int i = 0; i < n; i++) {
             if (Double.compare(ds[i].getDongia(), dongia) == 0)
                 System.out.print(ds[i] + "/n");
@@ -492,8 +491,7 @@ public class DSSP {
 
     public DSSP timkiemDongia_DSSP() {
         System.out.print("Don gia can tim: ");
-        double dongia = input.nextDouble();
-        input.nextLine();
+        double dongia = Input.getDouble();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -535,7 +533,7 @@ public class DSSP {
 
     public void timkiemMutrumdau() {
         System.out.println("Tim ao co mu hay khong mu: ");
-        boolean mutrumdau = input.nextBoolean();
+        boolean mutrumdau = Input.getBoolean();
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Shirt) {
                 if (((Shirt) ds[i]).getMutrumdau() == mutrumdau)
@@ -557,7 +555,7 @@ public class DSSP {
 
     public void timkiemMutrumdau_Product() {
         System.out.println("Tim ao co mu hay khong mu: ");
-        boolean mutrumdau = input.nextBoolean();
+        boolean mutrumdau = Input.getBoolean();
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Shirt) {
                 if (((Shirt) ds[i]).getMutrumdau() == mutrumdau)
@@ -579,7 +577,7 @@ public class DSSP {
 
     public DSSP timkiemMutrumdau_DSSP() {
         System.out.print("Tim ao co mu hay khong mu: ");
-        boolean mutrumdau = input.nextBoolean();
+        boolean mutrumdau = Input.getBoolean();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -612,7 +610,7 @@ public class DSSP {
 
     public void timkiemThunquan() {
         System.out.println("Tim quan co thun hay khong thun: ");
-        boolean thunquan = input.nextBoolean();
+        boolean thunquan = Input.getBoolean();
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Pant) {
                 if (((Pant) ds[i]).getThunquan() == thunquan)
@@ -634,7 +632,7 @@ public class DSSP {
 
     public void timkiemThunquan_Product() {
         System.out.println("Tim quan co thun hay khong thun: ");
-        boolean thunquan = input.nextBoolean();
+        boolean thunquan = Input.getBoolean();
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Pant) {
                 if (((Pant) ds[i]).getThunquan() == thunquan)
@@ -656,7 +654,7 @@ public class DSSP {
 
     public DSSP timkiemThunquan_DSSP() {
         System.out.print("Tim quan co thun hay khong thun: ");
-        boolean thunquan = input.nextBoolean();
+        boolean thunquan = Input.getBoolean();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -687,7 +685,7 @@ public class DSSP {
     }
     public void timkiemHoatiet() {
         System.out.println("Hoa tiet can tim: ");
-        String hoatiet = input.nextLine();
+        String hoatiet = Input.getString();
         for (int i = 0; i < n; i++) {
             if (((Shirt) ds[i]).getHoatiet().contains(Xoa_khoang_trang_thua(hoatiet)))
                 System.out.print(i + " ");
@@ -705,7 +703,7 @@ public class DSSP {
 
     public void timkiemHoatiet_Product() {
         System.out.println("Hoa tiet can tim: ");
-        String hoatiet = input.nextLine();
+        String hoatiet = Input.getString();
         for (int i = 0; i < n; i++) {
             if (((Shirt) ds[i]).getHoatiet().contains(Xoa_khoang_trang_thua(hoatiet)))
                 System.out.print(ds[i] + "/n");
@@ -723,7 +721,7 @@ public class DSSP {
 
     public DSSP timkiemHoatiet_DSSP() {
         System.out.print("Hoa tiet can tim: ");
-        String hoatiet = input.nextLine();
+        String hoatiet = Input.getString();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
@@ -776,40 +774,36 @@ public class DSSP {
                             System.out.println("0. Exit.");
                             System.out.println("---------------------------");
                             System.out.print("Please choose: ");
-                            opt=input.nextInt();
-                            input.nextLine();
+                            opt = Input.getInt();
                             switch(opt) {
                                 case 1:
                                     System.out.println("Doi ten sp thanh:");
-                                    String tensp = input.nextLine();
+                                    String tensp = Input.getString();
                                     ds[i].setTensp(tensp);
                                     break;
                                 case 2:
                                     System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = input.nextInt();
-                                    input.nextLine();
+                                    int sltonkho = Input.getInt();
                                     ds[i].setSltonkho(sltonkho);
                                     break;
                                 case 3:
                                     System.out.println("Doi don gia thanh:");
-                                    double dongia = input.nextDouble();
-                                    input.nextLine();
+                                    double dongia = Input.getDouble();
                                     ds[i].setDongia(dongia);
                                     break;
                                 case 4:
                                     System.out.println("Doi size thanh:");
-                                    String size = input.nextLine();
+                                    String size = Input.getString();
                                     ds[i].setSize(size);
                                     break;
                                 case 5:
                                     System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = input.nextLine();
-                                    input.nextLine();
+                                    String chatlieu = Input.getString();
                                     ds[i].setChatlieu(chatlieu);
                                     break;
                                 case 6:
                                     System.out.println("Doi thun quan thanh:");
-                                    boolean thunquan = input.nextBoolean();
+                                    boolean thunquan = Input.getBoolean();
                                     ((Pant) ds[i]).setThunquan(thunquan);
                                     break;
                                 case 0:
@@ -834,45 +828,41 @@ public class DSSP {
                             System.out.println("0. Exit.");
                             System.out.println("---------------------------");
                             System.out.print("Please choose: ");
-                            opt=input.nextInt();
-                            input.nextLine();
+                            opt=Input.getInt();
                             switch(opt) {
                                 case 1:
                                     System.out.println("Doi ten sp thanh:");
-                                    String tensp = input.nextLine();
+                                    String tensp = Input.getString();
                                     ds[i].setTensp(tensp);
                                     break;
                                 case 2:
                                     System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = input.nextInt();
-                                    input.nextLine();
+                                    int sltonkho = Input.getInt();
                                     ds[i].setSltonkho(sltonkho);
                                     break;
                                 case 3:
                                     System.out.println("Doi don gia thanh:");
-                                    double dongia = input.nextDouble();
-                                    input.nextLine();
+                                    double dongia = Input.getDouble();
                                     ds[i].setDongia(dongia);
                                     break;
                                 case 4:
                                     System.out.println("Doi size thanh:");
-                                    String size = input.nextLine();
+                                    String size = Input.getString();
                                     ds[i].setSize(size);
                                     break;
                                 case 5:
                                     System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = input.nextLine();
-                                    input.nextLine();
+                                    String chatlieu = Input.getString();
                                     ds[i].setChatlieu(chatlieu);
                                     break;
                                 case 6:
                                     System.out.println("Doi mu trum dau thanh:");
-                                    boolean mutrumdau = input.nextBoolean();
+                                    boolean mutrumdau = Input.getBoolean();
                                     ((Shirt) ds[i]).setMutrumdau(mutrumdau);
                                     break;
                                 case 7:
                                     System.out.println("Doi hoa tiet thanh:");
-                                    String hoatiet = input.nextLine();
+                                    String hoatiet = Input.getString();
                                     ((Shirt) ds[i]).setHoatiet(hoatiet);
                                     break;
                                 case 0:
@@ -888,73 +878,64 @@ public class DSSP {
             }}
         else {
             System.out.println("Ma sp khong ton tai!");
-        }}
+        }
+    }
     public void sua() {
         System.out.print("Nhap ma cua sp muon sua thong tin: ");
-        String masp=input.nextLine();
-        int flag=0;
+        String masp = Input.getString();
+        int flag = 0;
         int opt;
-        for(int i=0;i<n;++i) 	{
+        for (int i = 0; i < n; ++i) {
             if (ds[i].getMasp().equals(masp)) {
                 flag = 1;
                 break;
             }
         }
-        if(flag==1) {
-            for(int i=0;i<n;i++) {
-                if(ds[i].getMasp().equals(masp)) {
-                    if(ds[i] instanceof Pant) {
+        if (flag == 1) {
+            for (int i = 0; i < n; i++) {
+                if (ds[i].getMasp().equals(masp)) {
+                    if (ds[i] instanceof Pant) {
                         do {
                             System.out.println("---------------------------");
                             System.out.println("1. Sua ten sp:");
-                            System.out.println("2. Sua gioi tinh:");
-                            System.out.println("3. Sua so luong ton kho:");
-                            System.out.println("4. Sua don gia:");
-                            System.out.println("5. Sua size:");
-                            System.out.println("6. Sua chat lieu:");
-                            System.out.println("7. Sua thun quan:");
+                            System.out.println("2. Sua so luong ton kho:");
+                            System.out.println("3. Sua don gia:");
+                            System.out.println("4. Sua size:");
+                            System.out.println("5. Sua chat lieu:");
+                            System.out.println("6. Sua thun quan:");
                             System.out.println("0. Exit.");
                             System.out.println("---------------------------");
                             System.out.print("Please choose: ");
-                            opt=input.nextInt();
-                            input.nextLine();
-                            switch(opt) {
+                            opt = Input.getInt();
+                            switch (opt) {
                                 case 1:
                                     System.out.println("Doi ten sp thanh:");
-                                    String tensp = input.nextLine();
+                                    String tensp = Input.getString();
                                     ds[i].setTensp(tensp);
                                     break;
                                 case 2:
-                                    System.out.println("Doi gioi tinh thanh:");
-                                    String gioitinh = input.nextLine();
-                                    ds[i].setGioitinh(gioitinh);
-                                    break;
-                                case 3:
                                     System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = input.nextInt();
-                                    input.nextLine();
+                                    int sltonkho = Input.getInt();
                                     ds[i].setSltonkho(sltonkho);
                                     break;
-                                case 4:
+                                case 3:
                                     System.out.println("Doi don gia thanh:");
-                                    double dongia = input.nextDouble();
-                                    input.nextLine();
+                                    double dongia = Input.getDouble();
                                     ds[i].setDongia(dongia);
                                     break;
-                                case 5:
+                                case 4:
                                     System.out.println("Doi size thanh:");
-                                    String size = input.nextLine();
+                                    String size = Input.getString();
                                     ds[i].setSize(size);
                                     break;
-                                case 6:
+                                case 5:
                                     System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = input.nextLine();
-                                    input.nextLine();
+                                    String chatlieu = Input.getString();
                                     ds[i].setChatlieu(chatlieu);
                                     break;
-                                case 7:
+                                case 6:
                                     System.out.println("Doi thun quan thanh:");
-                                    boolean thunquan = input.nextBoolean();
+                                    boolean thunquan = Input.getBoolean();
                                     ((Pant) ds[i]).setThunquan(thunquan);
                                     break;
                                 case 0:
@@ -964,66 +945,55 @@ public class DSSP {
                                     break;
                             }
                         }
-                        while(opt!=0);
-                    }
-                    else if(ds[i] instanceof Shirt){
+                        while (opt != 0);
+                    } else if (ds[i] instanceof Shirt) {
                         do {
                             System.out.println("---------------------------");
                             System.out.println("1. Sua ten sp:");
-                            System.out.println("2. Sua gioi tinh:");
-                            System.out.println("3. Sua so luong ton kho:");
-                            System.out.println("4. Sua don gia:");
-                            System.out.println("5. Sua size:");
-                            System.out.println("6. Sua chat lieu:");
-                            System.out.println("7. Sua mu trum dau:");
-                            System.out.println("8. Sua mu hoa tiet:");
+                            System.out.println("2. Sua so luong ton kho:");
+                            System.out.println("3. Sua don gia:");
+                            System.out.println("4. Sua size:");
+                            System.out.println("5. Sua chat lieu:");
+                            System.out.println("6. Sua mu trum dau:");
+                            System.out.println("7. Sua mu hoa tiet:");
                             System.out.println("0. Exit.");
                             System.out.println("---------------------------");
                             System.out.print("Please choose: ");
-                            opt=input.nextInt();
-                            input.nextLine();
-                            switch(opt) {
+                            opt = Input.getInt();
+                            switch (opt) {
                                 case 1:
                                     System.out.println("Doi ten sp thanh:");
-                                    String tensp = input.nextLine();
+                                    String tensp = Input.getString();
                                     ds[i].setTensp(tensp);
                                     break;
                                 case 2:
-                                    System.out.println("Doi gioi tinh thanh:");
-                                    String gioitinh = input.nextLine();
-                                    ds[i].setGioitinh(gioitinh);
-                                    break;
-                                case 3:
                                     System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = input.nextInt();
-                                    input.nextLine();
+                                    int sltonkho = Input.getInt();
                                     ds[i].setSltonkho(sltonkho);
                                     break;
-                                case 4:
+                                case 3:
                                     System.out.println("Doi don gia thanh:");
-                                    double dongia = input.nextDouble();
-                                    input.nextLine();
+                                    double dongia = Input.getDouble();
                                     ds[i].setDongia(dongia);
                                     break;
-                                case 5:
+                                case 4:
                                     System.out.println("Doi size thanh:");
-                                    String size = input.nextLine();
+                                    String size = Input.getString();
                                     ds[i].setSize(size);
                                     break;
-                                case 6:
+                                case 5:
                                     System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = input.nextLine();
-                                    input.nextLine();
+                                    String chatlieu = Input.getString();
                                     ds[i].setChatlieu(chatlieu);
                                     break;
-                                case 7:
+                                case 6:
                                     System.out.println("Doi mu trum dau thanh:");
-                                    boolean mutrumdau = input.nextBoolean();
+                                    boolean mutrumdau = Input.getBoolean();
                                     ((Shirt) ds[i]).setMutrumdau(mutrumdau);
                                     break;
-                                case 8:
+                                case 7:
                                     System.out.println("Doi hoa tiet thanh:");
-                                    String hoatiet = input.nextLine();
+                                    String hoatiet = Input.getString();
                                     ((Shirt) ds[i]).setHoatiet(hoatiet);
                                     break;
                                 case 0:
@@ -1033,11 +1003,11 @@ public class DSSP {
                                     break;
                             }
                         }
-                        while(opt!=0);
+                        while (opt != 0);
                     }
                 }
-            }}
-        else {
+            }
+        } else {
             System.out.println("Ma sp khong ton tai!");
         }
     }

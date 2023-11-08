@@ -1,13 +1,14 @@
 package Users;
+import InputManage.Input;
+
 import java.util.Scanner;
 import java.util.*;
 public class EmployeeList {
     private Employee[] ds;
     private int n;
-    Scanner input = new Scanner(System.in);
     public void nhap() {
         System.out.print("Nhap so luong nhan vien: ");
-        n = input.nextInt();
+        n = Input.getInt();
         ds = new Employee[n];
         for (int i = 0; i < n; ++i) {
             System.out.println("Nhan vien thu " + (i + 1));
@@ -141,7 +142,7 @@ public class EmployeeList {
 
     public void timkiemManv() {
         System.out.println("Ma nhan vien can tim: ");
-        String manv = input.nextLine();
+        String manv = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getManv().equals(manv))
                 System.out.print(i + " ");
@@ -159,7 +160,7 @@ public class EmployeeList {
 
     public void timkiemManv_Employee() {
         System.out.println("Ma nhan vien can tim: ");
-        String manv = input.nextLine();
+        String manv = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getManv().equals(manv))
                 System.out.print(ds[i] + "/n");
@@ -176,7 +177,7 @@ public class EmployeeList {
     }
     public void timkiemTennv() {
         System.out.println("Ten nhan vien can tim: ");
-        String tennv = input.nextLine();
+        String tennv = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTennv().contains(Xoa_khoang_trang_thua(tennv)))
                 System.out.print(i + " ");
@@ -192,7 +193,7 @@ public class EmployeeList {
     }
     public void timkiemTennv_Employee() {
         System.out.println("Ten nhan vien can tim: ");
-        String tennv = input.nextLine();
+        String tennv = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTennv().contains(Xoa_khoang_trang_thua(tennv)))
                 System.out.print(ds[i] + "/n");
@@ -208,7 +209,7 @@ public class EmployeeList {
     }
     public EmployeeList timkiemTennv_EmployeeList() {
         System.out.print("Ten nhan vien can tim: ");
-        String tennv = input.nextLine();
+        String tennv = Input.getString();
         EmployeeList a = new EmployeeList();
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
@@ -234,7 +235,7 @@ public class EmployeeList {
     }
     public void timkiemCMND() {
         System.out.println("CMND can tim: ");
-        String cmnd = input.nextLine();
+        String cmnd = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getCmnd().equals(cmnd))
                 System.out.print(i + " ");
@@ -250,7 +251,7 @@ public class EmployeeList {
     }
     public void timkiemCMND_Employee() {
         System.out.println("CMND can tim: ");
-        String cmnd = input.nextLine();
+        String cmnd = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getCmnd().equals(cmnd))
                 System.out.print(ds[i] + "/n");
@@ -266,7 +267,7 @@ public class EmployeeList {
     }
     public EmployeeList timkiemCMND_EmployeeList() {
         System.out.print("CMND can tim: ");
-        String cmnd = input.nextLine();
+        String cmnd = Input.getString();
         EmployeeList a = new EmployeeList();
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
@@ -292,7 +293,7 @@ public class EmployeeList {
     }
     public void timkiemSdt() {
         System.out.println("Sdt can tim: ");
-        String sdt = input.nextLine();
+        String sdt = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt))
                 System.out.print(i + " ");
@@ -310,7 +311,7 @@ public class EmployeeList {
 
     public void timkiemSdt_Employee() {
         System.out.println("Sdt can tim: ");
-        String sdt = input.nextLine();
+        String sdt = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt))
                 System.out.print(ds[i] + "/n");
@@ -328,7 +329,7 @@ public class EmployeeList {
 
     public EmployeeList timkiemSdt_EmployeeList() {
         System.out.print("Sdt can tim: ");
-        String sdt = input.nextLine();
+        String sdt = Input.getString();
         EmployeeList a = new EmployeeList();
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
@@ -357,7 +358,7 @@ public class EmployeeList {
 
     public void timkiemEmail() {
         System.out.println("Email can tim: ");
-        String email = input.nextLine();
+        String email = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email))
                 System.out.print(i + " ");
@@ -375,7 +376,7 @@ public class EmployeeList {
 
     public void timkiemEmail_Employee() {
         System.out.println("Email can tim: ");
-        String email = input.nextLine();
+        String email = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email))
                 System.out.print(ds[i] + "/n");
@@ -393,7 +394,7 @@ public class EmployeeList {
 
     public EmployeeList timkiemEmail_EmployeeList() {
         System.out.print("Email can tim: ");
-        String email = input.nextLine();
+        String email = Input.getString();
         EmployeeList a = new EmployeeList();
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
@@ -420,7 +421,7 @@ public class EmployeeList {
     }
     public void timkiemUsername() {
         System.out.println("Username can tim: ");
-        String username = input.nextLine();
+        String username = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getUsernames().equals(username))
                 System.out.print(i + " ");
@@ -438,7 +439,7 @@ public class EmployeeList {
 
     public void timkiemUsername_Employee() {
         System.out.println("Username can tim: ");
-        String username = input.nextLine();
+        String username = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getUsernames().equals(username))
                 System.out.print(ds[i] + "/n");
@@ -456,7 +457,7 @@ public class EmployeeList {
 
     public EmployeeList timkiemUsername_EmployeeList() {
         System.out.print("Username can tim: ");
-        String username = input.nextLine();
+        String username = Input.getString();
         EmployeeList a = new EmployeeList();
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
@@ -483,7 +484,7 @@ public class EmployeeList {
     }
     public void timkiemPassword() {
         System.out.println("Password can tim: ");
-        String password = input.nextLine();
+        String password = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password))
                 System.out.print(i + " ");
@@ -501,7 +502,7 @@ public class EmployeeList {
 
     public void timkiemPassword_Employee() {
         System.out.println("Password can tim: ");
-        String password = input.nextLine();
+        String password = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password))
                 System.out.print(ds[i] + "/n");
@@ -519,7 +520,7 @@ public class EmployeeList {
 
     public EmployeeList timkiemPassword_EmployeeList() {
         System.out.print("Password can tim: ");
-        String password = input.nextLine();
+        String password = Input.getString();
         EmployeeList a = new EmployeeList();
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
@@ -567,37 +568,36 @@ public class EmployeeList {
                         System.out.println("0. Exit.");
                         System.out.println("---------------------------");
                         System.out.print("Please choose: ");
-                        opt=input.nextInt();
-                        input.nextLine();
+                        opt=Input.getInt();
                         switch(opt) {
                             case 1:
                                 System.out.println("Doi ten nhan vien thanh:");
-                                String tennv = input.nextLine();
+                                String tennv = Input.getString();
                                 ds[i].setTennv(tennv);
                                 break;
                             case 2:
                                 System.out.println("Doi CMND nhan vien thanh:");
-                                String cmnd = input.nextLine();
+                                String cmnd = Input.getString();
                                 ds[i].setCmnd(cmnd);
                                 break;
                             case 3:
                                 System.out.println("Doi sdt nhan vien thanh:");
-                                String sdt = input.nextLine();
+                                String sdt = Input.getString();
                                 ds[i].setSdt(sdt);
                                 break;
                             case 4:
                                 System.out.println("Doi email nhan vien thanh:");
-                                String email = input.nextLine();
+                                String email = Input.getString();
                                 ds[i].setEmail(email);
                                 break;
                             case 5:
                                 System.out.println("Doi username nhan vien thanh:");
-                                String username = input.nextLine();
+                                String username = Input.getString();
                                 ds[i].setUsernames(username);
                                 break;
                             case 6:
                                 System.out.println("Doi password nhan vien thanh:");
-                                String password = input.nextLine();
+                                String password = Input.getString();
                                 ds[i].setPassword(password);
                                 break;
                             case 0:
@@ -615,18 +615,18 @@ public class EmployeeList {
     }
     public void sua() {
         System.out.print("Nhap ma cua nhan vien muon sua thong tin: ");
-        String manv = input.nextLine();
-        int flag = 0;
+        String manv = Input.getString();
+        int flag=0;
         int opt;
-        for (int i = 0; i < n; ++i) {
+        for(int i=0;i<n;++i) 	{
             if (ds[i].getManv().equals(manv)) {
                 flag = 1;
                 break;
             }
         }
-        if (flag == 1) {
-            for (int i = 0; i < n; i++) {
-                if (ds[i].getManv().equals(manv)) {
+        if(flag==1) {
+            for(int i=0;i<n;i++) {
+                if(ds[i].getManv().equals(manv)) {
                     do {
                         System.out.println("---------------------------");
                         System.out.println("1. Sua ten nhan vien:");
@@ -638,37 +638,36 @@ public class EmployeeList {
                         System.out.println("0. Exit.");
                         System.out.println("---------------------------");
                         System.out.print("Please choose: ");
-                        opt = input.nextInt();
-                        input.nextLine();
-                        switch (opt) {
+                        opt=Input.getInt();
+                        switch(opt) {
                             case 1:
                                 System.out.println("Doi ten nhan vien thanh:");
-                                String tennv = input.nextLine();
+                                String tennv = Input.getString();
                                 ds[i].setTennv(tennv);
                                 break;
                             case 2:
                                 System.out.println("Doi CMND nhan vien thanh:");
-                                String cmnd = input.nextLine();
+                                String cmnd = Input.getString();
                                 ds[i].setCmnd(cmnd);
                                 break;
                             case 3:
                                 System.out.println("Doi sdt nhan vien thanh:");
-                                String sdt = input.nextLine();
+                                String sdt = Input.getString();
                                 ds[i].setSdt(sdt);
                                 break;
                             case 4:
                                 System.out.println("Doi email nhan vien thanh:");
-                                String email = input.nextLine();
+                                String email = Input.getString();
                                 ds[i].setEmail(email);
                                 break;
                             case 5:
                                 System.out.println("Doi username nhan vien thanh:");
-                                String username = input.nextLine();
+                                String username = Input.getString();
                                 ds[i].setUsernames(username);
                                 break;
                             case 6:
                                 System.out.println("Doi password nhan vien thanh:");
-                                String password = input.nextLine();
+                                String password = Input.getString();
                                 ds[i].setPassword(password);
                                 break;
                             case 0:
@@ -678,9 +677,10 @@ public class EmployeeList {
                                 break;
                         }
                     }
-                    while (opt != 0);
+                    while(opt!=0);
                 }
             }
-        } else System.out.println("Ma khach hang khong ton tai!");
+        }
+        else    System.out.println("Ma khach hang khong ton tai!");
     }
 }

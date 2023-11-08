@@ -1,15 +1,14 @@
 package Users;
+import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Scanner;
 import java.util.*;
 public class Customerlist {
     private Customer[] ds;
     private int n;
-    Scanner input = new Scanner(System.in);
     public void nhap() {
         System.out.print("Nhap so luong khach hang: ");
-        n = input.nextInt();
+        n = Input.getInt();
         ds = new Customer[n];
         for (int i = 0; i < n; ++i) {
             System.out.println("Khach hang thu " + (i + 1));
@@ -107,7 +106,7 @@ public class Customerlist {
 
     public void timkiemMakh() {
         System.out.println("Ma khach hang can tim: ");
-        String makh = input.nextLine();
+        String makh = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getMakh().equals(makh))
                 System.out.print(i + " ");
@@ -125,7 +124,7 @@ public class Customerlist {
 
     public void timkiemMakh_Customer() {
         System.out.println("Ma khach hang can tim: ");
-        String makh = input.nextLine();
+        String makh = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getMakh().equals(makh))
                 System.out.print(ds[i] + "/n");
@@ -142,7 +141,7 @@ public class Customerlist {
     }
     public void timkiemTenkh() {
         System.out.println("Ten khach hang can tim: ");
-        String tenkh = input.nextLine();
+        String tenkh = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(Xoa_khoang_trang_thua(tenkh)))
                 System.out.print(i + " ");
@@ -158,7 +157,7 @@ public class Customerlist {
     }
     public void timkiemTenkh_Customer() {
         System.out.println("Ten khach hang can tim: ");
-        String tenkh = input.nextLine();
+        String tenkh = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(Xoa_khoang_trang_thua(tenkh)))
                 System.out.print(ds[i] + "/n");
@@ -174,7 +173,7 @@ public class Customerlist {
     }
     public Customerlist timkiemTenkh_CustomerList() {
         System.out.print("Ten khach hang can tim: ");
-        String tenkh = input.nextLine();
+        String tenkh = Input.getString();
         Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
@@ -200,7 +199,7 @@ public class Customerlist {
     }
     public void timkiemDiachi() {
         System.out.println("Dia chi can tim: ");
-        String diachi = input.nextLine();
+        String diachi = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(Xoa_khoang_trang_thua(diachi)))
                 System.out.print(i + " ");
@@ -216,7 +215,7 @@ public class Customerlist {
     }
     public void timkiemDiachi_Customer() {
         System.out.println("Dia chi can tim: ");
-        String diachi = input.nextLine();
+        String diachi = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(Xoa_khoang_trang_thua(diachi)))
                 System.out.print(ds[i] + "/n");
@@ -232,7 +231,7 @@ public class Customerlist {
     }
     public Customerlist timkiemDiachi_CustomerList() {
         System.out.print("Dia chi can tim: ");
-        String diachi = input.nextLine();
+        String diachi = Input.getString();
         Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
@@ -258,7 +257,7 @@ public class Customerlist {
     }
     public void timkiemSdt() {
         System.out.println("Sdt can tim: ");
-        String sdt = input.nextLine();
+        String sdt = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt))
                 System.out.print(i + " ");
@@ -276,7 +275,7 @@ public class Customerlist {
 
     public void timkiemSdt_Customer() {
         System.out.println("Sdt can tim: ");
-        String sdt = input.nextLine();
+        String sdt = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt))
                 System.out.print(ds[i] + "/n");
@@ -294,7 +293,7 @@ public class Customerlist {
 
     public Customerlist timkiemSdt_CustomerList() {
         System.out.print("Sdt can tim: ");
-        String sdt = input.nextLine();
+        String sdt = Input.getString();
         Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
@@ -322,7 +321,7 @@ public class Customerlist {
 
     public void timkiemEmail() {
         System.out.println("Email can tim: ");
-        String email = input.nextLine();
+        String email = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email))
                 System.out.print(i + " ");
@@ -340,7 +339,7 @@ public class Customerlist {
 
     public void timkiemEmail_Customer() {
         System.out.println("Email can tim: ");
-        String email = input.nextLine();
+        String email = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email))
                 System.out.print(ds[i] + "/n");
@@ -358,7 +357,7 @@ public class Customerlist {
 
     public Customerlist timkiemEmail_CustomerList() {
         System.out.print("Email can tim: ");
-        String email = input.nextLine();
+        String email = Input.getString();
         Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
@@ -405,27 +404,26 @@ public class Customerlist {
                         System.out.println("0. Exit.");
                         System.out.println("---------------------------");
                         System.out.print("Please choose: ");
-                        opt=input.nextInt();
-                        input.nextLine();
+                        opt=Input.getInt();
                         switch(opt) {
                             case 1:
                                 System.out.println("Doi ten khach hang thanh:");
-                                String tenkh = input.nextLine();
+                                String tenkh = Input.getString();
                                 ds[i].setTenkh(tenkh);
                                 break;
                             case 2:
                                 System.out.println("Doi dia chi khach hang thanh:");
-                                String diachi = input.nextLine();
+                                String diachi = Input.getString();
                                 ds[i].setDiachi(diachi);
                                 break;
                             case 3:
                                 System.out.println("Doi sdt khach hang thanh:");
-                                String sdt = input.nextLine();
+                                String sdt = Input.getString();
                                 ds[i].setSdt(sdt);
                                 break;
                             case 4:
                                 System.out.println("Doi email khach hang thanh:");
-                                String email = input.nextLine();
+                                String email = Input.getString();
                                 ds[i].setEmail(email);
                                 break;
                             case 0:
@@ -443,18 +441,18 @@ public class Customerlist {
     }
     public void sua() {
         System.out.print("Nhap ma cua khach hang muon sua thong tin: ");
-        String makh = input.nextLine();
-        int flag=0;
+        String makh = Input.getString();
+        int flag = 0;
         int opt;
-        for(int i=0;i<n;++i) 	{
+        for (int i = 0; i < n; ++i) {
             if (ds[i].getMakh().equals(makh)) {
                 flag = 1;
                 break;
             }
         }
-        if(flag==1) {
-            for(int i=0;i<n;i++) {
-                if(ds[i].getMakh().equals(makh)) {
+        if (flag == 1) {
+            for (int i = 0; i < n; i++) {
+                if (ds[i].getMakh().equals(makh)) {
                     do {
                         System.out.println("---------------------------");
                         System.out.println("1. Sua ten khach hang:");
@@ -464,27 +462,26 @@ public class Customerlist {
                         System.out.println("0. Exit.");
                         System.out.println("---------------------------");
                         System.out.print("Please choose: ");
-                        opt=input.nextInt();
-                        input.nextLine();
-                        switch(opt) {
+                        opt = Input.getInt();
+                        switch (opt) {
                             case 1:
                                 System.out.println("Doi ten khach hang thanh:");
-                                String tenkh = input.nextLine();
+                                String tenkh = Input.getString();
                                 ds[i].setTenkh(tenkh);
                                 break;
                             case 2:
                                 System.out.println("Doi dia chi khach hang thanh:");
-                                String diachi = input.nextLine();
+                                String diachi = Input.getString();
                                 ds[i].setDiachi(diachi);
                                 break;
                             case 3:
                                 System.out.println("Doi sdt khach hang thanh:");
-                                String sdt = input.nextLine();
+                                String sdt = Input.getString();
                                 ds[i].setSdt(sdt);
                                 break;
                             case 4:
                                 System.out.println("Doi email khach hang thanh:");
-                                String email = input.nextLine();
+                                String email = Input.getString();
                                 ds[i].setEmail(email);
                                 break;
                             case 0:
@@ -494,10 +491,9 @@ public class Customerlist {
                                 break;
                         }
                     }
-                    while(opt!=0);
+                    while (opt != 0);
                 }
             }
-        }
-        else    System.out.println("Ma khach hang khong ton tai!");
+        } else System.out.println("Ma khach hang khong ton tai!");
     }
 }
