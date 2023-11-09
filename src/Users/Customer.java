@@ -74,6 +74,10 @@ public class Customer {
         return email;
     }
 
+    public void TrimName(){
+        tenkh = tenkh.trim();
+        tenkh = tenkh.replaceAll("\\s+", " ");
+    }
     public void setByInput(){
         System.out.print("Nhap ma khach hang: ");
         makh = Input.getString();
