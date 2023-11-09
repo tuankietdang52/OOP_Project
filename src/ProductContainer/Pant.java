@@ -1,9 +1,10 @@
 package ProductContainer;
 
 import InputManage.Input;
+import Interface.IList;
 import org.jetbrains.annotations.NotNull;
 
-public class Pant extends Product{
+public class Pant extends Product {
     private boolean thunquan;
     public Pant(){
         thunquan = false;

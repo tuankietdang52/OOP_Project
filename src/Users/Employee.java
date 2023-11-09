@@ -103,12 +103,18 @@ public class Employee {
         manv = Input.getString();
         System.out.print("Nhap ten nhan vien: ");
         tennv = Input.getString();
+        TrimName();
         System.out.print("CMND: ");
         cmnd = Input.getString();
         System.out.print("Nhap sdt: ");
         sdt = Input.getString();
         System.out.print("Email: ");
         email = Input.getString();
+    }
+
+    public void TrimName(){
+        tennv = tennv.trim();
+        tennv = tennv.replaceAll("\\s+", " ");
     }
 
     @Override public String toString() {

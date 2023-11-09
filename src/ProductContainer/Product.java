@@ -1,8 +1,8 @@
 package ProductContainer;
 
 import InputManage.Input;
+import Interface.IList;
 import org.jetbrains.annotations.NotNull;
-import java.util.Scanner;
 
 public abstract class Product {
     private String masp;
@@ -98,11 +98,11 @@ public abstract class Product {
     }
 
     public void setByInput(){
-        Scanner scint = new Scanner(System.in);
         System.out.print("Nhap ma san pham: ");
         masp = Input.getString();
         System.out.print("Nhap ten san pham: ");
         tensp = Input.getString();
+        TrimName();
         System.out.println("Nhap gioi tinh: ");
         Input.getString();
         System.out.print("Nhap so luong ton kho: ");
@@ -113,6 +113,11 @@ public abstract class Product {
         chatlieu = Input.getString();
         System.out.print("Nhap size: ");
         size = Input.getString();
+    }
+
+    public void TrimName(){
+        tensp = tensp.trim();
+        tensp = tensp.replaceAll("\\s+", " ");
     }
 
     public void PrintBasicElement(){
