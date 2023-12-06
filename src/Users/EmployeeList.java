@@ -1,5 +1,6 @@
 package Users;
 import InputManage.Input;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Scanner;
 import java.util.*;
@@ -558,47 +559,26 @@ public class EmployeeList {
             for(int i=0;i<n;i++) {
                 if(ds[i].getManv().equals(manv)) {
                     do {
-                        System.out.println("---------------------------");
-                        System.out.println("1. Sua ten nhan vien:");
-                        System.out.println("2. Sua CMND nhan vien:");
-                        System.out.println("3. Sua sdt nhan vien:");
-                        System.out.println("4. Sua email nhan vien:");
-                        System.out.println("5. Sua username nhan vien:");
-                        System.out.println("6. Sua password nhan vien:");
-                        System.out.println("0. Exit.");
-                        System.out.println("---------------------------");
-                        System.out.print("Please choose: ");
+                        menuSua();
                         opt=Input.getInt();
                         switch(opt) {
                             case 1:
-                                System.out.println("Doi ten nhan vien thanh:");
-                                String tennv = Input.getString();
-                                ds[i].setTennv(tennv);
+                                doiTenNhanVien(ds[i]);
                                 break;
                             case 2:
-                                System.out.println("Doi CMND nhan vien thanh:");
-                                String cmnd = Input.getString();
-                                ds[i].setCmnd(cmnd);
+                                doiCMND(ds[i]);
                                 break;
                             case 3:
-                                System.out.println("Doi sdt nhan vien thanh:");
-                                String sdt = Input.getString();
-                                ds[i].setSdt(sdt);
+                                doiSDT(ds[i]);
                                 break;
                             case 4:
-                                System.out.println("Doi email nhan vien thanh:");
-                                String email = Input.getString();
-                                ds[i].setEmail(email);
+                                doiEmail(ds[i]);
                                 break;
                             case 5:
-                                System.out.println("Doi username nhan vien thanh:");
-                                String username = Input.getString();
-                                ds[i].setUsernames(username);
+                                doiUsername(ds[i]);
                                 break;
                             case 6:
-                                System.out.println("Doi password nhan vien thanh:");
-                                String password = Input.getString();
-                                ds[i].setPassword(password);
+                                doiPassword(ds[i]);
                                 break;
                             case 0:
                                 break;
@@ -628,47 +608,26 @@ public class EmployeeList {
             for(int i=0;i<n;i++) {
                 if(ds[i].getManv().equals(manv)) {
                     do {
-                        System.out.println("---------------------------");
-                        System.out.println("1. Sua ten nhan vien:");
-                        System.out.println("2. Sua CMND nhan vien:");
-                        System.out.println("3. Sua sdt nhan vien:");
-                        System.out.println("4. Sua email nhan vien:");
-                        System.out.println("5. Sua username nhan vien:");
-                        System.out.println("6. Sua password nhan vien:");
-                        System.out.println("0. Exit.");
-                        System.out.println("---------------------------");
-                        System.out.print("Please choose: ");
+                        menuSua();
                         opt=Input.getInt();
                         switch(opt) {
                             case 1:
-                                System.out.println("Doi ten nhan vien thanh:");
-                                String tennv = Input.getString();
-                                ds[i].setTennv(tennv);
+                                doiTenNhanVien(ds[i]);
                                 break;
                             case 2:
-                                System.out.println("Doi CMND nhan vien thanh:");
-                                String cmnd = Input.getString();
-                                ds[i].setCmnd(cmnd);
+                                doiCMND(ds[i]);
                                 break;
                             case 3:
-                                System.out.println("Doi sdt nhan vien thanh:");
-                                String sdt = Input.getString();
-                                ds[i].setSdt(sdt);
+                                doiSDT(ds[i]);
                                 break;
                             case 4:
-                                System.out.println("Doi email nhan vien thanh:");
-                                String email = Input.getString();
-                                ds[i].setEmail(email);
+                                doiEmail(ds[i]);
                                 break;
                             case 5:
-                                System.out.println("Doi username nhan vien thanh:");
-                                String username = Input.getString();
-                                ds[i].setUsernames(username);
+                                doiUsername(ds[i]);
                                 break;
                             case 6:
-                                System.out.println("Doi password nhan vien thanh:");
-                                String password = Input.getString();
-                                ds[i].setPassword(password);
+                                doiPassword(ds[i]);
                                 break;
                             case 0:
                                 break;
@@ -682,5 +641,47 @@ public class EmployeeList {
             }
         }
         else    System.out.println("Ma khach hang khong ton tai!");
+    }
+    private void menuSua(){
+        System.out.println("---------------------------");
+        System.out.println("1. Sua ten nhan vien:");
+        System.out.println("2. Sua CMND nhan vien:");
+        System.out.println("3. Sua sdt nhan vien:");
+        System.out.println("4. Sua email nhan vien:");
+        System.out.println("5. Sua username nhan vien:");
+        System.out.println("6. Sua password nhan vien:");
+        System.out.println("0. Exit.");
+        System.out.println("---------------------------");
+        System.out.print("Please choose: ");
+    }
+    private void doiTenNhanVien(@NotNull Employee a){
+        System.out.println("Doi ten nhan vien thanh:");
+        String tennv = Input.getString();
+        a.setTennv(tennv);
+    }
+    private void doiCMND(@NotNull Employee a){
+        System.out.println("Doi CMND nhan vien thanh:");
+        String cmnd = Input.getString();
+        a.setCmnd(cmnd);
+    }
+    private void doiSDT(@NotNull Employee a){
+        System.out.println("Doi sdt nhan vien thanh:");
+        String sdt = Input.getString();
+        a.setSdt(sdt);
+    }
+    private void doiEmail(@NotNull Employee a){
+        System.out.println("Doi email nhan vien thanh:");
+        String email = Input.getString();
+        a.setEmail(email);
+    }
+    private void doiUsername(@NotNull Employee a){
+        System.out.println("Doi username nhan vien thanh:");
+        String username = Input.getString();
+        a.setUsernames(username);
+    }
+    private void doiPassword(@NotNull Employee a){
+        System.out.println("Doi password nhan vien thanh:");
+        String password = Input.getString();
+        a.setPassword(password);
     }
 }

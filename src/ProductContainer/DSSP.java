@@ -107,7 +107,7 @@ public class DSSP {
 
     public void xoaTen(String tensp) {
         for (int i = 0; i < n; ++i) {
-            if (ds[i].getMasp().contains(Xoa_khoang_trang_thua(tensp))) {
+            if (ds[i].getTensp().contains(Xoa_khoang_trang_thua(tensp))) {
                 for (int j = i; j < n - 1; j++) {
                     ds[j] = ds[j + 1];
                 }
@@ -764,47 +764,26 @@ public class DSSP {
                 if(ds[i].getMasp().equals(masp)) {
                     if(ds[i] instanceof Pant) {
                         do {
-                            System.out.println("---------------------------");
-                            System.out.println("1. Sua ten sp:");
-                            System.out.println("2. Sua so luong ton kho:");
-                            System.out.println("3. Sua don gia:");
-                            System.out.println("4. Sua size:");
-                            System.out.println("5. Sua chat lieu:");
-                            System.out.println("6. Sua thun quan:");
-                            System.out.println("0. Exit.");
-                            System.out.println("---------------------------");
-                            System.out.print("Please choose: ");
+                            menuSua();
                             opt = Input.getInt();
                             switch(opt) {
                                 case 1:
-                                    System.out.println("Doi ten sp thanh:");
-                                    String tensp = Input.getString();
-                                    ds[i].setTensp(tensp);
+                                    doiTenSp(ds[i]);
                                     break;
                                 case 2:
-                                    System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = Input.getInt();
-                                    ds[i].setSltonkho(sltonkho);
+                                    doiSLTonKho(ds[i]);
                                     break;
                                 case 3:
-                                    System.out.println("Doi don gia thanh:");
-                                    double dongia = Input.getDouble();
-                                    ds[i].setDongia(dongia);
+                                    doiDonGia(ds[i]);
                                     break;
                                 case 4:
-                                    System.out.println("Doi size thanh:");
-                                    String size = Input.getString();
-                                    ds[i].setSize(size);
+                                    doiSize(ds[i]);
                                     break;
                                 case 5:
-                                    System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = Input.getString();
-                                    ds[i].setChatlieu(chatlieu);
+                                    doiChatLieu(ds[i]);
                                     break;
                                 case 6:
-                                    System.out.println("Doi thun quan thanh:");
-                                    boolean thunquan = Input.getBoolean();
-                                    ((Pant) ds[i]).setThunquan(thunquan);
+                                    doiThunQuan(ds[i]);
                                     break;
                                 case 0:
                                     break;
@@ -817,53 +796,29 @@ public class DSSP {
                     }
                     else if(ds[i] instanceof Shirt){
                         do {
-                            System.out.println("---------------------------");
-                            System.out.println("1. Sua ten sp:");
-                            System.out.println("2. Sua so luong ton kho:");
-                            System.out.println("3. Sua don gia:");
-                            System.out.println("4. Sua size:");
-                            System.out.println("5. Sua chat lieu:");
-                            System.out.println("6. Sua mu trum dau:");
-                            System.out.println("7. Sua mu hoa tiet:");
-                            System.out.println("0. Exit.");
-                            System.out.println("---------------------------");
-                            System.out.print("Please choose: ");
+                            menuSua();
                             opt=Input.getInt();
                             switch(opt) {
                                 case 1:
-                                    System.out.println("Doi ten sp thanh:");
-                                    String tensp = Input.getString();
-                                    ds[i].setTensp(tensp);
+                                    doiTenSp(ds[i]);
                                     break;
                                 case 2:
-                                    System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = Input.getInt();
-                                    ds[i].setSltonkho(sltonkho);
+                                    doiSLTonKho(ds[i]);
                                     break;
                                 case 3:
-                                    System.out.println("Doi don gia thanh:");
-                                    double dongia = Input.getDouble();
-                                    ds[i].setDongia(dongia);
+                                    doiDonGia(ds[i]);
                                     break;
                                 case 4:
-                                    System.out.println("Doi size thanh:");
-                                    String size = Input.getString();
-                                    ds[i].setSize(size);
+                                    doiSize(ds[i]);
                                     break;
                                 case 5:
-                                    System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = Input.getString();
-                                    ds[i].setChatlieu(chatlieu);
+                                    doiChatLieu(ds[i]);
                                     break;
                                 case 6:
-                                    System.out.println("Doi mu trum dau thanh:");
-                                    boolean mutrumdau = Input.getBoolean();
-                                    ((Shirt) ds[i]).setMutrumdau(mutrumdau);
+                                    doiMuTrumDau(ds[i]);
                                     break;
                                 case 7:
-                                    System.out.println("Doi hoa tiet thanh:");
-                                    String hoatiet = Input.getString();
-                                    ((Shirt) ds[i]).setHoatiet(hoatiet);
+                                    doiHoaTiet(ds[i]);
                                     break;
                                 case 0:
                                     break;
@@ -891,52 +846,31 @@ public class DSSP {
                 break;
             }
         }
-        if (flag == 1) {
-            for (int i = 0; i < n; i++) {
-                if (ds[i].getMasp().equals(masp)) {
-                    if (ds[i] instanceof Pant) {
+        if(flag==1) {
+            for(int i=0;i<n;i++) {
+                if(ds[i].getMasp().equals(masp)) {
+                    if(ds[i] instanceof Pant) {
                         do {
-                            System.out.println("---------------------------");
-                            System.out.println("1. Sua ten sp:");
-                            System.out.println("2. Sua so luong ton kho:");
-                            System.out.println("3. Sua don gia:");
-                            System.out.println("4. Sua size:");
-                            System.out.println("5. Sua chat lieu:");
-                            System.out.println("6. Sua thun quan:");
-                            System.out.println("0. Exit.");
-                            System.out.println("---------------------------");
-                            System.out.print("Please choose: ");
+                            menuSua();
                             opt = Input.getInt();
-                            switch (opt) {
+                            switch(opt) {
                                 case 1:
-                                    System.out.println("Doi ten sp thanh:");
-                                    String tensp = Input.getString();
-                                    ds[i].setTensp(tensp);
+                                    doiTenSp(ds[i]);
                                     break;
                                 case 2:
-                                    System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = Input.getInt();
-                                    ds[i].setSltonkho(sltonkho);
+                                    doiSLTonKho(ds[i]);
                                     break;
                                 case 3:
-                                    System.out.println("Doi don gia thanh:");
-                                    double dongia = Input.getDouble();
-                                    ds[i].setDongia(dongia);
+                                    doiDonGia(ds[i]);
                                     break;
                                 case 4:
-                                    System.out.println("Doi size thanh:");
-                                    String size = Input.getString();
-                                    ds[i].setSize(size);
+                                    doiSize(ds[i]);
                                     break;
                                 case 5:
-                                    System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = Input.getString();
-                                    ds[i].setChatlieu(chatlieu);
+                                    doiChatLieu(ds[i]);
                                     break;
                                 case 6:
-                                    System.out.println("Doi thun quan thanh:");
-                                    boolean thunquan = Input.getBoolean();
-                                    ((Pant) ds[i]).setThunquan(thunquan);
+                                    doiThunQuan(ds[i]);
                                     break;
                                 case 0:
                                     break;
@@ -945,56 +879,33 @@ public class DSSP {
                                     break;
                             }
                         }
-                        while (opt != 0);
-                    } else if (ds[i] instanceof Shirt) {
+                        while(opt!=0);
+                    }
+                    else if(ds[i] instanceof Shirt){
                         do {
-                            System.out.println("---------------------------");
-                            System.out.println("1. Sua ten sp:");
-                            System.out.println("2. Sua so luong ton kho:");
-                            System.out.println("3. Sua don gia:");
-                            System.out.println("4. Sua size:");
-                            System.out.println("5. Sua chat lieu:");
-                            System.out.println("6. Sua mu trum dau:");
-                            System.out.println("7. Sua mu hoa tiet:");
-                            System.out.println("0. Exit.");
-                            System.out.println("---------------------------");
-                            System.out.print("Please choose: ");
-                            opt = Input.getInt();
-                            switch (opt) {
+                            menuSua();
+                            opt=Input.getInt();
+                            switch(opt) {
                                 case 1:
-                                    System.out.println("Doi ten sp thanh:");
-                                    String tensp = Input.getString();
-                                    ds[i].setTensp(tensp);
+                                    doiTenSp(ds[i]);
                                     break;
                                 case 2:
-                                    System.out.println("Doi so luong ton kho thanh:");
-                                    int sltonkho = Input.getInt();
-                                    ds[i].setSltonkho(sltonkho);
+                                    doiSLTonKho(ds[i]);
                                     break;
                                 case 3:
-                                    System.out.println("Doi don gia thanh:");
-                                    double dongia = Input.getDouble();
-                                    ds[i].setDongia(dongia);
+                                    doiDonGia(ds[i]);
                                     break;
                                 case 4:
-                                    System.out.println("Doi size thanh:");
-                                    String size = Input.getString();
-                                    ds[i].setSize(size);
+                                    doiSize(ds[i]);
                                     break;
                                 case 5:
-                                    System.out.println("Doi chat lieu thanh:");
-                                    String chatlieu = Input.getString();
-                                    ds[i].setChatlieu(chatlieu);
+                                    doiChatLieu(ds[i]);
                                     break;
                                 case 6:
-                                    System.out.println("Doi mu trum dau thanh:");
-                                    boolean mutrumdau = Input.getBoolean();
-                                    ((Shirt) ds[i]).setMutrumdau(mutrumdau);
+                                    doiMuTrumDau(ds[i]);
                                     break;
                                 case 7:
-                                    System.out.println("Doi hoa tiet thanh:");
-                                    String hoatiet = Input.getString();
-                                    ((Shirt) ds[i]).setHoatiet(hoatiet);
+                                    doiHoaTiet(ds[i]);
                                     break;
                                 case 0:
                                     break;
@@ -1003,12 +914,64 @@ public class DSSP {
                                     break;
                             }
                         }
-                        while (opt != 0);
+                        while(opt!=0);
                     }
                 }
-            }
-        } else {
+            }}
+        else {
             System.out.println("Ma sp khong ton tai!");
         }
+    }
+    private void menuSua(){
+        System.out.println("---------------------------");
+        System.out.println("1. Sua ten sp:");
+        System.out.println("2. Sua so luong ton kho:");
+        System.out.println("3. Sua don gia:");
+        System.out.println("4. Sua size:");
+        System.out.println("5. Sua chat lieu:");
+        System.out.println("6. Sua thun quan:");
+        System.out.println("0. Exit.");
+        System.out.println("---------------------------");
+        System.out.print("Please choose: ");
+    }
+    private void doiTenSp(@NotNull Product a){
+        System.out.println("Doi ten sp thanh:");
+        String tensp = Input.getString();
+        a.setTensp(tensp);
+    }
+    private void doiSLTonKho(@NotNull Product a){
+        System.out.println("Doi so luong ton kho thanh:");
+        int sltonkho = Input.getInt();
+        a.setSltonkho(sltonkho);
+    }
+    private void doiDonGia(@NotNull Product a){
+        System.out.println("Doi don gia thanh:");
+        double dongia = Input.getDouble();
+        a.setDongia(dongia);
+    }
+    private void doiSize(@NotNull Product a){
+        System.out.println("Doi size thanh:");
+        String size = Input.getString();
+        a.setSize(size);
+    }
+    private void doiChatLieu(@NotNull Product a){
+        System.out.println("Doi chat lieu thanh:");
+        String chatlieu = Input.getString();
+        a.setChatlieu(chatlieu);
+    }
+    private void doiMuTrumDau(@NotNull Product a){
+        System.out.println("Doi mu trum dau thanh:");
+        boolean mutrumdau = Input.getBoolean();
+        ((Shirt) a).setMutrumdau(mutrumdau);
+    }
+    private void doiHoaTiet(@NotNull Product a){
+        System.out.println("Doi hoa tiet thanh:");
+        String hoatiet = Input.getString();
+        ((Shirt) a).setHoatiet(hoatiet);
+    }
+    private void doiThunQuan(@NotNull Product a){
+        System.out.println("Doi thun quan thanh:");
+        boolean thunquan = Input.getBoolean();
+        ((Pant) a).setThunquan(thunquan);
     }
 }
