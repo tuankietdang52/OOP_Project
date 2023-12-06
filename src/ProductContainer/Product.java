@@ -103,7 +103,7 @@ public abstract class Product {
         System.out.print("Nhap ten san pham: ");
         tensp = Input.getString();
         TrimName();
-        System.out.println("Nhap gioi tinh: ");
+        System.out.print("Nhap gioi tinh: ");
         Input.getString();
         System.out.print("Nhap so luong ton kho: ");
         sltonkho = Input.getInt();
