@@ -1,9 +1,13 @@
 package Users;
 import InputManage.Input;
+import Interface.IFile;
+import Interface.IList;
+import ProductContainer.Product;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.util.*;
-public class Customerlist {
+public class Customerlist implements IFile {
     private Customer[] ds;
     private int n;
     public void nhap() {
@@ -26,6 +30,14 @@ public class Customerlist {
     }
 
     public Customerlist() {
+        try{
+            read();
+        }
+        catch (Exception ex){
+            System.out.println("Cant get data from file\nError: " + ex);
+        }
+
+        if (ds.length == 0) System.out.println("No data\n");
     }
 
     public Customerlist(Customer[] ds, int n) {
@@ -36,6 +48,65 @@ public class Customerlist {
     public Customerlist(@NotNull Customerlist a) {
         n = a.n;
         ds = a.ds;
+    }
+
+    public Customer[] getDs() {
+        return ds;
+    }
+
+    public void setDs(Customer[] ds) {
+        this.ds = ds;
+    }
+
+    public void setElementofDs(int pos, Customer customer){
+        ds[pos] = customer;
+    }
+
+    private Customer @NotNull [] increaseLength(){
+        var temparray = new Customer[ds.length + 1];
+        System.arraycopy(ds, 0, temparray, 0, ds.length);
+        return temparray;
+    }
+
+    @Override
+    public void read() throws Exception {
+        ds = new Customer[0];
+        var i = 0;
+
+        File customerdata = new File("./src/Data/Customer.bin");
+        FileInputStream stream = new FileInputStream(customerdata);
+        ObjectInputStream read = new ObjectInputStream(stream);
+        try{
+            while (true){
+                var customer = (Customer)read.readObject();
+                if (customer == null) break;
+
+                if (i >= ds.length) ds = increaseLength();
+
+                ds[i] = customer;
+                i++;
+            }
+        }
+        catch (EOFException ex){
+            read.close();
+        }
+        n = ds.length;
+    }
+
+    @Override
+    public void save() {
+        File customerdata = new File("./src/Data/Customer.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(customerdata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            for (var item : ds) {
+                write.writeObject(item);
+            }
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
     }
 
     public void them() {

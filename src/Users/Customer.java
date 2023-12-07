@@ -3,7 +3,9 @@ package Users;
 import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     private String makh;
     private String tenkh;
     private String diachi;

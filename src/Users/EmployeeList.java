@@ -1,10 +1,14 @@
 package Users;
 import InputManage.Input;
+import Interface.IFile;
+import Interface.IList;
+import ProductContainer.Product;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.*;
-public class EmployeeList {
+public class EmployeeList implements IFile {
     private Employee[] ds;
     private int n;
     public void nhap() {
@@ -27,6 +31,14 @@ public class EmployeeList {
     }
 
     public EmployeeList() {
+        try{
+            read();
+        }
+        catch (Exception ex){
+            System.out.println("Cant get data from file\nError: " + ex);
+        }
+
+        if (ds.length == 0) System.out.println("No data\n");
     }
 
     public EmployeeList(Employee[] ds, int n) {
@@ -37,6 +49,66 @@ public class EmployeeList {
     public EmployeeList(@org.jetbrains.annotations.NotNull EmployeeList a) {
         n = a.n;
         ds = a.ds;
+    }
+
+    public Employee[] getDs() {
+        return ds;
+    }
+
+    public void setDs(Employee[] ds) {
+        this.ds = ds;
+    }
+
+    public void setElementofDs(int pos, Employee employee){
+        ds[pos] = employee;
+    }
+
+    private Employee @NotNull [] increaseLength(){
+        var temparray = new Employee[ds.length + 1];
+        System.arraycopy(ds, 0, temparray, 0, ds.length);
+        return temparray;
+    }
+
+    @Override
+    public void read() throws Exception {
+        ds = new Employee[0];
+        var i = 0;
+
+        File employeedata = new File("./src/Data/Employee.bin");
+        FileInputStream stream = new FileInputStream(employeedata);
+        ObjectInputStream read = new ObjectInputStream(stream);
+        try{
+            while (true){
+                var employee = (Employee)read.readObject();
+                if (employee == null) break;
+
+                if (i >= ds.length) ds = increaseLength();
+
+                ds[i] = employee;
+                i++;
+            }
+        }
+        catch (EOFException ex){
+            read.close();
+        }
+        n = ds.length;
+    }
+
+    @Override
+    public void save() {
+        File employeedata = new File("./src/Data/Employee.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(employeedata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            for (var item : ds) {
+                write.writeObject(item);
+            }
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
+
     }
 
     public void them() {
