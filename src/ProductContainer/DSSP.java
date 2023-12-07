@@ -1,9 +1,12 @@
 package ProductContainer;
 import InputManage.Input;
+import Interface.IFile;
+import java.io.Serializable;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.util.*;
-public class DSSP {
+public class DSSP implements IFile {
     private Product[] ds;
     private int n;
     public void nhap() {
@@ -32,6 +35,14 @@ public class DSSP {
     }
 
     public DSSP() {
+        try{
+            read();
+        }
+        catch (Exception ex){
+            System.out.println("Cant get data from file\nError: " + ex);
+        }
+
+        if (ds.length == 0) System.out.println("No data\n");
     }
 
     public DSSP(Product[] ds, int n) {
@@ -42,6 +53,65 @@ public class DSSP {
     public DSSP(@NotNull DSSP a) {
         n = a.n;
         ds = a.ds;
+    }
+
+    private Product @NotNull [] increaseLength(){
+        var temparray = new Product[ds.length + 1];
+        System.arraycopy(ds, 0, temparray, 0, ds.length);
+        return temparray;
+    }
+
+    @Override
+    public void read() throws Exception{
+        ds = new Product[0];
+        var i = 0;
+
+        File productdata = new File("./src/Data/Product.bin");
+        FileInputStream stream = new FileInputStream(productdata);
+        ObjectInputStream read = new ObjectInputStream(stream);
+        try{
+            while (true){
+                var product = (Product)read.readObject();
+                if (product == null) break;
+
+                if (i >= ds.length) ds = increaseLength();
+
+                ds[i] = product;
+                i++;
+            }
+        }
+        catch (EOFException ex){
+            read.close();
+        }
+        n = ds.length;
+    }
+
+    @Override
+    public void save(){
+        File productdata = new File("./src/Data/Product.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(productdata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            for (var item : ds) {
+                write.writeObject(item);
+            }
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
+    }
+
+    public Product[] getDs() {
+        return ds;
+    }
+
+    public void setDs(Product[] ds){
+        this.ds = ds;
+    }
+
+    public void setElementofDs(int pos, Product product){
+        ds[pos] = product;
     }
 
     public void them() {
@@ -227,43 +297,43 @@ public class DSSP {
     }
     public void timkiemGioitinh() {
         System.out.println("Gioi tinh can tim: ");
-        String gioitinh = Input.getString();
+        ESex gioitinh = Input.getSex();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getGioitinh().contains(Xoa_khoang_trang_thua(gioitinh)))
+            if (ds[i].getGioitinh() == gioitinh)
                 System.out.print(i + " ");
         }
         System.out.println("\n");
     }
-    public int timkiemGioitinh(String gioitinh) {
+    public int timkiemGioitinh(ESex gioitinh) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getGioitinh().contains(gioitinh))
+            if (ds[i].getGioitinh() == gioitinh)
                 return i;
         }
         return -1;
     }
     public void timkiemGioitinh_Product() {
         System.out.println("Gioi tinh can tim: ");
-        String gioitinh = Input.getString();
+        ESex gioitinh = Input.getSex();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getGioitinh().contains(Xoa_khoang_trang_thua(gioitinh)))
+            if (ds[i].getGioitinh() == gioitinh)
                 System.out.print(ds[i] + "/n");
         }
         System.out.println("\n");
     }
-    public Product timkiemGioitinh_Product(String gioitinh) {
+    public Product timkiemGioitinh_Product(ESex gioitinh) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getGioitinh().contains(gioitinh))
+            if (ds[i].getGioitinh() == gioitinh)
                 return ds[i];
         }
         return null;
     }
     public DSSP timkiemGioitinh_DSSP() {
         System.out.print("Gioi tinh can tim: ");
-        String gioitinh = Input.getString();
+        ESex gioitinh = Input.getSex();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
-            if (ds[i].getGioitinh().contains(Xoa_khoang_trang_thua(gioitinh))) {
+            if (ds[i].getGioitinh() == gioitinh) {
                 if (ds[i] instanceof Pant) {
                     a.ds=Arrays.copyOf(a.ds, a.n+1);
                     a.ds[a.n]=new Pant((Pant) ds[i]);
@@ -278,11 +348,11 @@ public class DSSP {
         }
         return a;
     }
-    public DSSP timkiemGioitinh_DSSP(String gioitinh) {
+    public DSSP timkiemGioitinh_DSSP(ESex gioitinh) {
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
-            if (ds[i].getGioitinh().contains(gioitinh)) {
+            if (ds[i].getGioitinh() == gioitinh) {
                 if (ds[i] instanceof Pant) {
                     a.ds=Arrays.copyOf(a.ds, a.n+1);
                     a.ds[a.n]=new Pant((Pant) ds[i]);
@@ -299,17 +369,17 @@ public class DSSP {
     }
     public void timkiemSize() {
         System.out.println("Size can tim: ");
-        String size = Input.getString();
+        ESize size = Input.getSize();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getSize().contains(size))
+            if (ds[i].getSize() == size)
                 System.out.print(i + " ");
         }
         System.out.println("\n");
     }
 
-    public int timkiemSize(String size) {
+    public int timkiemSize(ESize size) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getSize().contains(size))
+            if (ds[i].getSize() == size)
                 return i;
         }
         return -1;
@@ -317,17 +387,17 @@ public class DSSP {
 
     public void timkiemSize_Product() {
         System.out.println("Size can tim: ");
-        String size = Input.getString();
+        ESize size = Input.getSize();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getSize().contains(size))
+            if (ds[i].getSize() == size)
                 System.out.print(ds[i] + "/n");
         }
         System.out.println("\n");
     }
 
-    public Product timkiemSize_Product(String size) {
+    public Product timkiemSize_Product(ESize size) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getSize().contains(size))
+            if (ds[i].getSize() == size)
                 return ds[i];
         }
         return null;
@@ -335,11 +405,11 @@ public class DSSP {
 
     public DSSP timkiemSize_DSSP() {
         System.out.print("Size can tim: ");
-        String size = Input.getString();
+        ESize size = Input.getSize();
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
-            if (ds[i].getSize().contains(size)) {
+            if (ds[i].getSize() == size) {
                 if (ds[i] instanceof Pant) {
                     a.ds=Arrays.copyOf(a.ds, a.n+1);
                     a.ds[a.n]=new Pant((Pant) ds[i]);
@@ -355,11 +425,11 @@ public class DSSP {
         return a;
     }
 
-    public DSSP timkiemSize_DSSP(String size) {
+    public DSSP timkiemSize_DSSP(ESize size) {
         DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
-            if (ds[i].getSize().contains(size)) {
+            if (ds[i].getSize() == size) {
                 if (ds[i] instanceof Pant) {
                     a.ds=Arrays.copyOf(a.ds, a.n+1);
                     a.ds[a.n]=new Pant((Pant) ds[i]);
@@ -951,7 +1021,7 @@ public class DSSP {
     }
     private void doiSize(@NotNull Product a){
         System.out.println("Doi size thanh:");
-        String size = Input.getString();
+        ESize size = Input.getSize();
         a.setSize(size);
     }
     private void doiChatLieu(@NotNull Product a){

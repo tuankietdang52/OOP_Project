@@ -3,9 +3,10 @@ package Users;
 import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.security.Permission;
 
-public class Employee {
+public class Employee implements Serializable {
     private String manv;
     private String tennv;
     private String cmnd;

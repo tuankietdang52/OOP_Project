@@ -13,7 +13,7 @@ public class Shirt extends Product {
         hoatiet = "";
     }
 
-    public Shirt(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size, boolean mutrumdau, String hoatiet){
+    public Shirt(String masp, String tensp, ESex gioitinh, int sltonkho, double dongia, String chatlieu, ESize size, boolean mutrumdau, String hoatiet){
         super(masp, tensp, gioitinh, sltonkho, dongia, chatlieu, size);
         this.mutrumdau = mutrumdau;
         this.hoatiet = hoatiet;
@@ -44,7 +44,7 @@ public class Shirt extends Product {
     @Override
     public void setByInput() {
         super.setByInput();
-        System.out.print("Mu trum dau: ");
+        System.out.print("Mu trum dau (true/false): ");
         mutrumdau = Input.getBoolean();
         System.out.print("Hoa tiet: ");
         hoatiet = Input.getString();

@@ -1,29 +1,30 @@
 package ProductContainer;
 
 import InputManage.Input;
-import Interface.IList;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class Product {
+import java.io.Serializable;
+
+public abstract class Product implements Serializable {
     private String masp;
     private String tensp;
-    private String gioitinh;
+    private ESex gioitinh;
     private int sltonkho;
     private double dongia;
-    private String size;
+    private ESize size;
     private String chatlieu;
 
     public Product(){
         masp = "";
         tensp = "";
-        gioitinh = "";
+        gioitinh = null;
         sltonkho = 0;
         dongia = 0;
-        size = "";
+        size = null;
         chatlieu = "";
     }
 
-    public Product(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size){
+    public Product(String masp, String tensp, ESex gioitinh, int sltonkho, double dongia, String chatlieu, ESize size){
         this.masp = masp;
         this.tensp = tensp;
         this.gioitinh = gioitinh;
@@ -49,7 +50,7 @@ public abstract class Product {
 
     public String getTensp() { return tensp; }
 
-    public String getGioitinh() {
+    public ESex getGioitinh() {
         return gioitinh;
     }
 
@@ -57,7 +58,7 @@ public abstract class Product {
         return sltonkho;
     }
 
-    public String getSize() {
+    public ESize getSize() {
         return size;
     }
 
@@ -77,7 +78,7 @@ public abstract class Product {
         this.tensp = tensp;
     }
 
-    public void setGioitinh(String gioitinh) {
+    public void setGioitinh(ESex gioitinh) {
         this.gioitinh = gioitinh;
     }
 
@@ -89,7 +90,7 @@ public abstract class Product {
         this.dongia = dongia;
     }
 
-    public void setSize(String size) {
+    public void setSize(ESize size) {
         this.size = size;
     }
 
@@ -104,15 +105,15 @@ public abstract class Product {
         tensp = Input.getString();
         TrimName();
         System.out.print("Nhap gioi tinh: ");
-        Input.getString();
+        gioitinh = Input.getSex();
         System.out.print("Nhap so luong ton kho: ");
         sltonkho = Input.getInt();
         System.out.print("Nhap don gia: ");
         dongia = Input.getDouble();
         System.out.print("Nhap chat lieu: ");
         chatlieu = Input.getString();
-        System.out.print("Nhap size: ");
-        size = Input.getString();
+        System.out.print("Nhap size (S, M, L, XL): ");
+        size = Input.getSize();
     }
 
     public void TrimName(){

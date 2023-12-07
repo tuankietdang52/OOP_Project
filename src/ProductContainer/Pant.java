@@ -10,7 +10,7 @@ public class Pant extends Product {
         thunquan = false;
     }
 
-    public Pant(String masp, String tensp, String gioitinh, int sltonkho, double dongia, String chatlieu, String size, boolean thunquan){
+    public Pant(String masp, String tensp, ESex gioitinh, int sltonkho, double dongia, String chatlieu, ESize size, boolean thunquan){
         super(masp, tensp, gioitinh, sltonkho, dongia, chatlieu, size);
         this.thunquan = thunquan;
     }
@@ -28,7 +28,7 @@ public class Pant extends Product {
 
     @Override public void setByInput(){
         super.setByInput();
-        System.out.print("Thun quan: ");
+        System.out.print("Thun quan (true/false): ");
         thunquan = Input.getBoolean();
     }
 
