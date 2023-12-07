@@ -2,11 +2,13 @@ package ProductContainer;
 import InputManage.Input;
 import Interface.IFile;
 import java.io.Serializable;
+
+import Interface.IList;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.*;
-public class DSSP implements IFile {
+public class DSSP implements IFile, IList<Product> {
     private Product[] ds;
     private int n;
     public void nhap() {
@@ -127,15 +129,10 @@ public class DSSP implements IFile {
         ++n;
     }
 
-    public void them(Pant a) {
+    @Override
+    public void them(Product product) {
         ds = Arrays.copyOf(ds, n + 1);
-        ds[n] = new Pant(a);
-        ++n;
-    }
-
-    public void them(Shirt a) {
-        ds = Arrays.copyOf(ds, n + 1);
-        ds[n] = new Shirt(a);
+        ds[n] = product;
         ++n;
     }
 
@@ -156,7 +153,8 @@ public class DSSP implements IFile {
         }
     }
 
-    public void xoaMa(String masp) {
+    @Override
+    public void xoa(String masp) {
         for (int i = 0; i < n; ++i) {
             if (ds[i].getMasp().equals(masp)) {
                 for (int j = i; j < n - 1; j++) {
@@ -820,6 +818,8 @@ public class DSSP implements IFile {
         }
         return a;
     }
+
+    @Override
     public void sua(String masp) {
         int flag=0;
         int opt;
