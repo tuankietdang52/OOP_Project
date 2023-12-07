@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.*;
-public class Customerlist implements IFile {
+public class Customerlist implements IFile, IList<Customer> {
     private Customer[] ds;
     private int n;
     public void nhap() {
@@ -116,6 +116,7 @@ public class Customerlist implements IFile {
         ++n;
     }
 
+    @Override
     public void them(Customer customer) {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Customer(customer);
@@ -133,7 +134,8 @@ public class Customerlist implements IFile {
         }
     }
 
-    public void xoaMa(String makh) {
+    @Override
+    public void xoa(String makh) {
         for (int i = 0; i < n; ++i) {
             if (ds[i].getMakh().equals(makh)) {
                 for (int j = i; j < n - 1; j++) {
@@ -454,6 +456,7 @@ public class Customerlist implements IFile {
         return a;
     }
 
+    @Override
     public void sua(String makh) {
         int flag=0;
         int opt;

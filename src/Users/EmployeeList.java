@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.*;
 import java.util.Scanner;
 import java.util.*;
-public class EmployeeList implements IFile {
+public class EmployeeList implements IFile, IList<Employee> {
     private Employee[] ds;
     private int n;
     public void nhap() {
@@ -118,6 +118,7 @@ public class EmployeeList implements IFile {
         ++n;
     }
 
+    @Override
     public void them(Employee employee) {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Employee(employee);
@@ -135,7 +136,8 @@ public class EmployeeList implements IFile {
         }
     }
 
-    public void xoaMa(String manv) {
+    @Override
+    public void xoa(String manv) {
         for (int i = 0; i < n; ++i) {
             if (ds[i].getManv().equals(manv)) {
                 for (int j = i; j < n - 1; j++) {
