@@ -147,30 +147,6 @@ public class Customerlist implements IFile, IList<Customer> {
             }
         }
     }
-    public void xoaSdt(String sdt) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getSdt().equals(sdt)) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
-    public void xoaEmail(String email) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getEmail().equals(email)) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
     public String Xoa_khoang_trang_thua(String s) {
         s = s.trim();
         s = s.replaceAll("\\s+", " ");

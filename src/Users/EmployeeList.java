@@ -149,66 +149,6 @@ public class EmployeeList implements IFile, IList<Employee> {
             }
         }
     }
-    public void xoaTennv(String tennv) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getTennv().contains(Xoa_khoang_trang_thua(tennv))) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
-    public void xoaCMND(String cmnd) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getCmnd().equals(cmnd)) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
-    public void xoaSdt(String sdt) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getSdt().equals(sdt)) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
-    public void xoaEmail(String email) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getEmail().equals(email)) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
-    public void xoaUsernames(String usernames) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getUsernames().equals(usernames)) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
     public String Xoa_khoang_trang_thua(String s) {
         s = s.trim();
         s = s.replaceAll("\\s+", " ");
