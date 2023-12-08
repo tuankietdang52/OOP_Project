@@ -173,19 +173,6 @@ public class DSSP implements IFile, IList<Product> {
         return s;
     }
 
-    public void xoaTen(String tensp) {
-        for (int i = 0; i < n; ++i) {
-            if (ds[i].getTensp().contains(Xoa_khoang_trang_thua(tensp))) {
-                for (int j = i; j < n - 1; j++) {
-                    ds[j] = ds[j + 1];
-                }
-                i--;
-                n--;
-                ds = Arrays.copyOf(ds, n);
-            }
-        }
-    }
-
     public void timkiemMasp() {
         System.out.println("Ma sp can tim: ");
         String masp = Input.getString();

@@ -1,4 +1,5 @@
 import InputManage.Input;
+import Menu.MainMenu;
 import ProductContainer.Product;
 import ProductContainer.Shirt;
 import Users.Customer;
@@ -11,8 +12,10 @@ public class Main {
     public static void main(String[] args) {
         Customerlist ds = new Customerlist();
 
-        for (var item : ds.getDs()){
-            System.out.println(item);
-        }
+//        for (var item : ds.getDs()){
+//            System.out.println(item);
+//        }
+        MainMenu menu = new MainMenu();
+        menu.showMenu();
     }
 }
