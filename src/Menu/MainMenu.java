@@ -1,10 +1,18 @@
 package Menu;
 
 import InputManage.Input;
+import ProductContainer.DSSP;
+import Users.Customerlist;
+import Users.EmployeeList;
 
 public class MainMenu {
-    int opt;
+    DSSP dssp = new DSSP();
+    Customerlist dskh = new Customerlist();
+    EmployeeList dsnv = new EmployeeList();
+//  dsHoadon        DSHD();
+//  dsPhieunhap     DSPN();
     public void showMenu(){
+        int opt;
         do {
             System.out.println("------------Main Menu-----------");
             System.out.println("1. Quan ly san pham:");
@@ -63,7 +71,7 @@ public class MainMenu {
                 System.out.println("1. Nhap danh sach:");
                 break;
             case 2:
-                System.out.println("2. Xuat danh sach:");
+                dssp.toString();
                 break;
             case 3:
                 System.out.println("3. Them san pham:");
@@ -104,7 +112,7 @@ public class MainMenu {
                     System.out.println("1. Nhap danh sach:");
                     break;
                 case 2:
-                    System.out.println("2. Xuat danh sach:");
+                    dskh.toString();
                     break;
                 case 3:
                     System.out.println("3. Them khach hang:");
@@ -145,7 +153,7 @@ public class MainMenu {
                     System.out.println("1. Nhap danh sach:");
                     break;
                 case 2:
-                    System.out.println("2. Xuat danh sach:");
+                    dsnv.toString();
                     break;
                 case 3:
                     System.out.println("3. Them nhan vien:");
