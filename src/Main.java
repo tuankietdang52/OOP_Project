@@ -17,5 +17,6 @@ public class Main {
 //        }
         MainMenu menu = new MainMenu();
         menu.showMenu();
+        Input.close();
     }
 }

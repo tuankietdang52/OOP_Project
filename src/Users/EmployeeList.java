@@ -40,7 +40,8 @@ public class EmployeeList implements IFile, IList<Employee> {
 
         if (ds.length == 0) System.out.println("No data\n");
     }
-
+    public EmployeeList(int n){
+    }
     public EmployeeList(Employee[] ds, int n) {
         this.n = n;
         this.ds = ds;
@@ -178,7 +179,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String manv = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getManv().equals(manv))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -211,7 +212,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String tennv = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getTennv().contains(Xoa_khoang_trang_thua(tennv)))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -225,7 +226,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     public EmployeeList timkiemTennv_EmployeeList() {
         System.out.print("Ten nhan vien can tim: ");
         String tennv = Input.getString();
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTennv().contains(Xoa_khoang_trang_thua(tennv))) {
@@ -237,7 +238,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         return a;
     }
     public EmployeeList timkiemTennv_EmployeeList(String tennv) {
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTennv().contains(Xoa_khoang_trang_thua(tennv))) {
@@ -269,7 +270,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String cmnd = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getCmnd().equals(cmnd))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -279,32 +280,6 @@ public class EmployeeList implements IFile, IList<Employee> {
                 return ds[i];
         }
         return null;
-    }
-    public EmployeeList timkiemCMND_EmployeeList() {
-        System.out.print("CMND can tim: ");
-        String cmnd = Input.getString();
-        EmployeeList a = new EmployeeList();
-        a.ds=new Employee[a.n];
-        for (int i = 0; i < n; i++) {
-            if (ds[i].getCmnd().equals(cmnd)) {
-                a.ds = Arrays.copyOf(a.ds, a.n + 1);
-                a.ds[a.n] = new Employee(ds[i]);
-                ++a.n;
-            }
-        }
-        return a;
-    }
-    public EmployeeList timkiemCMND_EmployeeList(String cmnd) {
-        EmployeeList a = new EmployeeList();
-        a.ds=new Employee[a.n];
-        for (int i = 0; i < n; i++) {
-            if (ds[i].getCmnd().equals(cmnd)) {
-                a.ds = Arrays.copyOf(a.ds, a.n + 1);
-                a.ds[a.n] = new Employee(ds[i]);
-                ++a.n;
-            }
-        }
-        return a;
     }
     public void timkiemSdt() {
         System.out.println("Sdt can tim: ");
@@ -329,7 +304,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String sdt = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -345,7 +320,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     public EmployeeList timkiemSdt_EmployeeList() {
         System.out.print("Sdt can tim: ");
         String sdt = Input.getString();
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt)) {
@@ -358,7 +333,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     }
 
     public EmployeeList timkiemSdt_EmployeeList(String sdt) {
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt)) {
@@ -394,7 +369,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String email = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -410,7 +385,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     public EmployeeList timkiemEmail_EmployeeList() {
         System.out.print("Email can tim: ");
         String email = Input.getString();
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email)) {
@@ -423,7 +398,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     }
 
     public EmployeeList timkiemEmail_EmployeeList(String email) {
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email)) {
@@ -457,7 +432,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String username = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getUsernames().equals(username))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -468,34 +443,6 @@ public class EmployeeList implements IFile, IList<Employee> {
                 return ds[i];
         }
         return null;
-    }
-
-    public EmployeeList timkiemUsername_EmployeeList() {
-        System.out.print("Username can tim: ");
-        String username = Input.getString();
-        EmployeeList a = new EmployeeList();
-        a.ds=new Employee[a.n];
-        for (int i = 0; i < n; i++) {
-            if (ds[i].getUsernames().equals(username)) {
-                a.ds = Arrays.copyOf(a.ds, a.n + 1);
-                a.ds[a.n] = new Employee(ds[i]);
-                ++a.n;
-            }
-        }
-        return a;
-    }
-
-    public EmployeeList timkiemUsername_EmployeeList(String username) {
-        EmployeeList a = new EmployeeList();
-        a.ds=new Employee[a.n];
-        for (int i = 0; i < n; i++) {
-            if (ds[i].getUsernames().equals(username)) {
-                a.ds = Arrays.copyOf(a.ds, a.n + 1);
-                a.ds[a.n] = new Employee(ds[i]);
-                ++a.n;
-            }
-        }
-        return a;
     }
     public void timkiemPassword() {
         System.out.println("Password can tim: ");
@@ -520,7 +467,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         String password = Input.getString();
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password))
-                System.out.print(ds[i] + "/n");
+                System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
     }
@@ -536,7 +483,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     public EmployeeList timkiemPassword_EmployeeList() {
         System.out.print("Password can tim: ");
         String password = Input.getString();
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password)) {
@@ -549,7 +496,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     }
 
     public EmployeeList timkiemPassword_EmployeeList(String password) {
-        EmployeeList a = new EmployeeList();
+        EmployeeList a = new EmployeeList(0);
         a.ds=new Employee[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password)) {
