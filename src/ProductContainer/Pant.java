@@ -34,7 +34,6 @@ public class Pant extends Product {
 
     @Override public String toString(){
         PrintBasicElement();
-        System.out.println("Chat lieu: " + getChatlieu());
         System.out.println("Thun quan: " + getThunquan());
         return "";
     }
