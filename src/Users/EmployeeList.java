@@ -69,7 +69,8 @@ public class EmployeeList implements IFile, IList<Employee> {
         ds[pos] = employee;
     }
 
-    private Employee @NotNull [] increaseLength(){
+    @Override
+    public Employee @NotNull [] increaseLength(){
         var temparray = new Employee[ds.length + 1];
         System.arraycopy(ds, 0, temparray, 0, ds.length);
         return temparray;

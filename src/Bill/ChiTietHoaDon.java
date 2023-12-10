@@ -1,19 +1,22 @@
 package Bill;
 
 import InputManage.Input;
+import ProductContainer.DSSP;
+import ProductContainer.Product;
+import ProductContainer.Shirt;
 
 public class ChiTietHoaDon {
+    private int stt;
     private String mahd;
     private String masp;
     private int soluongmua;
-    private double dongia;
     private double thanhtien;
+    private Product sanpham;
 
     public ChiTietHoaDon() {
         mahd = "";
         masp = "";
         soluongmua = 0;
-        dongia = 0;
         thanhtien = 0;
     }
 
@@ -21,8 +24,11 @@ public class ChiTietHoaDon {
         this.mahd = mahd;
         this.masp = masp;
         this.soluongmua = soluongmua;
-        this.dongia = dongia;
         this.thanhtien = thanhtien;
+    }
+
+    public void setStt(int stt) {
+        this.stt = stt;
     }
 
     public void setMahd(String mahd) {
@@ -37,12 +43,16 @@ public class ChiTietHoaDon {
         this.soluongmua = soluongmua;
     }
 
-    public void setDongia(double dongia) {
-        this.dongia = dongia;
-    }
-
     public void setThanhtien(double thanhtien) {
         this.thanhtien = thanhtien;
+    }
+
+    public void setSanpham(Product sanpham) {
+        this.sanpham = sanpham;
+    }
+
+    public int getStt() {
+        return stt;
     }
 
     public String getMahd() {
@@ -57,28 +67,76 @@ public class ChiTietHoaDon {
         return soluongmua;
     }
 
-    public double getDongia() {
-        return dongia;
-    }
-
     public double getThanhtien() {
         return thanhtien;
     }
+
+    public Product getSanpham() {
+        return sanpham;
+    }
+
     public void setByInput(){
-        System.out.print("Nhap ma hoa don: ");
-        mahd = Input.getString();
         System.out.print("Nhap ma san pham: ");
         masp = Input.getString();
         System.out.print("So luong mua: ");
         soluongmua = Input.getInt();
-        System.out.print("Nhap Don gia: ");
-        dongia = Input.getDouble();
+
+        getProduct();
+
+        // muon test thi comment getProduct() o tren r bo comment 2 dong duoi
+        //sanpham = new Shirt();
+        //sanpham.setByInput();
+
+        tinhTien();
     }
+
+    private void getProduct(){
+        DSSP ds = new DSSP(true);
+
+        this.sanpham = ds.timkiemMasp_Product(this.masp);
+    }
+
+    private void tinhTien(){
+        thanhtien = sanpham.getDongia() * soluongmua;
+    }
+
+    public void sua(){
+        System.out.println(this);
+        System.out.println("Ban muon sua thong tin nao, Nhap ten thong tin:\n");
+        String Detailname = Input.getString().toLowerCase();
+
+        switch (Detailname){
+            case "mahd":
+                System.out.println("Khong the sua ma hoa don, vui long chon thong tin khac\n");
+                sua();
+                break;
+
+            case "masp":
+                System.out.println("Vui long ma san pham moi: ");
+                setMasp(Input.getString());
+                getProduct();
+                break;
+
+            case "soluongmua":
+                System.out.println("Vui long nhap so luong mua moi: ");
+                setSoluongmua(Input.getInt());
+                tinhTien();
+                break;
+
+            default:
+                System.out.println("Vui long nhap dung ten thong tin:\n");
+                sua();
+                break;
+        }
+    }
+
     @Override public String toString(){
+        System.out.println("STT: " + stt);
         System.out.println("Ma hoa don: " + mahd);
         System.out.println("Ma san pham: " + masp);
+        System.out.println("Ten san pham: " + sanpham.getTensp());
         System.out.println("So luong mua: " + soluongmua);
-        System.out.println("Don gia: " + dongia);
+        System.out.println("Don gia: " + sanpham.getDongia());
         System.out.println("Thanh tien: " + thanhtien);
         return "";
     }

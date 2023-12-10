@@ -63,7 +63,8 @@ public class DSSP implements IFile, IList<Product> {
         ds = a.ds;
     }
 
-    private Product @NotNull [] increaseLength(){
+    @Override
+    public Product @NotNull [] increaseLength(){
         var temparray = new Product[ds.length + 1];
         System.arraycopy(ds, 0, temparray, 0, ds.length);
         return temparray;
