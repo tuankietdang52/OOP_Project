@@ -38,6 +38,11 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP() {
+    }
+
+    public DSSP(Boolean isGetData){
+        if (!isGetData) return;
+
         try{
             read();
         }
@@ -46,8 +51,7 @@ public class DSSP implements IFile, IList<Product> {
         }
 
         if (ds.length == 0) System.out.println("No data\n");
-    }
-    public DSSP(int n){
+
     }
     public DSSP(Product[] ds, int n) {
         this.n = n;
@@ -249,7 +253,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemTensp_DSSP() {
         System.out.print("Ten sp can tim: ");
         String tensp = Input.getString();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTensp().contains(Xoa_khoang_trang_thua(tensp))) {
@@ -268,7 +272,7 @@ public class DSSP implements IFile, IList<Product> {
         return a;
     }
     public DSSP timkiemTensp_DSSP(String tensp) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTensp().contains(tensp)) {
@@ -321,7 +325,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemGioitinh_DSSP() {
         System.out.print("Gioi tinh can tim: ");
         ESex gioitinh = Input.getSex();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getGioitinh() == gioitinh) {
@@ -340,7 +344,7 @@ public class DSSP implements IFile, IList<Product> {
         return a;
     }
     public DSSP timkiemGioitinh_DSSP(ESex gioitinh) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getGioitinh() == gioitinh) {
@@ -397,7 +401,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemSize_DSSP() {
         System.out.print("Size can tim: ");
         ESize size = Input.getSize();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSize() == size) {
@@ -417,7 +421,7 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP timkiemSize_DSSP(ESize size) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSize() == size) {
@@ -475,7 +479,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemChatlieu_DSSP() {
         System.out.print("Chat lieu can tim: ");
         String chatlieu = Input.getString();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getChatlieu().contains(Xoa_khoang_trang_thua(chatlieu))) {
@@ -495,7 +499,7 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP timkiemChatlieu_DSSP(String chatlieu) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getChatlieu().contains(chatlieu)) {
@@ -553,7 +557,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemDongia_DSSP() {
         System.out.print("Don gia can tim: ");
         double dongia = Input.getDouble();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (Double.compare(ds[i].getDongia(), dongia) == 0) {
@@ -573,7 +577,7 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP timkiemDongia_DSSP(double dongia) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (Double.compare(ds[i].getDongia(), dongia) == 0) {
@@ -639,7 +643,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemMutrumdau_DSSP() {
         System.out.print("Tim ao co mu hay khong mu: ");
         boolean mutrumdau = Input.getBoolean();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Shirt) {
@@ -654,7 +658,7 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP timkiemMutrumdau_DSSP(boolean mutrumdau) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Shirt) {
@@ -716,7 +720,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemThunquan_DSSP() {
         System.out.print("Tim quan co thun hay khong thun: ");
         boolean thunquan = Input.getBoolean();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Pant) {
@@ -731,7 +735,7 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP timkiemThunquan_DSSP(boolean thunquan) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Pant) {
@@ -783,7 +787,7 @@ public class DSSP implements IFile, IList<Product> {
     public DSSP timkiemHoatiet_DSSP() {
         System.out.print("Hoa tiet can tim: ");
         String hoatiet = Input.getString();
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Shirt) {
@@ -798,7 +802,7 @@ public class DSSP implements IFile, IList<Product> {
     }
 
     public DSSP timkiemHoatiet_DSSP(String hoatiet) {
-        DSSP a = new DSSP(0);
+        DSSP a = new DSSP();
         a.ds=new Product[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i] instanceof Shirt) {
