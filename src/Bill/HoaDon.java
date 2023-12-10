@@ -20,6 +20,13 @@ public class HoaDon{
         this.tongtien = tongtien;
         this.ngaylap = ngaylap;
     }
+    public HoaDon(HoaDon a){
+        mahd = a.mahd;
+        makh = a.makh;
+        manv = a.manv;
+        tongtien = a.tongtien;
+        ngaylap = a.ngaylap;
+    }
     public void setMahd (String mahd){
         this.mahd = mahd;
     }

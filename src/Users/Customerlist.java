@@ -19,6 +19,7 @@ public class Customerlist implements IFile, IList<Customer> {
             ds[i] = new Customer();
             ds[i].setByInput();
         }
+        save();
     }
 
     public String toString() {
@@ -121,6 +122,7 @@ public class Customerlist implements IFile, IList<Customer> {
         ds[n] = new Customer();
         ds[n].setByInput();
         ++n;
+        save();
     }
 
     @Override
@@ -128,6 +130,7 @@ public class Customerlist implements IFile, IList<Customer> {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Customer(customer);
         ++n;
+        save();
     }
 
     public void them(int k) {
@@ -139,6 +142,7 @@ public class Customerlist implements IFile, IList<Customer> {
             ++i;
             ++n;
         }
+        save();
     }
 
     @Override
@@ -153,6 +157,7 @@ public class Customerlist implements IFile, IList<Customer> {
                 ds = Arrays.copyOf(ds, n);
             }
         }
+        save();
     }
     public String Xoa_khoang_trang_thua(String s) {
         s = s.trim();
@@ -478,6 +483,7 @@ public class Customerlist implements IFile, IList<Customer> {
                     while(opt!=0);
                 }
             }
+            save();
         }
         else    System.out.println("Ma khach hang khong ton tai!");
     }
@@ -521,6 +527,7 @@ public class Customerlist implements IFile, IList<Customer> {
                     while (opt != 0);
                 }
             }
+            save();
         } else System.out.println("Ma khach hang khong ton tai!");
     }
     private void menuSua(){
