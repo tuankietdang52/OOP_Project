@@ -31,6 +31,12 @@ public class Customerlist implements IFile, IList<Customer> {
     }
 
     public Customerlist() {
+
+    }
+
+    public Customerlist(Boolean isGetData){
+        if (!isGetData) return;
+
         try{
             read();
         }
@@ -39,9 +45,9 @@ public class Customerlist implements IFile, IList<Customer> {
         }
 
         if (ds.length == 0) System.out.println("No data\n");
+
     }
-    public Customerlist(int n){
-    }
+
     public Customerlist(Customer[] ds, int n) {
         this.n = n;
         this.ds = ds;
@@ -229,7 +235,7 @@ public class Customerlist implements IFile, IList<Customer> {
     public Customerlist timkiemTenkh_CustomerList() {
         System.out.print("Ten khach hang can tim: ");
         String tenkh = Input.getString();
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(Xoa_khoang_trang_thua(tenkh))) {
@@ -241,7 +247,7 @@ public class Customerlist implements IFile, IList<Customer> {
         return a;
     }
     public Customerlist timkiemTenkh_CustomerList(String tenkh) {
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(tenkh)) {
@@ -287,7 +293,7 @@ public class Customerlist implements IFile, IList<Customer> {
     public Customerlist timkiemDiachi_CustomerList() {
         System.out.print("Dia chi can tim: ");
         String diachi = Input.getString();
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(Xoa_khoang_trang_thua(diachi))) {
@@ -299,7 +305,7 @@ public class Customerlist implements IFile, IList<Customer> {
         return a;
     }
     public Customerlist timkiemDiachi_CustomerList(String diachi) {
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(diachi)) {
@@ -349,7 +355,7 @@ public class Customerlist implements IFile, IList<Customer> {
     public Customerlist timkiemSdt_CustomerList() {
         System.out.print("Sdt can tim: ");
         String sdt = Input.getString();
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt)) {
@@ -362,7 +368,7 @@ public class Customerlist implements IFile, IList<Customer> {
     }
 
     public Customerlist timkiemSdt_CustomerList(String sdt) {
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt)) {
@@ -413,7 +419,7 @@ public class Customerlist implements IFile, IList<Customer> {
     public Customerlist timkiemEmail_CustomerList() {
         System.out.print("Email can tim: ");
         String email = Input.getString();
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email)) {
@@ -426,7 +432,7 @@ public class Customerlist implements IFile, IList<Customer> {
     }
 
     public Customerlist timkiemEmail_CustomerList(String email) {
-        Customerlist a = new Customerlist(0);
+        Customerlist a = new Customerlist();
         a.ds=new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email)) {
