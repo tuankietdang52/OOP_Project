@@ -70,7 +70,8 @@ public class Customerlist implements IFile, IList<Customer> {
         ds[pos] = customer;
     }
 
-    private Customer @NotNull [] increaseLength(){
+    @Override
+    public Customer @NotNull [] increaseLength(){
         var temparray = new Customer[ds.length + 1];
         System.arraycopy(ds, 0, temparray, 0, ds.length);
         return temparray;
