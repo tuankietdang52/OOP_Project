@@ -22,7 +22,13 @@ public class PhieuNhap {
         this.ngaylap = ngaylap;
         this.tongtien = tongtien;
     }
-
+    public PhieuNhap(PhieuNhap a){
+        maphieunhap = a.maphieunhap;
+        manv = a.manv;
+        manhacungcap = a.manhacungcap;
+        ngaylap = a.ngaylap;
+        tongtien = a.tongtien;
+    }
     public void setMaphieunhap(String maphieunhap) {
         this.maphieunhap = maphieunhap;
     }

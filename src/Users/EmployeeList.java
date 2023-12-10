@@ -20,6 +20,7 @@ public class EmployeeList implements IFile, IList<Employee> {
             ds[i] = new Employee();
             ds[i].setByInput();
         }
+        save();
     }
 
     public String toString() {
@@ -117,6 +118,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         ds[n] = new Employee();
         ds[n].setByInput();
         ++n;
+        save();
     }
 
     @Override
@@ -124,6 +126,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Employee(employee);
         ++n;
+        save();
     }
 
     public void them(int k) {
@@ -135,6 +138,7 @@ public class EmployeeList implements IFile, IList<Employee> {
             ++i;
             ++n;
         }
+        save();
     }
 
     @Override
@@ -149,6 +153,7 @@ public class EmployeeList implements IFile, IList<Employee> {
                 ds = Arrays.copyOf(ds, n);
             }
         }
+        save();
     }
     public String Xoa_khoang_trang_thua(String s) {
         s = s.trim();
@@ -551,6 +556,7 @@ public class EmployeeList implements IFile, IList<Employee> {
                     while(opt!=0);
                 }
             }
+            save();
         }
         else    System.out.println("Ma khach hang khong ton tai!");
     }
@@ -600,6 +606,7 @@ public class EmployeeList implements IFile, IList<Employee> {
                     while(opt!=0);
                 }
             }
+            save();
         }
         else    System.out.println("Ma khach hang khong ton tai!");
     }
