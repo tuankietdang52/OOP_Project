@@ -107,13 +107,27 @@ public class DSHD implements IFile, IList<HoaDon>{
 
     @Override
     public void save() {
-        File customerdata = new File("./src/Data/Customer.bin");
+        File customerdata = new File("./src/Data/Bill.bin");
         try{
             FileOutputStream stream = new FileOutputStream(customerdata);
             ObjectOutputStream write = new ObjectOutputStream(stream);
             for (var item : ds) {
                 write.writeObject(item);
             }
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
+    }
+
+    @Override
+    public void clear(){
+        File customerdata = new File("./src/Data/Bill.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(customerdata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            write.writeChars("");
             write.close();
         }
         catch (Exception ex){

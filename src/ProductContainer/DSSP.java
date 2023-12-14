@@ -111,6 +111,20 @@ public class DSSP implements IFile, IList<Product> {
         }
     }
 
+    @Override
+    public void clear(){
+        File productdata = new File("./src/Data/Product.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(productdata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            write.writeChars("");
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
+    }
+
     public Product[] getDs() {
         return ds;
     }

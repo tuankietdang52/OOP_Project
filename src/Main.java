@@ -12,9 +12,6 @@ import Users.Employee;
 
 public class Main {
     public static void main(String[] args) {
-        AccountManagement.SignIn();
-
-        System.out.println(AccountManagement.currentUser);
 
 
         Input.close();

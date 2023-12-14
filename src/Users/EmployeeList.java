@@ -121,6 +121,21 @@ public class EmployeeList implements IFile, IList<Employee> {
 
     }
 
+    @Override
+    public void clear() {
+        File employeedata = new File("./src/Data/Employee.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(employeedata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            write.writeChars("");
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
+
+    }
+
     public void them() {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Employee();

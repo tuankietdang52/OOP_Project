@@ -4,9 +4,13 @@ import InputManage.Input;
 import Interface.IAccount;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.util.Random;
 
 public class Customer implements Serializable, IAccount {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String makh;
     private String tenkh;
     private String diachi;
@@ -43,6 +47,19 @@ public class Customer implements Serializable, IAccount {
         email = customer.email;
         username = customer.username;
         password = customer.password;
+    }
+
+    public void createMakh(){
+        String character = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String code = "";
+
+        Random random = new Random();
+        for (int i = 0; i < 5; i++){
+            int index = random.nextInt(character.length());
+            code += character.charAt(index);
+        }
+
+        makh = code;
     }
 
     public void setMakh(String makh) {
@@ -106,19 +123,6 @@ public class Customer implements Serializable, IAccount {
         tenkh = tenkh.replaceAll("\\s+", " ");
     }
     public void setByInput(){
-        System.out.print("Nhap ma khach hang: ");
-        makh = Input.getString();
-        System.out.print("Nhap ten khach hang: ");
-        tenkh = Input.getString();
-        System.out.print("Nhap dia chi: ");
-        diachi = Input.getString();
-        System.out.print("Nhap sdt: ");
-        sdt = Input.getString();
-        System.out.print("Email: ");
-        email = Input.getString();
-    }
-
-    public void userInput(){
         System.out.println("-----------Nhap thong tin ca nhan-----------");
         System.out.print("Nhap ten cua ban: ");
         tenkh = Input.getString();

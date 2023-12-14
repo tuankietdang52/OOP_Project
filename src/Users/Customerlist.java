@@ -43,6 +43,7 @@ public class Customerlist implements IFile, IList<Customer> {
         catch (Exception ex){
             if (ds.length == 0){
                 ds = new Customer[0];
+                System.out.println("Error: " + ex);
                 return;
             }
             System.out.println("Cant get data from file\nError: " + ex);
@@ -114,6 +115,20 @@ public class Customerlist implements IFile, IList<Customer> {
             for (var item : ds) {
                 write.writeObject(item);
             }
+            write.close();
+        }
+        catch (Exception ex){
+            System.out.println("Cant write data from file\nError: " + ex);
+        }
+    }
+
+    @Override
+    public void clear(){
+        File customerdata = new File("./src/Data/Customer.bin");
+        try{
+            FileOutputStream stream = new FileOutputStream(customerdata);
+            ObjectOutputStream write = new ObjectOutputStream(stream);
+            write.writeChars("");
             write.close();
         }
         catch (Exception ex){
