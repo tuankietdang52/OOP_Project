@@ -564,9 +564,6 @@ public class EmployeeList implements IFile, IList<Employee> {
                                 doiEmail(ds[i]);
                                 break;
                             case 5:
-                                doiUsername(ds[i]);
-                                break;
-                            case 6:
                                 doiPassword(ds[i]);
                                 break;
                             case 0:
@@ -614,9 +611,6 @@ public class EmployeeList implements IFile, IList<Employee> {
                                 doiEmail(ds[i]);
                                 break;
                             case 5:
-                                doiUsername(ds[i]);
-                                break;
-                            case 6:
                                 doiPassword(ds[i]);
                                 break;
                             case 0:
@@ -639,8 +633,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         System.out.println("2. Sua CMND nhan vien:");
         System.out.println("3. Sua sdt nhan vien:");
         System.out.println("4. Sua email nhan vien:");
-        System.out.println("5. Sua username nhan vien:");
-        System.out.println("6. Sua password nhan vien:");
+        System.out.println("5. Doi mat khau:");
         System.out.println("0. Exit.");
         System.out.println("---------------------------");
         System.out.print("Please choose: ");
@@ -665,14 +658,9 @@ public class EmployeeList implements IFile, IList<Employee> {
         String email = Input.getString();
         a.setEmail(email);
     }
-    private void doiUsername(@NotNull Employee a){
-        System.out.println("Doi username nhan vien thanh:");
-        String username = Input.getString();
-        a.setUsername(username);
-    }
     private void doiPassword(@NotNull Employee a){
         System.out.println("Doi password nhan vien thanh:");
         String password = Input.getString();
         a.setPassword(password);
-    }
+    }4
 }
