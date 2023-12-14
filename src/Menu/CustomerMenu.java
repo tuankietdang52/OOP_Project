@@ -1,5 +1,6 @@
 package Menu;
 import InputManage.Input;
+import Users.AccountManagement;
 import Users.Customerlist;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,6 +19,7 @@ public class CustomerMenu {
     public void showMenu(){
         int opt;
         do {
+            System.out.println("--------Chao mung " + AccountManagement.currentUser.getTenkh() + "--------");
             System.out.println("----------Customer Menu---------");
             System.out.println("1. Xem gio hang:");
             System.out.println("2. Ds san pham trong shop:");

@@ -18,6 +18,7 @@ public class Customerlist implements IFile, IList<Customer> {
             System.out.println("Khach hang thu " + (i + 1));
             ds[i] = new Customer();
             ds[i].setByInput();
+            ds[i].createMakh();
         }
         save();
     }
@@ -140,6 +141,7 @@ public class Customerlist implements IFile, IList<Customer> {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Customer();
         ds[n].setByInput();
+        ds[n].createMakh();
         ++n;
         save();
     }
@@ -158,6 +160,7 @@ public class Customerlist implements IFile, IList<Customer> {
         while (i < k) {
             ds[n] = new Customer();
             ds[n].setByInput();
+            ds[n].createMakh();
             ++i;
             ++n;
         }

@@ -120,9 +120,13 @@ public class Employee implements Serializable, IAccount {
         sdt = Input.getString();
         System.out.print("Email: ");
         email = Input.getString();
+        System.out.println("Nhap tai khoan: ");
+        usernames = Input.getString();
+        System.out.println("Nhap mat khau: ");
+        password = Input.getString();
     }
 
-    public void TrimName(){
+    private void TrimName(){
         tennv = tennv.trim();
         tennv = tennv.replaceAll("\\s+", " ");
     }
