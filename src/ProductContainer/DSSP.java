@@ -610,7 +610,51 @@ public class DSSP implements IFile, IList<Product> {
         }
         return a;
     }
+    public DSSP timkiemKhoangDongia_DSSP() {
+        System.out.print("From: ");
+        double minDongia = Input.getDouble();
+        System.out.print("to: ");
+        double maxDongia = Input.getDouble();
+        DSSP a = new DSSP();
+        a.ds=new Product[a.n];
+        for (int i = 0; i < n; i++) {
+            if (Double.compare(ds[i].getDongia(), minDongia) >= 0
+                && Double.compare(ds[i].getDongia(), maxDongia) <= 0) {
+                if (ds[i] instanceof Pant) {
+                    a.ds=Arrays.copyOf(a.ds, a.n+1);
+                    a.ds[a.n]=new Pant((Pant) ds[i]);
+                    ++a.n;
+                }
+                else  {
+                    a.ds=Arrays.copyOf(a.ds, a.n+1);
+                    a.ds[a.n]=new Shirt((Shirt) ds[i]);
+                    ++a.n;
+                }
+            }
+        }
+        return a;
+    }
 
+    public DSSP timkiemKhoangDongia_DSSP(double minDongia,double maxDongia) {
+        DSSP a = new DSSP();
+        a.ds=new Product[a.n];
+        for (int i = 0; i < n; i++) {
+            if (Double.compare(ds[i].getDongia(), minDongia) >= 0
+                    && Double.compare(ds[i].getDongia(), maxDongia) <= 0) {
+                if (ds[i] instanceof Pant) {
+                    a.ds=Arrays.copyOf(a.ds, a.n+1);
+                    a.ds[a.n]=new Pant((Pant) ds[i]);
+                    ++a.n;
+                }
+                else  {
+                    a.ds=Arrays.copyOf(a.ds, a.n+1);
+                    a.ds[a.n]=new Shirt((Shirt) ds[i]);
+                    ++a.n;
+                }
+            }
+        }
+        return a;
+    }
     public void timkiemMutrumdau() {
         System.out.println("Tim ao co mu hay khong mu: ");
         boolean mutrumdau = Input.getBoolean();

@@ -462,7 +462,104 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+    public void timkiemUsername() {
+        System.out.println("Username can tim: ");
+        String username = Input.getString();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getUsername().equals(username))
+                System.out.print(i + " ");
+        }
+        System.out.println("\n");
+    }
 
+    public int timkiemUsername(String username) {
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getUsername().equals(username))
+                return i;
+        }
+        return -1;
+    }
+
+    public void timkiemUsername_Customer() {
+        System.out.println("Username can tim: ");
+        String username = Input.getString();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getUsername().equals(username))
+                System.out.print(ds[i] + "\n");
+        }
+        System.out.println("\n");
+    }
+
+    public Customer timkiemUsername_Customer(String username) {
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getUsername().equals(username))
+                return ds[i];
+        }
+        return null;
+    }
+    public void timkiemPassword() {
+        System.out.println("Password can tim: ");
+        String password = Input.getString();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getPassword().equals(password))
+                System.out.print(i + " ");
+        }
+        System.out.println("\n");
+    }
+
+    public int timkiemPassword(String password) {
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getPassword().equals(password))
+                return i;
+        }
+        return -1;
+    }
+
+    public void timkiemPassword_Customer() {
+        System.out.println("Password can tim: ");
+        String password = Input.getString();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getPassword().equals(password))
+                System.out.print(ds[i] + "\n");
+        }
+        System.out.println("\n");
+    }
+
+    public Customer timkiemPassword_Customer(String password) {
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getPassword().equals(password))
+                return ds[i];
+        }
+        return null;
+    }
+
+    public Customerlist timkiemPassword_CustomerList() {
+        System.out.print("Password can tim: ");
+        String password = Input.getString();
+        Customerlist a = new Customerlist();
+        a.ds=new Customer[a.n];
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getPassword().equals(password)) {
+                a.ds = Arrays.copyOf(a.ds, a.n + 1);
+                a.ds[a.n] = new Customer(ds[i]);
+                ++a.n;
+            }
+        }
+        return a;
+    }
+
+    public Customerlist timkiemPassword_Customerlist(String password) {
+        Customerlist a = new Customerlist();
+        a.ds=new Customer[a.n];
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getPassword().equals(password)) {
+                a.ds = Arrays.copyOf(a.ds, a.n + 1);
+                a.ds[a.n] = new Customer(ds[i]);
+                ++a.n;
+            }
+        }
+        return a;
+    }
     @Override
     public void sua(String makh) {
         int flag=0;
@@ -491,6 +588,9 @@ public class Customerlist implements IFile, IList<Customer> {
                                 break;
                             case 4:
                                 doiEmail(ds[i]);
+                                break;
+                            case 5:
+                                doiMatKhau(ds[i]);
                                 break;
                             case 0:
                                 break;
@@ -536,6 +636,9 @@ public class Customerlist implements IFile, IList<Customer> {
                             case 4:
                                 doiEmail(ds[i]);
                                 break;
+                            case 5:
+                                doiMatKhau(ds[i]);
+                                break;
                             case 0:
                                 break;
                             default:
@@ -555,6 +658,7 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.println("2. Sua dia chi khach hang:");
         System.out.println("3. Sua sdt khach hang:");
         System.out.println("4. Sua email khach hang:");
+        System.out.println("5. Doi mat khau:");
         System.out.println("0. Exit.");
         System.out.println("---------------------------");
         System.out.print("Please choose: ");
@@ -578,5 +682,10 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.println("Doi email khach hang thanh:");
         String email = Input.getString();
         a.setEmail(email);
+    }
+    private void doiMatKhau(@NotNull Customer a){
+        System.out.println("Doi email khach hang thanh:");
+        String password = Input.getString();
+        a.setPassword(password);
     }
 }
