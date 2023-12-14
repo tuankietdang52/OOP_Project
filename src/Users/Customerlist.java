@@ -687,7 +687,7 @@ public class Customerlist implements IFile, IList<Customer> {
         a.setEmail(email);
     }
     private void doiMatKhau(@NotNull Customer a){
-        System.out.println("Doi email khach hang thanh:");
+        System.out.println("Doi mat khau thanh:");
         String password = Input.getString();
         a.setPassword(password);
     }
