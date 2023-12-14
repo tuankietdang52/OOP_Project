@@ -1,0 +1,10 @@
+quan001#Quần kaki#Nam#34#899000#kaki#M#fasle
+quan002#Quần tây dài#Nam#45#1120000#Cotton#XL#fasle
+quan003#Quần short thể thao#Nam#23#89000#polyeste#XL#true
+quan004#Quần Jean Rách#Nam#30#699000#Jean#L#true
+quan005#Quần Legging#Nữ#28#499000#Spandex#M#false
+quan006#Quần Jogger#Nam#20#799000#Nỉ#S#true
+quan007#Quần Cói#Nữ#15#589000#Cói#S#false
+quan008#Quần Tây Ngắn#Nam#38#950000#Wool#XL#false
+quan009#Quần Short Jean#Nam#25#450000#Jean#M#true
+quan010#Quần Culottes#Nữ#33#569000#Polyester#L#false

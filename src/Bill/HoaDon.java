@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 
 public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     @Serial
@@ -14,16 +15,16 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     private String makh;
     private String manv;
     private double tongtien;
-    private String ngaylap;
+    private Date ngaylap;
     private ChiTietHoaDon[] chitiet;
     public HoaDon(){
         mahd = "";
         makh = "";
         manv = "";
         tongtien = 0;
-        ngaylap = "";
+        ngaylap = new Date();
     }
-    public HoaDon(String mahd, String makh, String manv, double tongtien, String ngaylap, ChiTietHoaDon[] chitiet){
+    public HoaDon(String mahd, String makh, String manv, double tongtien, Date ngaylap, ChiTietHoaDon[] chitiet){
         this.mahd = mahd;
         this.makh = makh;
         this.manv = manv;
@@ -47,7 +48,7 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     public void setManv(String manv){
         this.manv = manv;
     }
-    public void setNgaylap (String ngaylap){
+    public void setNgaylap (Date ngaylap){
         this.ngaylap = ngaylap;
     }
 
@@ -71,7 +72,7 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         return tongtien;
     }
 
-    public String getNgaylap() {
+    public Date getNgaylap() {
         return ngaylap;
     }
     public ChiTietHoaDon[] getChitiet() {
@@ -96,9 +97,6 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         makh = Input.getString();
         System.out.print("Nhap ma nhan vien: ");
         manv = Input.getString();
-        System.out.print("Nhap ngay lap: ");
-        ngaylap = Input.getString();
-        System.out.println("Nhap chi tiet hoa don: ");
         them();
     }
 

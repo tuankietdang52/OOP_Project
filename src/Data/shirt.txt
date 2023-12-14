@@ -1,0 +1,10 @@
+ao001#Áo sơ mi ngắn tay#Nam#34#456000#Cotton#M#false#Không
+ao002#Áo sơ mi ngắn tay#Nữ#12#458000#Cotton#XL#false#Không
+ao003#Áo hoodie nỉ bông#Nam#9#351000#Nỉ bông#XL#true#Sọc dọc
+ao004#Áo sweater#Nam#8#361000#Nỉ bông#XL#false#Cây thông
+ao005#Áo cardigan#Nam#357000#Nỉ bông#fasle#lỗ nhỏ
+ao006#Áo kẻ sọc#Nam#40#499000#Vải kate#M#false#Sọc ngang
+ao007#Áo hoa nhí#Nữ#22#379000#Chiffon#S#false#Hoa nhỏ
+ao008#Áo dài tay caro#Nam#32#429000#Flannel#L#false#Caro
+ao009#Áo len đan dây#Nữ#25#349000#Len#M#false#Dây nịt
+ao010#Áo sơ mi họa tiết hình trái tim#Nữ#35#459000#Cotton#L#false#Trái tim
