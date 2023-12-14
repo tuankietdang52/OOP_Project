@@ -6,15 +6,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class CustomerMenu {
     Customerlist dskh = new Customerlist(true);
-    String customerId;
     public CustomerMenu(){};
-    public CustomerMenu(Customerlist dskh, String customerId){
+    public CustomerMenu(Customerlist dskh){
         this.dskh = dskh;
-        this.customerId = customerId;
     };
     public CustomerMenu(@NotNull CustomerMenu a){
         dskh = a.dskh;
-        customerId = a.customerId;
     };
     public void showMenu(){
         int opt;
@@ -50,10 +47,10 @@ public class CustomerMenu {
 
                     break;
                 case 6:
-
+                    AccountManagement.currentUser.toString();
                     break;
                 case 7:
-                    dskh.sua(customerId);
+                    dskh.sua(AccountManagement.currentUser.getMakh());
                     break;
                 case 8:
                     break;
