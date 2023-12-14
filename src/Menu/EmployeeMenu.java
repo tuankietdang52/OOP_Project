@@ -4,28 +4,40 @@ import Bill.DSHD;
 import EntrySlip.DSPN;
 import InputManage.Input;
 import ProductContainer.DSSP;
-import Users.AccountManagement;
-import Users.Customer;
 import Users.Customerlist;
 import Users.EmployeeList;
 
-public class MainMenu {
+public class EmployeeMenu {
     DSSP dssp = new DSSP(true);
     Customerlist dskh = new Customerlist(true);
     EmployeeList dsnv = new EmployeeList(true);
     DSHD dshd = new DSHD(true);
     DSPN dspn = new DSPN(true);
-
+    public EmployeeMenu(){};
+    public EmployeeMenu(DSSP dssp, Customerlist dskh, EmployeeList dsnv, DSHD dshd, DSPN dspn){
+        this.dssp = dssp;
+        this.dskh = dskh;
+        this.dsnv = dsnv;
+        this.dshd = dshd;
+        this.dspn = dspn;
+    };
+    public EmployeeMenu(EmployeeMenu a){
+        dssp = a.dssp;
+        dskh = a.dskh;
+        dsnv = a.dsnv;
+        dshd = a.dshd;
+        dspn = a.dspn;
+    };
     public void showMenu(){
         int opt;
         do {
-            System.out.println("------------Main Menu-----------");
+            System.out.println("----------Employee Menu---------");
             System.out.println("1. Quan ly san pham:");
             System.out.println("2. Quan ly khach hang:");
             System.out.println("3. Quan ly nhan vien:");
             System.out.println("4. Quan ly hoa don:");
             System.out.println("5. Quan ly phieu nhap:");
-            System.out.println("6. Thong ke tinh hinh kinh doanh:");
+            System.out.println("6. Tinh hinh kinh doanh:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
@@ -72,33 +84,33 @@ public class MainMenu {
             System.out.print("Please choose: ");
             opt = Input.getInt();
             switch (opt){
-            case 1:
-                dssp.nhap();
-                break;
-            case 2:
-                dssp.toString();
-                break;
-            case 3:
-                menuThemSp();
-                break;
-            case 4:
-                dssp.sua();
-                break;
-            case 5:
-                String masp;
-                System.out.print("Masp muon xoa: ");
-                masp = Input.getString();
-                dssp.xoa(masp);
-                break;
-            case 6:
-                menuTimkiemSp();
-                break;
-            case 0:
-                break;
-            default:
-                System.out.println("Lua chon khong hop le!");
-                break;
-        }
+                case 1:
+                    dssp.nhap();
+                    break;
+                case 2:
+                    dssp.toString();
+                    break;
+                case 3:
+                    menuThemSp();
+                    break;
+                case 4:
+                    dssp.sua();
+                    break;
+                case 5:
+                    String masp;
+                    System.out.print("Masp muon xoa: ");
+                    masp = Input.getString();
+                    dssp.xoa(masp);
+                    break;
+                case 6:
+                    menuTimkiemSp();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le!");
+                    break;
+            }
         }while(opt != 0);
     }
     public void menuThemSp(){
@@ -139,9 +151,10 @@ public class MainMenu {
             System.out.println("4. Tim kiem theo size:");
             System.out.println("5. Tim kiem theo chat lieu:");
             System.out.println("6. Tim kiem theo don gia:");
-            System.out.println("7. Tim ao co mu trum dau hay khong:");
-            System.out.println("8. Tim ao theo hoa tiet:");
-            System.out.println("9. Tim quan co thun hay khong:");
+            System.out.println("7. Tim kiem theo khoang don gia:");
+            System.out.println("8. Tim ao co mu trum dau hay khong:");
+            System.out.println("9. Tim ao theo hoa tiet:");
+            System.out.println("10. Tim quan co thun hay khong:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
@@ -166,12 +179,15 @@ public class MainMenu {
                     dssp.timkiemDongia_DSSP().toString();
                     break;
                 case 7:
-                    dssp.timkiemMutrumdau_DSSP().toString();
+                    dssp.timkiemKhoangDongia_DSSP().toString();
                     break;
                 case 8:
-                    dssp.timkiemHoatiet_DSSP().toString();
+                    dssp.timkiemMutrumdau_DSSP().toString();
                     break;
                 case 9:
+                    dssp.timkiemHoatiet_DSSP().toString();
+                    break;
+                case 10:
                     dssp.timkiemThunquan_DSSP().toString();
                     break;
                 case 0:
@@ -186,65 +202,18 @@ public class MainMenu {
         int opt;
         do{
             System.out.println("-------Quan ly khach hang-------");
-            System.out.println("1. Nhap danh sach:");
-            System.out.println("2. Xuat danh sach:");
-            System.out.println("3. Them khach hang:");
-            System.out.println("4. Sua thong tin khach hang:");
-            System.out.println("5. Xoa khach hang:");
-            System.out.println("6. Tim kiem khach hang:");
+            System.out.println("1. Xuat danh sach:");
+            System.out.println("2. Tim kiem khach hang:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dskh.nhap();
-                    break;
-                case 2:
                     dskh.toString();
                     break;
-                case 3:
-                    menuThemKh();
-                    break;
-                case 4:
-                    dskh.sua();
-                    break;
-                case 5:
-                    String makh;
-                    System.out.println("Makh muon xoa:");
-                    makh = Input.getString();
-                    dskh.xoa(makh);
-                    break;
-                case 6:
-                    menuTimkiemKh();
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Lua chon khong hop le!");
-                    break;
-            }
-        }while(opt != 0);
-    }
-    public void menuThemKh(){
-        int opt;
-        do{
-            System.out.println("-------Quan ly khach hang-------");
-            System.out.println("1. Them mot khach hang:");
-            System.out.println("2. Them nhieu khach hang:");
-            System.out.println("0. Exit.");
-            System.out.println("--------------------------------");
-            System.out.print("Please choose: ");
-            opt = Input.getInt();
-            switch (opt){
-                case 1:
-                    dskh.them();
-                    break;
                 case 2:
-                    int k;
-                    System.out.print("So khach hang muon them: ");
-                    k=Input.getInt();
-                    dskh.them(k);
+                    menuTimkiemKh();
                     break;
                 case 0:
                     break;
@@ -263,6 +232,8 @@ public class MainMenu {
             System.out.println("3. Tim kiem theo dia chi:");
             System.out.println("4. Tim kiem theo sdt:");
             System.out.println("5. Tim kiem theo email:");
+            System.out.println("6. Tim kiem theo username:");
+            System.out.println("7. Tim kiem theo password:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
@@ -283,6 +254,12 @@ public class MainMenu {
                 case 5:
                     dskh.timkiemEmail_CustomerList().toString();
                     break;
+                case 6:
+                    dskh.timkiemUsername();
+                    break;
+                case 7:
+                    dskh.timkiemPassword_CustomerList().toString();
+                    break;
                 case 0:
                     break;
                 default:
@@ -295,36 +272,32 @@ public class MainMenu {
         int opt;
         do{
             System.out.println("--------Quan ly nhan vien-------");
-            System.out.println("1. Nhap danh sach:");
-            System.out.println("2. Xuat danh sach:");
-            System.out.println("3. Them nhan vien:");
-            System.out.println("4. Sua thong tin nhan vien:");
-            System.out.println("5. Xoa nhan vien:");
-            System.out.println("6. Tim kiem nhan vien:");
+            System.out.println("1. Xuat danh sach:");
+            System.out.println("2. Them nhan vien:");
+            System.out.println("3. Sua thong tin nhan vien:");
+            System.out.println("4. Xoa nhan vien:");
+            System.out.println("5. Tim kiem nhan vien:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dsnv.nhap();
-                    break;
-                case 2:
                     dsnv.toString();
                     break;
-                case 3:
+                case 2:
                     menuThemNv();
                     break;
-                case 4:
+                case 3:
                     dsnv.sua();
                     break;
-                case 5:
+                case 4:
                     String manv;
-                    System.out.println("MAnv muon xoa:");
+                    System.out.println("Manv muon xoa:");
                     manv = Input.getString();
                     dsnv.xoa(manv);
                     break;
-                case 6:
+                case 5:
                     menuTimkiemNv();
                     break;
                 case 0:
@@ -412,36 +385,21 @@ public class MainMenu {
         int opt;
         do{
             System.out.println("---------Quan ly hoa don--------");
-            System.out.println("1. Nhap danh sach:");
-            System.out.println("2. Xuat danh sach:");
-            System.out.println("3. Them hoa don:");
-            System.out.println("4. Sua thong tin hoa don:");
-            System.out.println("5. Xoa hoa don:");
-            System.out.println("6. Tim kiem hoa don:");
+            System.out.println("1. Xuat danh sach:");
+            System.out.println("2. Sua thong tin hoa don:");
+            System.out.println("3. Tim kiem hoa don:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dshd.nhap();
-                    break;
-                case 2:
                     dshd.toString();
                     break;
-                case 3:
-                    menuThemHD();
-                    break;
-                case 4:
+                case 2:
                     dshd.sua();
                     break;
-                case 5:
-                    String mahd;
-                    System.out.println("Mahd muon xoa: ");
-                    mahd = Input.getString();
-                    dshd.xoa(mahd);
-                    break;
-                case 6:
+                case 3:
                     menuTimkiemHD();
                     break;
                 case 0:
