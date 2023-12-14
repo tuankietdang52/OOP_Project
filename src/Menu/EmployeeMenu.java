@@ -6,6 +6,7 @@ import InputManage.Input;
 import ProductContainer.DSSP;
 import Users.Customerlist;
 import Users.EmployeeList;
+import org.jetbrains.annotations.NotNull;
 
 public class EmployeeMenu {
     DSSP dssp = new DSSP(true);
@@ -21,7 +22,7 @@ public class EmployeeMenu {
         this.dshd = dshd;
         this.dspn = dspn;
     };
-    public EmployeeMenu(EmployeeMenu a){
+    public EmployeeMenu(@NotNull EmployeeMenu a){
         dssp = a.dssp;
         dskh = a.dskh;
         dsnv = a.dsnv;

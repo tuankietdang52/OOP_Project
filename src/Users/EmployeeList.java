@@ -662,5 +662,5 @@ public class EmployeeList implements IFile, IList<Employee> {
         System.out.println("Doi password nhan vien thanh:");
         String password = Input.getString();
         a.setPassword(password);
-    }4
+    }
 }

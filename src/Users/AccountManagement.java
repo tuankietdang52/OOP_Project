@@ -2,6 +2,8 @@ package Users;
 
 import InputManage.Input;
 import Interface.IAccount;
+import Menu.CustomerMenu;
+import Menu.EmployeeMenu;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,6 +13,8 @@ public class AccountManagement {
 
     public static Customer currentUser;
     public static Employee currentEmployee;
+    private static Boolean isUser = true;
+    private static Boolean isEmployee = true;
 
     private static void getData(){
         customerList = new Customerlist(true);
@@ -77,8 +81,16 @@ public class AccountManagement {
         currentUser = (Customer)getAccountData(username, "customer");
         currentEmployee = (Employee)getAccountData(username, "employee");
 
-        currentUser = currentUser == null ? new Customer() : currentUser;
-        currentEmployee = currentEmployee == null ? new Employee() : currentEmployee;
+        // neu khong tim duoc thi bien current se bang new (object rong~) de tranh loi~ null
+        // neu bang null thi bien kiem tra khach hang hay nhan vien se tra ve false
+        if (currentUser == null){
+            isUser = false;
+            currentUser = new Customer();
+        }
+        if (currentEmployee == null) {
+            isEmployee = false;
+            currentEmployee = new Employee();
+        }
     }
 
     public static void SignIn(){
@@ -87,6 +99,10 @@ public class AccountManagement {
 
         System.out.println("----------------Dang nhap----------------");
         do{
+            // reset lai 2 bien kiem tra la khach hang hay nhan vien
+            isUser = true;
+            isEmployee = true;
+
             if (!isValid){
                 System.out.println("Sai tk hoac mat khau, Nhap lai: ");
             }
@@ -109,6 +125,13 @@ public class AccountManagement {
 
         }while (!isValid);
 
+        showMenu();
+
+    }
+
+    private static void showMenu(){
+        if (isUser) showCustomerMenu();
+        else showEmployeeMenu();
     }
 
     public static void SignUp(){
@@ -134,5 +157,15 @@ public class AccountManagement {
         newcustomer.setByInput();
         newcustomer.createMakh();
         customerList.them(newcustomer);
+    }
+
+    private static void showCustomerMenu(){
+        CustomerMenu csmenu = new CustomerMenu();
+        csmenu.showMenu();
+    }
+
+    private static void showEmployeeMenu(){
+        EmployeeMenu epmenu = new EmployeeMenu();
+        epmenu.showMenu();
     }
 }

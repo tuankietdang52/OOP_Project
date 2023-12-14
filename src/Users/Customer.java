@@ -118,7 +118,7 @@ public class Customer implements Serializable, IAccount {
         return password;
     }
 
-    public void TrimName(){
+    private void TrimName(){
         tenkh = tenkh.trim();
         tenkh = tenkh.replaceAll("\\s+", " ");
     }
@@ -126,6 +126,7 @@ public class Customer implements Serializable, IAccount {
         System.out.println("-----------Nhap thong tin ca nhan-----------");
         System.out.print("Nhap ten cua ban: ");
         tenkh = Input.getString();
+        TrimName();
         System.out.print("Nhap dia chi: ");
         diachi = Input.getString();
         System.out.print("Nhap sdt: ");

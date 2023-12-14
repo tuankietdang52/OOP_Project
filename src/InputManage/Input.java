@@ -11,7 +11,12 @@ public class Input {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String getString() {
-        return scanner.nextLine();
+        String str = scanner.nextLine();
+        if (str.isEmpty()){
+            System.out.println("Chuoi rong, nhap lai: ");
+            return getString();
+        }
+        return str;
     }
 
     public static @NotNull Boolean getBoolean() {
