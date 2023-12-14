@@ -43,6 +43,7 @@ public class Employee implements Serializable, IAccount {
         tennv = employee.tennv;
         cmnd = employee.cmnd;
         sdt = employee.sdt;
+        email = employee.email;
         usernames = employee.usernames;
         password = employee.password;
     }
