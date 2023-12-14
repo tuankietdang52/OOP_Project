@@ -46,6 +46,10 @@ public class HoaDon implements IList<ChiTietHoaDon> {
         this.ngaylap = ngaylap;
     }
 
+    public void setTongtien(double tongtien) {
+        this.tongtien = tongtien;
+    }
+
     public String getMahd() {
         return mahd;
     }
