@@ -4,7 +4,12 @@ import Interface.IList;
 import ProductContainer.Product;
 import org.jetbrains.annotations.NotNull;
 
-public class HoaDon implements IList<ChiTietHoaDon> {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String mahd;
     private String makh;
     private String manv;

@@ -4,10 +4,13 @@ import InputManage.Input;
 import Interface.IAccount;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.security.Permission;
 
 public class Employee implements Serializable, IAccount {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String manv;
     private String tennv;
     private String cmnd;
