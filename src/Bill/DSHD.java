@@ -43,10 +43,12 @@ public class DSHD implements IFile, IList<HoaDon>{
             read();
         }
         catch (Exception ex){
+            if (ds.length == 0){
+                ds = new HoaDon[0];
+                return;
+            }
             System.out.println("Cant get data from file\nError: " + ex);
         }
-
-        if (ds.length == 0) System.out.println("No data\n");
 
     }
 
@@ -72,7 +74,7 @@ public class DSHD implements IFile, IList<HoaDon>{
         ds[pos] = hoadon;
     }
 
-    private HoaDon @NotNull [] increaseLength(){
+    public HoaDon @NotNull [] increaseLength(){
         var temparray = new HoaDon[ds.length + 1];
         System.arraycopy(ds, 0, temparray, 0, ds.length);
         return temparray;
@@ -83,17 +85,17 @@ public class DSHD implements IFile, IList<HoaDon>{
         ds = new HoaDon[0];
         var i = 0;
 
-        File customerdata = new File("./src/Data/Customer.bin");
+        File customerdata = new File("./src/Data/Bill.bin");
         FileInputStream stream = new FileInputStream(customerdata);
         ObjectInputStream read = new ObjectInputStream(stream);
         try{
             while (true){
-                var customer = (Customer)read.readObject();
-                if (customer == null) break;
+                var bill = (HoaDon) read.readObject();
+                if (bill == null) break;
 
                 if (i >= ds.length) ds = increaseLength();
 
-                ds[i] = customer;
+                ds[i] = bill;
                 i++;
             }
         }

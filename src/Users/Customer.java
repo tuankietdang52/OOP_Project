@@ -1,16 +1,19 @@
 package Users;
 
 import InputManage.Input;
+import Interface.IAccount;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable {
+public class Customer implements Serializable, IAccount {
     private String makh;
     private String tenkh;
     private String diachi;
     private String sdt;
     private String email;
+    private String username;
+    private String password;
 
     public Customer(){
         makh = "";
@@ -18,14 +21,18 @@ public class Customer implements Serializable {
         diachi = "";
         sdt = "";
         email = "";
+        username = "";
+        password = "";
     }
 
-    public Customer(String makh, String tenkh, String diachi, String sdt, String email){
+    public Customer(String makh, String tenkh, String diachi, String sdt, String email, String username, String password){
         this.makh = makh;
         this.tenkh = tenkh;
         this.diachi = diachi;
         this.sdt = sdt;
         this.email = email;
+        this.username = username;
+        this.password = password;
     }
 
     public Customer(@NotNull Customer customer){
@@ -34,6 +41,8 @@ public class Customer implements Serializable {
         diachi = customer.diachi;
         sdt = customer.sdt;
         email = customer.email;
+        username = customer.username;
+        password = customer.password;
     }
 
     public void setMakh(String makh) {
@@ -54,6 +63,14 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    @Override
+    public void setUsername(String username){
+        this.username = username;
+    }
+    @Override
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getMakh() {
@@ -76,6 +93,14 @@ public class Customer implements Serializable {
         return email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void TrimName(){
         tenkh = tenkh.trim();
         tenkh = tenkh.replaceAll("\\s+", " ");
@@ -85,7 +110,19 @@ public class Customer implements Serializable {
         makh = Input.getString();
         System.out.print("Nhap ten khach hang: ");
         tenkh = Input.getString();
-        System.out.print("Nhap Dia chi: ");
+        System.out.print("Nhap dia chi: ");
+        diachi = Input.getString();
+        System.out.print("Nhap sdt: ");
+        sdt = Input.getString();
+        System.out.print("Email: ");
+        email = Input.getString();
+    }
+
+    public void userInput(){
+        System.out.println("-----------Nhap thong tin ca nhan-----------");
+        System.out.print("Nhap ten cua ban: ");
+        tenkh = Input.getString();
+        System.out.print("Nhap dia chi: ");
         diachi = Input.getString();
         System.out.print("Nhap sdt: ");
         sdt = Input.getString();

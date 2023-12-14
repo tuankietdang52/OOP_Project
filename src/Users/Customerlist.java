@@ -41,10 +41,13 @@ public class Customerlist implements IFile, IList<Customer> {
             read();
         }
         catch (Exception ex){
+            if (ds.length == 0){
+                ds = new Customer[0];
+                return;
+            }
             System.out.println("Cant get data from file\nError: " + ex);
         }
 
-        if (ds.length == 0) System.out.println("No data\n");
 
     }
 

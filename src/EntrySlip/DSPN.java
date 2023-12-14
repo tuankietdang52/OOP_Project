@@ -45,10 +45,12 @@ public class DSPN implements IFile, IList<PhieuNhap> {
             read();
         }
         catch (Exception ex){
+            if (ds.length == 0){
+                ds = new PhieuNhap[0];
+                return;
+            }
             System.out.println("Cant get data from file\nError: " + ex);
         }
-
-        if (ds.length == 0) System.out.println("No data\n");
 
     }
 
@@ -74,7 +76,7 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         ds[pos] = phieunhap;
     }
 
-    private PhieuNhap @NotNull [] increaseLength(){
+    public PhieuNhap @NotNull [] increaseLength(){
         var temparray = new PhieuNhap[ds.length + 1];
         System.arraycopy(ds, 0, temparray, 0, ds.length);
         return temparray;
@@ -85,17 +87,17 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         ds = new PhieuNhap[0];
         var i = 0;
 
-        File customerdata = new File("./src/Data/Customer.bin");
+        File customerdata = new File("./src/Data/PN.bin");
         FileInputStream stream = new FileInputStream(customerdata);
         ObjectInputStream read = new ObjectInputStream(stream);
         try{
             while (true){
-                var customer = (Customer)read.readObject();
-                if (customer == null) break;
+                var pn = (PhieuNhap)read.readObject();
+                if (pn == null) break;
 
                 if (i >= ds.length) ds = increaseLength();
 
-                ds[i] = customer;
+                ds[i] = pn;
                 i++;
             }
         }

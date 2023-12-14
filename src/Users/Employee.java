@@ -1,12 +1,13 @@
 package Users;
 
 import InputManage.Input;
+import Interface.IAccount;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.security.Permission;
 
-public class Employee implements Serializable {
+public class Employee implements Serializable, IAccount {
     private String manv;
     private String tennv;
     private String cmnd;
@@ -63,10 +64,12 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    public void setUsernames(String usernames) {
+    @Override
+    public void setUsername(String usernames) {
         this.usernames = usernames;
     }
 
+    @Override
     public void setPassword(String password) {
         this.password = password;
     }
@@ -91,10 +94,12 @@ public class Employee implements Serializable {
         return email;
     }
 
-    public String getUsernames() {
+    @Override
+    public String getUsername() {
         return usernames;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }

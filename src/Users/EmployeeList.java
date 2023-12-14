@@ -41,10 +41,12 @@ public class EmployeeList implements IFile, IList<Employee> {
             read();
         }
         catch (Exception ex){
+            if (ds.length == 0){
+                ds = new Employee[0];
+                return;
+            }
             System.out.println("Cant get data from file\nError: " + ex);
         }
-
-        if (ds.length == 0) System.out.println("No data\n");
 
     }
 
@@ -424,7 +426,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         System.out.println("Username can tim: ");
         String username = Input.getString();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getUsernames().equals(username))
+            if (ds[i].getUsername().equals(username))
                 System.out.print(i + " ");
         }
         System.out.println("\n");
@@ -432,7 +434,7 @@ public class EmployeeList implements IFile, IList<Employee> {
 
     public int timkiemUsername(String username) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getUsernames().equals(username))
+            if (ds[i].getUsername().equals(username))
                 return i;
         }
         return -1;
@@ -442,7 +444,7 @@ public class EmployeeList implements IFile, IList<Employee> {
         System.out.println("Username can tim: ");
         String username = Input.getString();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getUsernames().equals(username))
+            if (ds[i].getUsername().equals(username))
                 System.out.print(ds[i] + "\n");
         }
         System.out.println("\n");
@@ -450,7 +452,7 @@ public class EmployeeList implements IFile, IList<Employee> {
 
     public Employee timkiemUsername_Employee(String username) {
         for (int i = 0; i < n; i++) {
-            if (ds[i].getUsernames().equals(username))
+            if (ds[i].getUsername().equals(username))
                 return ds[i];
         }
         return null;
@@ -651,7 +653,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     private void doiUsername(@NotNull Employee a){
         System.out.println("Doi username nhan vien thanh:");
         String username = Input.getString();
-        a.setUsernames(username);
+        a.setUsername(username);
     }
     private void doiPassword(@NotNull Employee a){
         System.out.println("Doi password nhan vien thanh:");
