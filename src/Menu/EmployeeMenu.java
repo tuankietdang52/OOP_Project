@@ -5,6 +5,7 @@ import EntrySlip.DSPN;
 import InputManage.Input;
 import ProductContainer.DSSP;
 import Users.Customerlist;
+import Users.Employee;
 import Users.EmployeeList;
 import org.jetbrains.annotations.NotNull;
 
@@ -14,7 +15,15 @@ public class EmployeeMenu {
     EmployeeList dsnv = new EmployeeList(true);
     DSHD dshd = new DSHD(true);
     DSPN dspn = new DSPN(true);
+
+    private Employee currentEmployee;
+
     public EmployeeMenu(){};
+
+    public EmployeeMenu(Employee currentEmployee){
+        this.currentEmployee = currentEmployee;
+    }
+
     public EmployeeMenu(DSSP dssp, Customerlist dskh, EmployeeList dsnv, DSHD dshd, DSPN dspn){
         this.dssp = dssp;
         this.dskh = dskh;
