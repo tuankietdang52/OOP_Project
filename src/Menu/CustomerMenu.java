@@ -1,12 +1,20 @@
 package Menu;
 import InputManage.Input;
 import Users.AccountManagement;
+import Users.Customer;
 import Users.Customerlist;
 import org.jetbrains.annotations.NotNull;
 
 public class CustomerMenu {
-    Customerlist dskh = new Customerlist(true);
+    private Customerlist dskh = new Customerlist(true);
+    private Customer currentUser;
+
     public CustomerMenu(){};
+
+    public CustomerMenu(Customer currentUser){
+        this.currentUser = currentUser;
+    }
+
     public CustomerMenu(Customerlist dskh){
         this.dskh = dskh;
     };
@@ -15,8 +23,14 @@ public class CustomerMenu {
     };
     public void showMenu(){
         int opt;
+
+        if (currentUser == null){
+            System.out.println("Chua dang nhap\n");
+            return;
+        }
+
         do {
-            System.out.println("--------Chao mung " + AccountManagement.currentUser.getTenkh() + "--------");
+            System.out.println("--------Chao mung " + currentUser.getTenkh() + "--------");
             System.out.println("----------Customer Menu---------");
             System.out.println("1. Xem gio hang:");
             System.out.println("2. Ds san pham trong shop:");
@@ -47,10 +61,10 @@ public class CustomerMenu {
 
                     break;
                 case 6:
-                    AccountManagement.currentUser.toString();
+                    currentUser.toString();
                     break;
                 case 7:
-                    dskh.sua(AccountManagement.currentUser.getMakh());
+                    dskh.sua(currentUser.getMakh());
                     break;
                 case 8:
                     break;

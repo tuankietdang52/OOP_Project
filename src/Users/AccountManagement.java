@@ -8,28 +8,62 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AccountManagement {
-    private static Customerlist customerList;
-    private static EmployeeList employeeList;
+    private Customerlist customerList;
+    private EmployeeList employeeList;
 
-    public static Customer currentUser;
-    public static Employee currentEmployee;
-    private static Boolean isUser = true;
-    private static Boolean isEmployee = true;
+    private Customer currentUser;
+    private Employee currentEmployee;
+    private Boolean isUser = true;
+    private Boolean isEmployee = true;
 
-    private static void getData(){
+    public Customer getCurrentUser() {
+        return currentUser;
+    }
+
+    public Employee getCurrentEmployee() {
+        return currentEmployee;
+    }
+
+    public Boolean getCheckUser() {
+        return isUser;
+    }
+
+    public Boolean getCheckEmployee() {
+        return isEmployee;
+    }
+
+    public void setCurrentUser(Customer currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public void setCurrentEmployee(Employee currentEmployee) {
+        this.currentEmployee = currentEmployee;
+    }
+
+    public void setCheckUser(Boolean isUser) {
+        this.isUser = isUser;
+    }
+
+    public void setCheckEmployee(Boolean isEmployee) {
+        this.isEmployee = isEmployee;
+    }
+
+    public Customerlist getCustomerList() {
+        getListData();
+        return customerList;
+    }
+
+    public EmployeeList getEmployeeList() {
+        getListData();
+        return employeeList;
+    }
+
+    private void getListData(){
         customerList = new Customerlist(true);
         employeeList = new EmployeeList(true);
     }
 
-    public static @NotNull Boolean checkAccount(String username) {
-        getData();
-
-        // Khong tim thay se tra ve false, tim thay se tra ve true
-        if (checkCustomerAccount(username)) return true;
-        return checkEmployeeAccount(username);
-    }
-
-    private static @NotNull Boolean checkCustomerAccount(String username){
+    private @NotNull Boolean checkCustomerAccount(String username){
         var accountData = customerList.getDs();
 
         for (var customer : accountData){
@@ -39,7 +73,7 @@ public class AccountManagement {
         return false;
     }
 
-    private static @NotNull Boolean checkEmployeeAccount(String username){
+    private @NotNull Boolean checkEmployeeAccount(String username){
         var accountData = employeeList.getDs();
 
         for (var employee : accountData){
@@ -49,7 +83,7 @@ public class AccountManagement {
         return false;
     }
 
-    public static @Nullable IAccount getAccountData(String username, String type){
+    public @Nullable IAccount getAccountData(String username, String type){
         type = type.toLowerCase();
         switch (type){
             case "customer":
@@ -63,21 +97,29 @@ public class AccountManagement {
         }
     }
 
-    private static @Nullable Customer getCustomerAccount(String username){
+    private @Nullable Customer getCustomerAccount(String username){
         for (var customer : customerList.getDs()){
             if (customer.getUsername().equals(username)) return customer;
         }
         return null;
     }
 
-    private static @Nullable Employee getEmployeeAccount(String username){
+    private @Nullable Employee getEmployeeAccount(String username){
         for (var employee : employeeList.getDs()){
             if (employee.getUsername().equals(username)) return employee;
         }
         return null;
     }
 
-    private static void setAccount(String username){
+    public @NotNull Boolean checkAccount(String username) {
+        getListData();
+
+        // Khong tim thay se tra ve false, tim thay se tra ve true
+        if (checkCustomerAccount(username)) return true;
+        return checkEmployeeAccount(username);
+    }
+
+    public void setAccount(String username){
         currentUser = (Customer)getAccountData(username, "customer");
         currentEmployee = (Employee)getAccountData(username, "employee");
 
@@ -91,81 +133,5 @@ public class AccountManagement {
             isEmployee = false;
             currentEmployee = new Employee();
         }
-    }
-
-    public static void SignIn(){
-        String username, password;
-        var isValid = true;
-
-        System.out.println("----------------Dang nhap----------------");
-        do{
-            // reset lai 2 bien kiem tra la khach hang hay nhan vien
-            isUser = true;
-            isEmployee = true;
-
-            if (!isValid){
-                System.out.println("Sai tk hoac mat khau, Nhap lai: ");
-            }
-
-            System.out.print("Tai khoan: ");
-            username = Input.getString();
-
-            System.out.print("Mat khau: ");
-            password = Input.getString();
-
-            if (username.isEmpty() || password.isEmpty()) continue;
-
-            isValid = checkAccount(username);
-
-            if (isValid) setAccount(username);
-            else continue;
-
-            isValid = password.equals(currentUser.getPassword());
-            if (!isValid) isValid = password.equals(currentEmployee.getPassword());
-
-        }while (!isValid);
-
-        showMenu();
-
-    }
-
-    private static void showMenu(){
-        if (isUser) showCustomerMenu();
-        else showEmployeeMenu();
-    }
-
-    public static void SignUp(){
-        Customer newcustomer = new Customer();
-        var isValid = true;
-        System.out.println("-----------------Dang ki-----------------");
-        do{
-            System.out.print("Tao tai khoan: ");
-            newcustomer.setUsername(Input.getString());
-
-            isValid = !checkAccount(newcustomer.getUsername());
-
-            if (!isValid){
-                System.out.println("Ten tai khoan da co nguoi su dung, vui long dung tai khoan khac");
-                continue;
-            }
-
-            System.out.print("Tao mat khau: ");
-            newcustomer.setPassword(Input.getString());
-
-        }while (!isValid);
-
-        newcustomer.setByInput();
-        newcustomer.createMakh();
-        customerList.them(newcustomer);
-    }
-
-    private static void showCustomerMenu(){
-        CustomerMenu csmenu = new CustomerMenu();
-        csmenu.showMenu();
-    }
-
-    private static void showEmployeeMenu(){
-        EmployeeMenu epmenu = new EmployeeMenu();
-        epmenu.showMenu();
     }
 }
