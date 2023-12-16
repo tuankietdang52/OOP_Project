@@ -1,5 +1,6 @@
 package Users;
 
+import CartContainer.Cart;
 import InputManage.Input;
 import Interface.IAccount;
 import org.jetbrains.annotations.NotNull;
@@ -18,6 +19,7 @@ public class Customer implements Serializable, IAccount {
     private String email;
     private String username;
     private String password;
+    private Cart cart;
 
     public Customer(){
         makh = "";
@@ -27,6 +29,7 @@ public class Customer implements Serializable, IAccount {
         email = "";
         username = "";
         password = "";
+        cart = new Cart();
     }
 
     public Customer(String makh, String tenkh, String diachi, String sdt, String email, String username, String password){
@@ -47,6 +50,7 @@ public class Customer implements Serializable, IAccount {
         email = customer.email;
         username = customer.username;
         password = customer.password;
+        cart = customer.cart;
     }
 
     public void createMakh(){
@@ -90,6 +94,10 @@ public class Customer implements Serializable, IAccount {
         this.password = password;
     }
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
     public String getMakh() {
         return makh;
     }
@@ -116,6 +124,10 @@ public class Customer implements Serializable, IAccount {
 
     public String getPassword() {
         return password;
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 
     private void TrimName(){

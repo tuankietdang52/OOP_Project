@@ -4,13 +4,20 @@ import ProductContainer.ESex;
 import ProductContainer.ESize;
 import org.jetbrains.annotations.NotNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Input {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static String getString() {
+    public static void getEnterKey(){
+        scanner.nextLine();
+    }
+
+    public static @NotNull String getString() {
         String str = scanner.nextLine();
         if (str.isEmpty()){
             System.out.println("Chuoi rong, nhap lai: ");
@@ -89,6 +96,22 @@ public class Input {
                 System.out.println("Nam hoac Nu, Nhap lai: ");
                 return getSex();
         }
+    }
+
+    public static LocalDateTime getDateTime(){
+        String inputDate = getString();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime date;
+
+        try{
+            date = LocalDateTime.parse(inputDate, dateFormat);
+        }
+        catch (Exception e){
+            System.out.println("Nhap theo dinh dang: dd/MM/yyyy HH:mm:s");
+            return getDateTime();
+        }
+
+        return date;
     }
 
     public static void close(){
