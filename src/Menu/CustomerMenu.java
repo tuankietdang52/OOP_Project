@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class CustomerMenu {
     public static boolean isExit = false;
     private Customerlist dskh = new Customerlist(true);
-    private DSHD billList = new DSHD(true);
+    private final DSHD billList = new DSHD(true);
     private Customer currentUser;
 
     public CustomerMenu(){};

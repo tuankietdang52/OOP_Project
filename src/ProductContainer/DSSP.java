@@ -135,6 +135,19 @@ public class DSSP implements IFile, IList<Product> {
 
     public void setElementofDs(int pos, Product product){
         ds[pos] = product;
+        save();
+    }
+
+    public void setElementsofDs(Product[] listProducts){
+        for (int i = 0; i < ds.length; i++){
+            for (int j = 0; j < listProducts.length; j++){
+                if (ds[i].getMasp() != listProducts[j].getMasp()) continue;
+
+                ds[i] = listProducts[j];
+            }
+        }
+
+        save();
     }
 
     public void them() {

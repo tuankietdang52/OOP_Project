@@ -14,7 +14,9 @@ public class Input {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void getEnterKey(){
-        scanner.nextLine();
+        try{
+            scanner.nextLine();
+        } catch (Exception ignore){}
     }
 
     public static @NotNull String getString() {
