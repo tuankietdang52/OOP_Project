@@ -7,7 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
@@ -256,5 +258,28 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         System.out.println("Tinh trang: " + tinhtrang);
         System.out.println("==========================");
         return "";
+    }
+    public void xuat(){
+        int stt = 1;
+        String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:s"));
+        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+        System.out.printf("| Ma hoa don: %10s |                             Tinh trang: %s      |\n"
+                ,mahd,tinhtrang);
+        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+        System.out.println("| STT |      Ten sp      |       Ngay mua      | So luong |  Don gia  | Thanh tien |");
+        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+        for(int i=0;i<chitiet.length;i++){
+            System.out.printf("|  %d  | %-16s | %-16s | %-8d | %-8.2f | %-10.2f |\n"
+                    ,stt
+                    ,chitiet[i].getSanpham().getTensp()
+                    ,ngaymua
+                    ,chitiet[i].getSoluongmua()
+                    ,chitiet[i].getSanpham().getDongia()
+                    ,chitiet[i].getThanhtien());
+            stt +=1;
+        }
+        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+        System.out.printf("| %67s | %.2f |\n","Tong tien hoa don:",tongtien);
+        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
     }
 }

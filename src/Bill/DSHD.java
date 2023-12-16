@@ -23,7 +23,6 @@ public class DSHD implements IFile, IList<HoaDon>{
         }
         save();
     }
-
     public String toString() {
         for (int i = 0; i < n; ++i) {
             System.out.println("\nHoa don thu " + (i + 1) + ":");
@@ -32,7 +31,13 @@ public class DSHD implements IFile, IList<HoaDon>{
         }
         return "";
     }
-
+    public void xuat(){
+        for(int i =0;i<ds.length;i++){
+            System.out.println("\nHoa don thu " + (i + 1) + ":");
+            ds[i].xuat();
+            System.out.println("============================");
+        }
+    }
     public DSHD() {
 
     }

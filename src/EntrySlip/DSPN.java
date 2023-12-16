@@ -33,7 +33,13 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         }
         return "";
     }
-
+    public void xuat(){
+        for(int i =0;i<ds.length;i++){
+            System.out.println("\nPhieu nhap thu " + (i + 1) + ":");
+            ds[i].xuat();
+            System.out.println("============================");
+        }
+    }
     public DSPN() {
 
     }

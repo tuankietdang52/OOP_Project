@@ -233,7 +233,6 @@ public class CustomerMenu {
 
     public void handleBuyHistory(){
         var historyBill = billList.timkiemMakh_DSHD(currentUser.getMakh());
-
-        System.out.println(historyBill);
+        historyBill.xuat();
     }
 }
