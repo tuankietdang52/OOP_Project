@@ -4,10 +4,12 @@ import InputManage.Input;
 import Interface.IFile;
 import Interface.IList;
 import Users.Customer;
+import Users.Customerlist;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class DSHD implements IFile, IList<HoaDon>{
     private HoaDon[] ds;
@@ -36,6 +38,23 @@ public class DSHD implements IFile, IList<HoaDon>{
             System.out.println("\nHoa don thu " + (i + 1) + ":");
             ds[i].xuat();
             System.out.println("============================");
+        }
+    }public void xuatHDChuaduyet(){
+        for(int i =0;i<ds.length;i++){
+            if(ds[i].getTinhtrang().equals("Chua duyet")) {
+                System.out.println("\nHoa don thu " + (i + 1) + ":");
+                ds[i].xuat();
+                System.out.println("============================");
+            }
+        }
+    }
+    public void xuatHDDaduyet(){
+        for(int i =0;i<ds.length;i++){
+            if(ds[i].getTinhtrang().equals("Da duyet  ")) {
+                System.out.println("\nHoa don thu " + (i + 1) + ":");
+                ds[i].xuat();
+                System.out.println("============================");
+            }
         }
     }
     public DSHD() {
@@ -71,7 +90,9 @@ public class DSHD implements IFile, IList<HoaDon>{
     public HoaDon[] getDs() {
         return ds;
     }
-
+    public int getN(){
+        return n;
+    }
     public void setDs(HoaDon[] ds) {
         this.ds = ds;
     }
@@ -511,5 +532,32 @@ public class DSHD implements IFile, IList<HoaDon>{
     }
     private void doiNgayLap(@NotNull HoaDon a){
 
+    }
+    public void duyet(){
+        System.out.print("Ma hd muon duyet: ");
+        String mahd = Input.getString();
+        int flag=0;
+        for(int i=0;i<n;++i) 	{
+            if (ds[i].getMahd().equals(mahd)) {
+                flag = 1;
+                break;
+            }
+        }
+        if(flag == 1){
+            for(int i=0;i<n;i++){
+                if(ds[i].getMahd().equals(mahd) && ds[i].getTinhtrang().equals("Chua duyet")){
+                    ds[i].setTinhtrang("Da duyet  ");
+                    Customerlist customerlist = new Customerlist(true);
+                    customerlist.tangChiTieu(ds[i].getMakh(),ds[i].getTongtien());
+                    save();
+                    customerlist.save();
+                    System.out.println("Duyet thanh cong!");
+                    break;
+                }
+            }
+        }
+        else{
+            System.out.println("Hoa don da duoc duyet hoac khong ton tai!");
+        }
     }
 }

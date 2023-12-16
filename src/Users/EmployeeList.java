@@ -63,6 +63,7 @@ public class EmployeeList implements IFile, IList<Employee> {
     public Employee[] getDs() {
         return ds;
     }
+    public int getN(){return n;}
 
     public void setDs(Employee[] ds) {
         this.ds = ds;

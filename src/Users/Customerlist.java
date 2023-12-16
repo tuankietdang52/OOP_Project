@@ -66,6 +66,7 @@ public class Customerlist implements IFile, IList<Customer> {
     public Customer[] getDs() {
         return ds;
     }
+    public int getN(){return n;}
 
     public void setDs(Customer[] ds) {
         this.ds = ds;
@@ -697,5 +698,12 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.println("Doi mat khau thanh:");
         String password = Input.getString();
         a.setPassword(password);
+    }
+    public void tangChiTieu(String makh,double money){
+        for(int i=0;i<n;i++){
+            if(ds[i].getMakh().equals(makh)){
+                ds[i].tangChitieu(money);
+            }
+        }
     }
 }

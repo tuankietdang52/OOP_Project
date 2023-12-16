@@ -10,12 +10,12 @@ import Users.EmployeeList;
 
 public class Main {
     public static void main(String[] args) {
-        AccountManagement accountManagement = new AccountManagement();
-        MainMenu menu = new MainMenu(accountManagement);
-
-        menu.menu();
-
-
+//        AccountManagement accountManagement = new AccountManagement();
+//        MainMenu menu = new MainMenu(accountManagement);
+//
+//        menu.menu();
+            DSHD ds = new DSHD(true);
+            ds.xuat();
 
 
         Input.close();

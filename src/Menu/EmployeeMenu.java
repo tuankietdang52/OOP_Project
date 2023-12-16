@@ -396,8 +396,11 @@ public class EmployeeMenu {
         do{
             System.out.println("---------Quan ly hoa don--------");
             System.out.println("1. Xuat danh sach:");
-            System.out.println("2. Sua thong tin hoa don:");
-            System.out.println("3. Tim kiem hoa don:");
+            System.out.println("2. Hoa don chua duyet:");
+            System.out.println("3. Hoa don da duyet:");
+            System.out.println("4. Duyet hoa don:");
+            System.out.println("5. Sua thong tin hoa don:");
+            System.out.println("6. Tim kiem hoa don:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
@@ -407,9 +410,18 @@ public class EmployeeMenu {
                     dshd.xuat();
                     break;
                 case 2:
-                    dshd.sua();
+                    dshd.xuatHDChuaduyet();
                     break;
                 case 3:
+                    dshd.xuatHDDaduyet();
+                    break;
+                case 4:
+                    dshd.duyet();
+                    break;
+                case 5:
+                    dshd.sua();
+                    break;
+                case 6:
                     menuTimkiemHD();
                     break;
                 case 0:
@@ -632,4 +644,5 @@ public class EmployeeMenu {
             }
         }while(opt != 0);
     }
+
 }
