@@ -2,6 +2,8 @@ package EntrySlip;
 
 import InputManage.Input;
 
+import java.time.format.DateTimeFormatter;
+
 public class PhieuNhap {
     private String maphieunhap;
     private String manv;
@@ -86,5 +88,27 @@ public class PhieuNhap {
         System.out.println("Ngay lap: " + ngaylap);
         System.out.println("Tong tien: " + tongtien);
         return "";
+    }
+    public void xuat(){
+//        int stt = 1;
+//        String ngaymua = String.valueOf(ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:s")));
+//        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+//        System.out.printf("| Ma phieu nhap: %10s |                                              |\n",mapn);
+//        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+//        System.out.println("| STT |      Ten sp      |       Ngay mua      | So luong |  Don gia  | Thanh tien |");
+//        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+//        for(int i=0;i<chitiet.length;i++){
+//            System.out.printf("|  %d  | %-16s | %-16s | %-8d | %-8.2f | %-10.2f |\n"
+//                    ,stt
+//                    ,chitiet[i].getSanpham().getTensp()
+//                    ,ngaymua
+//                    ,chitiet[i].getSoluongmua()
+//                    ,chitiet[i].getSanpham().getDongia()
+//                    ,chitiet[i].getThanhtien());
+//            stt +=1;
+//        }
+//        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+//        System.out.printf("| %67s | %.2f |\n","Tong tien hoa don:",tongtien);
+//        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
     }
 }

@@ -404,7 +404,7 @@ public class EmployeeMenu {
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dshd.toString();
+                    dshd.xuat();
                     break;
                 case 2:
                     dshd.sua();
@@ -466,13 +466,13 @@ public class EmployeeMenu {
                     dshd.timkiemMahd();
                     break;
                 case 2:
-                    dshd.timkiemMakh_DSHD().toString();
+                    dshd.timkiemMakh_DSHD().xuat();
                     break;
                 case 3:
-                    dshd.timkiemManv_DSHD().toString();
+                    dshd.timkiemManv_DSHD().xuat();
                     break;
                 case 4:
-                    dshd.timkiemTongTien_DSHD().toString();
+                    dshd.timkiemTongTien_DSHD().xuat();
                     break;
                 case 5:
                     //System.out.println("5. Tim kiem theo ngay lap:");
@@ -505,6 +505,7 @@ public class EmployeeMenu {
                     break;
                 case 2:
                     dspn.toString();
+                    //dspn.xuat();
                     break;
                 case 3:
                     menuThemPN();
