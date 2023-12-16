@@ -28,6 +28,7 @@ public class DSHD implements IFile, IList<HoaDon>{
         for (int i = 0; i < n; ++i) {
             System.out.println("\nHoa don thu " + (i + 1) + ":");
             System.out.println(ds[i]);
+            System.out.println("============================");
         }
         return "";
     }

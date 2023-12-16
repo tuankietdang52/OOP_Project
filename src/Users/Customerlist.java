@@ -137,6 +137,13 @@ public class Customerlist implements IFile, IList<Customer> {
         }
     }
 
+    public void setCustomer(@NotNull Customer customer){
+        int index = timkiemMakh(customer.getMakh());
+
+        ds[index] = customer;
+        save();
+    }
+
     public void them() {
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new Customer();

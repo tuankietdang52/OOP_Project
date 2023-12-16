@@ -98,7 +98,10 @@ public class MainMenu {
 
     private void showMenu(){
         if (accountManage.getCheckUser()) showCustomerMenu();
-        else showEmployeeMenu();
+        else if (accountManage.getCheckEmployee()) showEmployeeMenu();
+        else{
+            System.out.println("Khong tim thay menu phu hop voi tai khoan");
+        }
     }
 
     private void showCustomerMenu(){

@@ -5,7 +5,12 @@ import ProductContainer.DSSP;
 import ProductContainer.Product;
 import ProductContainer.Shirt;
 
-public class ChiTietHoaDon {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class ChiTietHoaDon implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
     private int stt;
     private String mahd;
     private String masp;
@@ -20,11 +25,12 @@ public class ChiTietHoaDon {
         thanhtien = 0;
     }
 
-    public ChiTietHoaDon(String mahd, String masp, int soluongmua, double dongia, double thanhtien) {
+    public ChiTietHoaDon(String mahd, String masp, Product sanpham, int soluongmua) {
         this.mahd = mahd;
         this.masp = masp;
+        this.sanpham = sanpham;
         this.soluongmua = soluongmua;
-        this.thanhtien = thanhtien;
+        tinhTien();
     }
 
     public void setStt(int stt) {
@@ -41,10 +47,6 @@ public class ChiTietHoaDon {
 
     public void setSoluongmua(int soluongmua) {
         this.soluongmua = soluongmua;
-    }
-
-    public void setThanhtien(double thanhtien) {
-        this.thanhtien = thanhtien;
     }
 
     public void setSanpham(Product sanpham) {

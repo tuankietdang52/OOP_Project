@@ -1,4 +1,5 @@
 package Bill;
+import CartContainer.Cart;
 import InputManage.Input;
 import Interface.IList;
 import ProductContainer.Product;
@@ -6,6 +7,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     @Serial
@@ -14,45 +18,62 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     private String makh;
     private String manv;
     private double tongtien;
-    private String ngaylap;
+    private LocalDateTime ngaylap;
     private ChiTietHoaDon[] chitiet;
+    private String tinhtrang = "Chua duyet";
     public HoaDon(){
         mahd = "";
         makh = "";
         manv = "";
         tongtien = 0;
-        ngaylap = "";
+        ngaylap = null;
     }
-    public HoaDon(String mahd, String makh, String manv, double tongtien, String ngaylap, ChiTietHoaDon[] chitiet){
-        this.mahd = mahd;
+    public HoaDon(String makh, String manv, LocalDateTime ngaylap, ChiTietHoaDon[] chitiet){
+        createMahd();
         this.makh = makh;
         this.manv = manv;
-        this.tongtien = tongtien;
         this.ngaylap = ngaylap;
         this.chitiet = chitiet;
     }
-    public HoaDon(HoaDon a){
+    public HoaDon(@NotNull HoaDon a){
         mahd = a.mahd;
         makh = a.makh;
         manv = a.manv;
         tongtien = a.tongtien;
         ngaylap = a.ngaylap;
+        chitiet = a.chitiet;
+        tinhtrang = a.tinhtrang;
     }
-    public void setMahd (String mahd){
-        this.mahd = mahd;
+
+    public void createMahd(){
+        String character = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String code = "";
+
+        Random random = new Random();
+        for (int i = 0; i < 7; i++){
+            int index = random.nextInt(character.length());
+            code += character.charAt(index);
+        }
+
+        mahd = code;
     }
+
     public void setMakh (String makh){
         this.makh = makh;
     }
     public void setManv(String manv){
         this.manv = manv;
     }
-    public void setNgaylap (String ngaylap){
+    public void setNgaylap (LocalDateTime ngaylap){
         this.ngaylap = ngaylap;
     }
 
     public void setTongtien(double tongtien) {
         this.tongtien = tongtien;
+    }
+
+    public void setTinhtrang(String tinhtrang) {
+        this.tinhtrang = tinhtrang;
     }
 
     public String getMahd() {
@@ -71,11 +92,15 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         return tongtien;
     }
 
-    public String getNgaylap() {
+    public LocalDateTime getNgaylap() {
         return ngaylap;
     }
     public ChiTietHoaDon[] getChitiet() {
         return chitiet;
+    }
+
+    public String getTinhtrang() {
+        return tinhtrang;
     }
 
     public ChiTietHoaDon findDetailProduct(int stt){
@@ -89,6 +114,16 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         return null;
     }
 
+    public void transformCartToBill(@NotNull Cart cart){
+        // lay san pham tu gio hang cua nguoi dung them vao hoa don
+        var cartProducts = cart.getCartProducts();
+
+        for (var item : cartProducts){
+            ChiTietHoaDon detail = new ChiTietHoaDon(mahd, item.getProduct().getMasp(), item.getProduct(), item.getAmount());
+            them(detail);
+        }
+    }
+
     public void setByInput(){
         System.out.print("Nhap ma hoa don: ");
         mahd = Input.getString();
@@ -97,12 +132,24 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         System.out.print("Nhap ma nhan vien: ");
         manv = Input.getString();
         System.out.print("Nhap ngay lap: ");
-        ngaylap = Input.getString();
+        ngaylap = Input.getDateTime();
         System.out.println("Nhap chi tiet hoa don: ");
         them();
     }
 
+    private int convertToInt(String interger){
+        try{
+            return Integer.parseInt(interger);
+        }
+        catch (Exception ex){
+            System.out.println("Tham so truyen vao kh phai la so\nError: " + ex);
+            return -1;
+        }
+    }
+
     private void setBillDetail(){
+        tongtien = 0;
+
         for (int i = 0; i < chitiet.length; i++){
             chitiet[i].setMahd(this.mahd);
             chitiet[i].setStt(i + 1);
@@ -135,6 +182,8 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
             them(detail);
 
         }while (isAppend());
+
+        setBillDetail();
     }
 
     @Override
@@ -153,16 +202,12 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     }
 
     @Override
-    public void sua(String strStt) {
-        int stt = -1;
-        try{
-            stt = Integer.parseInt(strStt);
-        }
-        catch (Exception e){
-            System.out.println("Truyen vao tham so co dang la String\nError: " + e);
-        }
+    public void sua(String Stt) {
+        int index = convertToInt(Stt);
 
-        var product = findDetailProduct(stt);
+        if (index == -1) return;
+
+        var product = findDetailProduct(index);
         // khong tim thay sp
         if (product == null) return;
 
@@ -170,20 +215,16 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     }
 
     @Override
-    public void xoa(String strStt) {
-        int stt = -1;
-        try{
-            stt = Integer.parseInt(strStt) - 1;
-        }
-        catch (Exception e){
-            System.out.println("Truyen vao tham so co dang la String\nError: " + e);
-        }
+    public void xoa(String Stt) {
+        int index = convertToInt(Stt) - 1;
+
+        if (index == -1) return;
 
         var temparray = new ChiTietHoaDon[chitiet.length - 1];
-        var remainLength = chitiet.length - stt - 1;
+        var remainLength = chitiet.length - index - 1;
 
-        System.arraycopy(chitiet, 0, temparray, 0, stt);
-        System.arraycopy(chitiet, stt + 1, temparray, stt, remainLength);
+        System.arraycopy(chitiet, 0, temparray, 0, index);
+        System.arraycopy(chitiet, index + 1, temparray, index, remainLength);
 
         chitiet = temparray;
         setBillDetail();
@@ -196,15 +237,23 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         }
     }
 
+    public void printDateTime(){
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String date = ngaylap.format(dateFormat);
+
+        System.out.println("Ngay lap hoa don: " + date);
+    }
+
     @Override public String toString(){
         System.out.println("Ma hoa don: " + mahd);
         System.out.println("Ma khach hang: " + makh);
         System.out.println("Ma nhan vien: " + manv);
-        System.out.println("Ngay lap: " + ngaylap);
+        printDateTime();
         System.out.println("==========================");
         printDetailBill();
         System.out.println("==========================");
         System.out.println("Tong tien hoa don: " + tongtien);
+        System.out.println("Tinh trang: " + tinhtrang);
         System.out.println("==========================");
         return "";
     }
