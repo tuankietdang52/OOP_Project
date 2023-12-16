@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class DSHD implements IFile, IList<HoaDon>{
     private HoaDon[] ds;
@@ -33,17 +32,12 @@ public class DSHD implements IFile, IList<HoaDon>{
         }
         return "";
     }
-    public void xuat(){
-        for(int i =0;i<ds.length;i++){
-            System.out.println("\nHoa don thu " + (i + 1) + ":");
-            ds[i].xuat();
-            System.out.println("============================");
-        }
-    }public void xuatHDChuaduyet(){
+
+    public void xuatHDChuaduyet(){
         for(int i =0;i<ds.length;i++){
             if(ds[i].getTinhtrang().equals("Chua duyet")) {
                 System.out.println("\nHoa don thu " + (i + 1) + ":");
-                ds[i].xuat();
+                System.out.println(ds[i]);
                 System.out.println("============================");
             }
         }
@@ -52,7 +46,7 @@ public class DSHD implements IFile, IList<HoaDon>{
         for(int i =0;i<ds.length;i++){
             if(ds[i].getTinhtrang().equals("Da duyet  ")) {
                 System.out.println("\nHoa don thu " + (i + 1) + ":");
-                ds[i].xuat();
+                System.out.println(ds[i]);
                 System.out.println("============================");
             }
         }
@@ -90,9 +84,7 @@ public class DSHD implements IFile, IList<HoaDon>{
     public HoaDon[] getDs() {
         return ds;
     }
-    public int getN(){
-        return n;
-    }
+
     public void setDs(HoaDon[] ds) {
         this.ds = ds;
     }
@@ -156,6 +148,8 @@ public class DSHD implements IFile, IList<HoaDon>{
             ObjectOutputStream write = new ObjectOutputStream(stream);
             write.writeChars("");
             write.close();
+
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);

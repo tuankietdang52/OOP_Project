@@ -98,7 +98,7 @@ public class EmployeeMenu {
                     dssp.nhap();
                     break;
                 case 2:
-                    dssp.toString();
+                    System.out.println(dssp);
                     break;
                 case 3:
                     menuThemSp();
@@ -174,31 +174,31 @@ public class EmployeeMenu {
                     dssp.timkiemMasp_Product();
                     break;
                 case 2:
-                    dssp.timkiemTensp_DSSP().toString();
+                    System.out.println(dssp.timkiemTensp_DSSP());
                     break;
                 case 3:
-                    dssp.timkiemGioitinh_DSSP().toString();
+                    System.out.println(dssp.timkiemGioitinh_DSSP());
                     break;
                 case 4:
-                    dssp.timkiemSize_DSSP().toString();
+                    System.out.println(dssp.timkiemSize_DSSP());
                     break;
                 case 5:
-                    dssp.timkiemChatlieu_DSSP().toString();
+                    System.out.println(dssp.timkiemChatlieu_DSSP());
                     break;
                 case 6:
-                    dssp.timkiemDongia_DSSP().toString();
+                    System.out.println(dssp.timkiemDongia_DSSP());
                     break;
                 case 7:
-                    dssp.timkiemKhoangDongia_DSSP().toString();
+                    System.out.println(dssp.timkiemKhoangDongia_DSSP());
                     break;
                 case 8:
-                    dssp.timkiemMutrumdau_DSSP().toString();
+                    System.out.println(dssp.timkiemMutrumdau_DSSP());
                     break;
                 case 9:
-                    dssp.timkiemHoatiet_DSSP().toString();
+                    System.out.println(dssp.timkiemHoatiet_DSSP());
                     break;
                 case 10:
-                    dssp.timkiemThunquan_DSSP().toString();
+                    System.out.println(dssp.timkiemThunquan_DSSP());
                     break;
                 case 0:
                     break;
@@ -220,7 +220,7 @@ public class EmployeeMenu {
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dskh.toString();
+                    System.out.println(dskh);
                     break;
                 case 2:
                     menuTimkiemKh();
@@ -253,22 +253,22 @@ public class EmployeeMenu {
                     dskh.timkiemMakh();
                     break;
                 case 2:
-                    dskh.timkiemTenkh_CustomerList().toString();
+                    System.out.println(dskh.timkiemTenkh_CustomerList());
                     break;
                 case 3:
-                    dskh.timkiemDiachi_CustomerList().toString();
+                    System.out.println(dskh.timkiemDiachi_CustomerList());
                     break;
                 case 4:
-                    dskh.timkiemSdt_CustomerList().toString();
+                    System.out.println(dskh.timkiemSdt_CustomerList());
                     break;
                 case 5:
-                    dskh.timkiemEmail_CustomerList().toString();
+                    System.out.println(dskh.timkiemEmail_CustomerList());
                     break;
                 case 6:
                     dskh.timkiemUsername();
                     break;
                 case 7:
-                    dskh.timkiemPassword_CustomerList().toString();
+                    System.out.println(dskh.timkiemPassword_CustomerList());
                     break;
                 case 0:
                     break;
@@ -293,7 +293,7 @@ public class EmployeeMenu {
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dsnv.toString();
+                    System.out.println(dsnv);
                     break;
                 case 2:
                     menuThemNv();
@@ -366,22 +366,22 @@ public class EmployeeMenu {
                     dsnv.timkiemManv();
                     break;
                 case 2:
-                    dsnv.timkiemTennv_EmployeeList().toString();
+                    System.out.println(dsnv.timkiemTennv_EmployeeList());
                     break;
                 case 3:
                     dsnv.timkiemCMND();
                     break;
                 case 4:
-                    dsnv.timkiemSdt_EmployeeList().toString();
+                    System.out.println(dsnv.timkiemSdt_EmployeeList());
                     break;
                 case 5:
-                    dsnv.timkiemEmail_EmployeeList().toString();
+                    System.out.println(dsnv.timkiemEmail_EmployeeList());
                     break;
                 case 6:
                     dsnv.timkiemUsername();
                     break;
                 case 7:
-                    dsnv.timkiemPassword_EmployeeList().toString();
+                    System.out.println(dsnv.timkiemPassword_EmployeeList());
                     break;
                 case 0:
                     break;
@@ -407,7 +407,7 @@ public class EmployeeMenu {
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dshd.xuat();
+                    System.out.println(dshd);
                     break;
                 case 2:
                     dshd.xuatHDChuaduyet();
@@ -478,13 +478,13 @@ public class EmployeeMenu {
                     dshd.timkiemMahd();
                     break;
                 case 2:
-                    dshd.timkiemMakh_DSHD().xuat();
+                    System.out.println(dshd.timkiemMakh_DSHD());
                     break;
                 case 3:
-                    dshd.timkiemManv_DSHD().xuat();
+                    System.out.println(dshd.timkiemManv_DSHD());
                     break;
                 case 4:
-                    dshd.timkiemTongTien_DSHD().xuat();
+                    System.out.println(dshd.timkiemTongTien_DSHD());
                     break;
                 case 5:
                     //System.out.println("5. Tim kiem theo ngay lap:");
@@ -516,7 +516,7 @@ public class EmployeeMenu {
                     dspn.nhap();
                     break;
                 case 2:
-                    dspn.toString();
+                    System.out.println(dspn);
                     //dspn.xuat();
                     break;
                 case 3:
@@ -588,13 +588,13 @@ public class EmployeeMenu {
                     dspn.timkiemMapn();
                     break;
                 case 2:
-                    dspn.timkiemManv_DSPN().toString();
+                    System.out.println(dspn.timkiemManv_DSPN());
                     break;
                 case 3:
-                    dspn.timkiemMaNhacc_DSPN().toString();
+                    System.out.println(dspn.timkiemMaNhacc_DSPN());
                     break;
                 case 4:
-                    dspn.timkiemTongTien_DSPN().toString();
+                    System.out.println(dspn.timkiemTongTien_DSPN());
                     break;
                 case 5:
                     //System.out.println("5. Tim kiem theo ngay lap:");

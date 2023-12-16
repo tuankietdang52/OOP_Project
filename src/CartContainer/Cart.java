@@ -27,6 +27,11 @@ public class Cart implements Serializable,IList<CartProduct> {
         this.cartProducts = cartProduct;
     }
 
+    public Cart(@NotNull Cart cart){
+        cartProducts = cart.cartProducts;
+        tongtien = cart.tongtien;
+    }
+
     public void setCartProducts(CartProduct[] cartProducts) {
         this.cartProducts = cartProducts;
     }
@@ -53,6 +58,12 @@ public class Cart implements Serializable,IList<CartProduct> {
         tongtien = 0;
 
         for (int i = 0; i < cartProducts.length; i++){
+            if (cartProducts[i].getAmount() == 0){
+                xoa(Integer.toString(cartProducts[i].getStt()));
+                i--;
+                continue;
+            }
+
             cartProducts[i].setStt(i + 1);
             tongtien += cartProducts[i].getThanhtien();
         }

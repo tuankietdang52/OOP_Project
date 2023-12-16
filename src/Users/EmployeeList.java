@@ -130,6 +130,8 @@ public class EmployeeList implements IFile, IList<Employee> {
             ObjectOutputStream write = new ObjectOutputStream(stream);
             write.writeChars("");
             write.close();
+
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);
