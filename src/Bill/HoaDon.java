@@ -247,19 +247,6 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     }
 
     @Override public String toString(){
-        System.out.println("Ma hoa don: " + mahd);
-        System.out.println("Ma khach hang: " + makh);
-        System.out.println("Ma nhan vien: " + manv);
-        printDateTime();
-        System.out.println("==========================");
-        printDetailBill();
-        System.out.println("==========================");
-        System.out.println("Tong tien hoa don: " + tongtien);
-        System.out.println("Tinh trang: " + tinhtrang);
-        System.out.println("==========================");
-        return "";
-    }
-    public void xuat(){
         int stt = 1;
         String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:s"));
         System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
@@ -282,5 +269,6 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
         System.out.printf("|   Ngay lap: %s      |           |   Tong tien hoa don: | %.2f |\n",ngaymua,tongtien);
         System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
+        return "";
     }
 }

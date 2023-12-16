@@ -137,6 +137,8 @@ public class DSPN implements IFile, IList<PhieuNhap> {
             ObjectOutputStream write = new ObjectOutputStream(stream);
             write.writeChars("");
             write.close();
+
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);

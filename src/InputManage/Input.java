@@ -22,7 +22,7 @@ public class Input {
     public static @NotNull String getString() {
         String str = scanner.nextLine();
         if (str.isEmpty()){
-            System.out.println("Chuoi rong, nhap lai: ");
+            System.out.print("Chuoi rong, nhap lai: ");
             return getString();
         }
         return str;

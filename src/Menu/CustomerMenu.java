@@ -3,6 +3,7 @@ import Bill.ChiTietHoaDon;
 import Bill.DSHD;
 import Bill.HoaDon;
 import CartContainer.Cart;
+import CartContainer.CartManagement;
 import InputManage.Input;
 import ProductContainer.DSSP;
 import Users.AccountManagement;
@@ -32,6 +33,7 @@ public class CustomerMenu {
     public CustomerMenu(@NotNull CustomerMenu a){
         dskh = a.dskh;
     };
+
     public void showMenu(){
         int opt;
 
@@ -46,6 +48,7 @@ public class CustomerMenu {
         }
 
         var userCart = currentUser.getCart();
+        CartManagement cartManagement = new CartManagement(currentUser, userCart, dskh, billList);
 
         do {
             isExit = false;
@@ -67,20 +70,20 @@ public class CustomerMenu {
             System.out.println("=================================");
             switch(opt) {
                 case 1:
-                    handlePrintCart();
+                    cartManagement.handlePrintCart();
                     break;
                 case 2:
                     DSSP ds = new DSSP(true);
                     System.out.println(ds);
                     break;
                 case 3:
-                    handleAddToCart(userCart);
+                    cartManagement.handleAddToCart();
                     break;
                 case 4:
-                    handleDeleteCartProduct(userCart);
+                    cartManagement.handleDeleteCartProduct();
                     break;
                 case 5:
-                    handleAdjustCart(userCart);
+                    cartManagement.handleAdjustCart();
                     break;
                 case 6:
                     System.out.println(currentUser);
@@ -89,10 +92,10 @@ public class CustomerMenu {
                     dskh.sua(currentUser.getMakh());
                     break;
                 case 8:
-                    handleBuy();
+                    cartManagement.handleBuy();
                     break;
                 case 9:
-                    handleBuyHistory();
+                    cartManagement.handleBuyHistory();
                     break;
                 case 0:
                     break;
@@ -112,127 +115,5 @@ public class CustomerMenu {
         }while (opt != 0);
     }
 
-    public Boolean checkEmptyCart(){
-        var userCart = currentUser.getCart().getCartProducts();
-        if (userCart.length == 0){
-            System.out.println("Ban chua mua don hang nao");
-            return true;
-        }
 
-        return false;
-    }
-
-    public void handlePrintCart(){
-        if (checkEmptyCart()) return;
-
-        System.out.println(currentUser.getCart());
-    }
-
-    public void handleAddToCart(Cart userCart){
-        String masp;
-        int amount;
-
-        boolean isSuccess = false;
-        System.out.println("Nhap 0 de thoat");
-
-        do{
-            System.out.println("Nhap san pham ban muon them vao gio hang (masp): ");
-            masp = Input.getString();
-
-            if (masp.equals("0")){
-                isExit = true;
-                return;
-            }
-
-            System.out.println("Nhap so luong: ");
-            amount = Input.getInt();
-
-            if (amount == 0){
-                isExit = true;
-                return;
-            }
-
-            isSuccess = userCart.addToCart(masp, amount);
-
-        } while (!isSuccess);
-
-        if (isExit) return;
-
-        System.out.println("Them thanh cong");
-    }
-
-    public void handleDeleteCartProduct(@NotNull Cart userCart){
-        if (checkEmptyCart()) return;
-
-        System.out.println(userCart);
-
-        System.out.println("Nhap 0 de thoat");
-        System.out.println("Nhap stt cua mon hang ma ban muon xoa khoi gio hang: ");
-        String stt;
-
-        boolean isSuccess = false;
-
-        do{
-            stt = Input.getString();
-
-            if (stt.equals("0")){
-                isExit = true;
-                return;
-            }
-
-            isSuccess = userCart.deleteCartProduct(stt);
-
-        } while (!isSuccess);
-
-        if (isExit) return;
-
-        System.out.println("Xoa thanh cong");
-    }
-
-    public void handleAdjustCart(@NotNull Cart userCart){
-        if (checkEmptyCart()) return;
-
-        System.out.println(userCart);
-        System.out.println("Nhap stt cua mon hang ma ban muon chinh sua: ");
-        String stt;
-
-        boolean isSucess = false;
-
-        do {
-            stt = Input.getString();
-
-            if (stt.equals("0")){
-                isExit = true;
-                return;
-            }
-
-            isSucess = currentUser.getCart().adjustCart(stt);
-
-        } while (!isSucess);
-
-        if (isExit) return;
-
-        System.out.println("Chinh sua thanh cong");
-    }
-
-    public void handleBuy(){
-        LocalDateTime time = LocalDateTime.now();
-        ChiTietHoaDon[] detail = new ChiTietHoaDon[0];
-
-        HoaDon bill = new HoaDon(currentUser.getMakh(), "", time, detail);
-        bill.transformCartToBill(currentUser.getCart());
-
-        billList.them(bill);
-        billList.save();
-
-        System.out.println("Mua hang thanh cong");
-
-        currentUser.getCart().clear();
-        dskh.setCustomer(currentUser);
-    }
-
-    public void handleBuyHistory(){
-        var historyBill = billList.timkiemMakh_DSHD(currentUser.getMakh());
-        historyBill.xuat();
-    }
 }
