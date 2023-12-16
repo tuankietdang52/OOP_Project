@@ -106,6 +106,9 @@ public class Cart implements Serializable,IList<CartProduct> {
 
         CartProduct cartProduct = new CartProduct(product, amount);
         them(cartProduct);
+
+        product.setSltonkho(product.getSltonkho() - amount);
+        ds.save();
         return true;
     }
 
@@ -119,6 +122,7 @@ public class Cart implements Serializable,IList<CartProduct> {
 
         cartProducts[index] = product;
         cartProducts[index].setStt(index + 1);
+
         setCart();
     }
 
@@ -146,6 +150,7 @@ public class Cart implements Serializable,IList<CartProduct> {
             return;
         }
 
+        saveProductData(cartProducts[index].getProduct().getMasp(), index);
         setCart();
     }
 
@@ -160,6 +165,14 @@ public class Cart implements Serializable,IList<CartProduct> {
         return true;
     }
 
+    private void returnProductRemain(int index){
+        var removeProduct = cartProducts[index].getProduct();
+        var returnAmount = cartProducts[index].getAmount();
+        removeProduct.setSltonkho(removeProduct.getSltonkho() + returnAmount);
+
+        saveProductData(cartProducts[index].getProduct().getMasp(), index);
+    }
+
     @Override
     public void xoa(String stt) {
         int index = convertToInt(stt) - 1;
@@ -168,6 +181,8 @@ public class Cart implements Serializable,IList<CartProduct> {
 
         var temparray = new CartProduct[cartProducts.length - 1];
         var remainLength = cartProducts.length - index - 1;
+
+        returnProductRemain(index);
 
         System.arraycopy(cartProducts, 0, temparray, 0, index);
         System.arraycopy(cartProducts, index + 1, temparray, index, remainLength);
@@ -178,6 +193,16 @@ public class Cart implements Serializable,IList<CartProduct> {
 
     public void clear(){
         cartProducts = new CartProduct[0];
+    }
+
+    private void saveProductData(String masp, int index){
+        DSSP productList = new DSSP(true);
+
+        var productIndex = productList.timkiemMasp(masp);
+
+        productList.getDs()[productIndex] = cartProducts[index].getProduct();
+
+        productList.save();
     }
 
     @Override

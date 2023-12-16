@@ -97,10 +97,11 @@ public class CartProduct implements Serializable {
 
     private @NotNull Boolean themSoluong(){
         boolean isSucess = true;
+        int plusAmount = 0;
 
         do{
             System.out.println("Ban muon them bao nhieu: ");
-            int plusAmount = Input.getInt();
+            plusAmount = Input.getInt();
 
             if (plusAmount == 0) return false;
 
@@ -114,14 +115,18 @@ public class CartProduct implements Serializable {
             }
         } while (!isSucess);
 
+        product.setSltonkho(product.getSltonkho() - plusAmount);
+
         return true;
     }
 
     private @NotNull Boolean giamSoluong(){
         boolean isSucess = true;
+        int minusAmount = 0;
+
         do{
             System.out.println("Ban muon giam bao nhieu: ");
-            int minusAmount = Input.getInt();
+            minusAmount = Input.getInt();
 
             if (minusAmount == 0) return false;
 
@@ -135,6 +140,7 @@ public class CartProduct implements Serializable {
             }
         } while (!isSucess);
 
+        product.setSltonkho(product.getSltonkho() + minusAmount);
         return true;
     }
 
