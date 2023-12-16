@@ -262,24 +262,25 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
     public void xuat(){
         int stt = 1;
         String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:s"));
-        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
-        System.out.printf("| Ma hoa don: %10s |                             Tinh trang: %s      |\n"
+        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
+        System.out.printf("| Ma hoa don: %10s |                             Tinh trang: %s          |\n"
                 ,mahd,tinhtrang);
-        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
-        System.out.println("| STT |      Ten sp      |       Ngay mua      | So luong |  Don gia  | Thanh tien |");
-        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
+        System.out.println("| STT |        Ten sp         |  Size  | Gioi tinh | So luong |  Don gia  | Thanh tien |");
+        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
         for(int i=0;i<chitiet.length;i++){
-            System.out.printf("|  %d  | %-16s | %-16s | %-8d | %-8.2f | %-10.2f |\n"
+            System.out.printf("|  %d  | %-21s | %-6s | %-9s | %-8d | %-8.2f | %-10.2f |\n"
                     ,stt
                     ,chitiet[i].getSanpham().getTensp()
-                    ,ngaymua
+                    ,chitiet[i].getSanpham().getSize()
+                    ,chitiet[i].getSanpham().getGioitinh()
                     ,chitiet[i].getSoluongmua()
                     ,chitiet[i].getSanpham().getDongia()
                     ,chitiet[i].getThanhtien());
             stt +=1;
         }
-        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
-        System.out.printf("| %67s | %.2f |\n","Tong tien hoa don:",tongtien);
-        System.out.println("+-----+------------------+---------------------+----------+-----------+------------+");
+        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
+        System.out.printf("|   Ngay lap: %s      |           |   Tong tien hoa don: | %.2f |\n",ngaymua,tongtien);
+        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
     }
 }

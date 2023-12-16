@@ -19,6 +19,7 @@ public class Customer implements Serializable, IAccount {
     private String email;
     private String username;
     private String password;
+    private double chitieu;
     private Cart cart;
 
     public Customer(){
@@ -29,10 +30,11 @@ public class Customer implements Serializable, IAccount {
         email = "";
         username = "";
         password = "";
+        chitieu = 0;
         cart = new Cart();
     }
 
-    public Customer(String makh, String tenkh, String diachi, String sdt, String email, String username, String password){
+    public Customer(String makh, String tenkh, String diachi, String sdt, String email, String username, String password,double chitieu){
         this.makh = makh;
         this.tenkh = tenkh;
         this.diachi = diachi;
@@ -40,6 +42,7 @@ public class Customer implements Serializable, IAccount {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.chitieu = chitieu;
     }
 
     public Customer(@NotNull Customer customer){
@@ -50,6 +53,7 @@ public class Customer implements Serializable, IAccount {
         email = customer.email;
         username = customer.username;
         password = customer.password;
+        chitieu = customer.chitieu;
         cart = customer.cart;
     }
 
@@ -93,7 +97,8 @@ public class Customer implements Serializable, IAccount {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public void setChitieu(double chitieu) {this.chitieu = chitieu;}
+    public void tangChitieu(double chitieu) {this.chitieu += chitieu;}
     public void setCart(Cart cart) {
         this.cart = cart;
     }
@@ -125,6 +130,7 @@ public class Customer implements Serializable, IAccount {
     public String getPassword() {
         return password;
     }
+    public double getChitieu(){return chitieu;}
 
     public Cart getCart() {
         return cart;
@@ -153,6 +159,7 @@ public class Customer implements Serializable, IAccount {
         System.out.println("Dia chi: " + diachi);
         System.out.println("SDT: " + sdt);
         System.out.println("Email: " + email);
+        System.out.println("Chi tieu: " + chitieu);
         return "";
     }
 }
