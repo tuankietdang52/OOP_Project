@@ -9,6 +9,8 @@ import Users.Customer;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class DSPN implements IFile, IList<PhieuNhap> {
@@ -30,17 +32,12 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         for (int i = 0; i < n; ++i) {
             System.out.println("\nPhieu nhap thu " + (i + 1) + ":");
             System.out.println(ds[i]);
+            System.out.println("============================");
         }
         return "";
     }
-    public void xuat(){
-        for(int i =0;i<ds.length;i++){
-            System.out.println("\nPhieu nhap thu " + (i + 1) + ":");
-            ds[i].xuat();
-            System.out.println("============================");
-        }
-    }
     public DSPN() {
+        ds = new PhieuNhap[0];
 
     }
 
@@ -123,6 +120,7 @@ public class DSPN implements IFile, IList<PhieuNhap> {
                 write.writeObject(item);
             }
             write.close();
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);
@@ -152,7 +150,16 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         ++n;
         save();
     }
-
+    public void nhapHang(){
+        ds = Arrays.copyOf(ds, n + 1);
+        ds[n] = new PhieuNhap();
+        ds[n].setField();
+        ++n;
+        ds[n].createMaphieunhap();
+        LocalDateTime time = LocalDateTime.now();
+        ds[n].setNgaylap(time);
+        save();
+    }
     @Override
     public void them(PhieuNhap phieuNhap) {
         ds = Arrays.copyOf(ds, n + 1);
@@ -402,6 +409,48 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         }
         return a;
     }
+
+    public void showFindByDay(){
+        System.out.println("Nhap ngay thang nam (dd/MM/yyyy): ");
+        var date = Input.getDate();
+
+        var sortList = findByDay(date);
+
+        if (sortList == null){
+            System.out.println("Khong tim thay phieu nhap nao");
+            return;
+        }
+
+        for (var item : sortList.ds){
+            System.out.println(item);
+        }
+    }
+
+    private @NotNull Boolean compareDate(@NotNull LocalDate date1, @NotNull LocalDate date2){
+        if (date1.getYear() != date2.getYear()) return false;
+        else if (date1.getMonth() != date2.getMonth()) return false;
+
+        return date1.getDayOfMonth() == date2.getDayOfMonth();
+
+    }
+
+    public DSPN findByDay(LocalDate date){
+        DSPN sortList = new DSPN();
+
+        for (var item : ds){
+            var pnDate = item.getNgaylap();
+
+            if (!compareDate(date, pnDate.toLocalDate())) continue;
+
+            sortList.ds = sortList.increaseLength();
+            sortList.ds[sortList.ds.length - 1] = item;
+        }
+
+        if (sortList.ds.length == 0) return null;
+
+        return sortList;
+    }
+
     @Override
     public void sua(String mapn) {
         int flag=0;
@@ -427,9 +476,6 @@ public class DSPN implements IFile, IList<PhieuNhap> {
                                 break;
                             case 3:
                                 doiTongTien(ds[i]);
-                                break;
-                            case 4:
-                                doiNgayLap(ds[i]);
                                 break;
                             case 0:
                                 break;
@@ -472,9 +518,6 @@ public class DSPN implements IFile, IList<PhieuNhap> {
                             case 3:
                                 doiTongTien(ds[i]);
                                 break;
-                            case 4:
-                                doiNgayLap(ds[i]);
-                                break;
                             case 0:
                                 break;
                             default:
@@ -492,8 +535,7 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         System.out.println("---------------------------");
         System.out.println("1. Sua ma nhan vien:");
         System.out.println("2. Sua ma nha cung cap:");
-        System.out.println("3. Sua tong ien:");
-        System.out.println("4. Sua ngay lap hoa don:");
+        System.out.println("3. Sua tong tien:");
         System.out.println("0. Exit.");
         System.out.println("---------------------------");
         System.out.print("Please choose: ");
@@ -512,8 +554,5 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         System.out.println("Doi tong tien thanh:");
         double tongtien = Input.getDouble();
         a.setTongtien(tongtien);
-    }
-    private void doiNgayLap(@NotNull PhieuNhap a){
-
     }
 }

@@ -239,21 +239,19 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         }
     }
 
-    public void printDateTime(){
+    public String getDateTimeFormat(){
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-        String date = ngaylap.format(dateFormat);
 
-        System.out.println("Ngay lap hoa don: " + date);
+        return ngaylap.format(dateFormat);
     }
     @Override public String toString(){
-        int stt = 1;
-        String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        String ngaymua = getDateTimeFormat();
         System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
         if(tinhtrang.contains("Xac nhan") || tinhtrang.contains("Huy")){
             System.out.printf("| Ma khach hang: %s                                     Ma nhan vien: %s               |\n"
                     ,makh,manv);
         }else{
-            System.out.printf("| Ma khach hang: %s |                                                                       |\n",makh);
+            System.out.printf("| Ma khach hang: %s |                                                                     |\n",makh);
         }
         System.out.printf("| Ma hoa don: %s                                      Tinh trang: %s            |\n"
                 ,mahd,tinhtrang);
@@ -262,14 +260,13 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
         System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
         for(int i=0;i<chitiet.length;i++){
             System.out.printf("|  %d  | %-21s | %-6s | %-9s | %-8d |  %-12.2f | %-12.2f |\n"
-                    ,stt
+                    ,chitiet[i].getStt()
                     ,chitiet[i].getSanpham().getTensp()
                     ,chitiet[i].getSanpham().getSize()
                     ,chitiet[i].getSanpham().getGioitinh()
                     ,chitiet[i].getSoluongmua()
                     ,chitiet[i].getSanpham().getDongia()
                     ,chitiet[i].getThanhtien());
-            stt +=1;
         }
         System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
         System.out.printf("|   Ngay lap: %s      |           |       Tong tien hoa don: |  %.2f  |\n",ngaymua,tongtien);

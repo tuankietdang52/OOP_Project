@@ -25,15 +25,12 @@ public class MainMenu {
 
                 case 2:
                     SignUp();
-                    System.out.println("----------Cua hang shiba lmao----------");
-                    System.out.println("1. Dang nhap              2. Dang ki");
-
                     break;
 
-                    default:
+                default:
                     System.out.println("Lua chon khong ton tai, Nhap lai: ");
             }
-        } while (choice != 1);
+        } while (choice != 1 && choice != 2);
     }
 
     public void SignIn(){
