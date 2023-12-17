@@ -18,7 +18,7 @@ public class EmployeeMenu {
 
     private Employee currentEmployee;
 
-    public EmployeeMenu(){};
+    public EmployeeMenu(){}
 
     public EmployeeMenu(Employee currentEmployee){
         this.currentEmployee = currentEmployee;
@@ -30,14 +30,16 @@ public class EmployeeMenu {
         this.dsnv = dsnv;
         this.dshd = dshd;
         this.dspn = dspn;
-    };
+    }
+
     public EmployeeMenu(@NotNull EmployeeMenu a){
         dssp = a.dssp;
         dskh = a.dskh;
         dsnv = a.dsnv;
         dshd = a.dshd;
         dspn = a.dspn;
-    };
+    }
+
     public void showMenu(){
         int opt;
         do {
@@ -630,6 +632,7 @@ public class EmployeeMenu {
                     break;
                 case 2:
                     System.out.println("2. Top 3 khach hang mua nhieu nhat:");
+                    dskh.top3KhachHangChitieu();
                     break;
                 case 3:
                     System.out.println("3. Top 3 san pham ban chay nhat:");

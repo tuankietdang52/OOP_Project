@@ -245,7 +245,6 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
 
         System.out.println("Ngay lap hoa don: " + date);
     }
-
     @Override public String toString(){
         int stt = 1;
         String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));

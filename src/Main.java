@@ -14,8 +14,6 @@ public class Main {
         MainMenu menu = new MainMenu(accountManagement);
 
         menu.menu();
-
-
         Input.close();
     }
 }

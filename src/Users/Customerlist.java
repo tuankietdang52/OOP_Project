@@ -2,7 +2,6 @@ package Users;
 import InputManage.Input;
 import Interface.IFile;
 import Interface.IList;
-import ProductContainer.Product;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -10,6 +9,7 @@ import java.util.*;
 public class Customerlist implements IFile, IList<Customer> {
     private Customer[] ds;
     private int n;
+
     public void nhap() {
         System.out.print("Nhap so luong khach hang: ");
         n = Input.getInt();
@@ -35,14 +35,13 @@ public class Customerlist implements IFile, IList<Customer> {
 
     }
 
-    public Customerlist(Boolean isGetData){
+    public Customerlist(Boolean isGetData) {
         if (!isGetData) return;
 
-        try{
+        try {
             read();
-        }
-        catch (Exception ex){
-            if (ds.length == 0){
+        } catch (Exception ex) {
+            if (ds.length == 0) {
                 ds = new Customer[0];
                 System.out.println("Error: " + ex);
                 return;
@@ -66,18 +65,21 @@ public class Customerlist implements IFile, IList<Customer> {
     public Customer[] getDs() {
         return ds;
     }
-    public int getN(){return n;}
+
+    public int getN() {
+        return n;
+    }
 
     public void setDs(Customer[] ds) {
         this.ds = ds;
     }
 
-    public void setElementofDs(int pos, Customer customer){
+    public void setElementofDs(int pos, Customer customer) {
         ds[pos] = customer;
     }
 
     @Override
-    public Customer @NotNull [] increaseLength(){
+    public Customer @NotNull [] increaseLength() {
         var temparray = new Customer[ds.length + 1];
         System.arraycopy(ds, 0, temparray, 0, ds.length);
         return temparray;
@@ -91,9 +93,9 @@ public class Customerlist implements IFile, IList<Customer> {
         File customerdata = new File("./src/Data/Customer.bin");
         FileInputStream stream = new FileInputStream(customerdata);
         ObjectInputStream read = new ObjectInputStream(stream);
-        try{
-            while (true){
-                var customer = (Customer)read.readObject();
+        try {
+            while (true) {
+                var customer = (Customer) read.readObject();
                 if (customer == null) break;
 
                 if (i >= ds.length) ds = increaseLength();
@@ -101,8 +103,7 @@ public class Customerlist implements IFile, IList<Customer> {
                 ds[i] = customer;
                 i++;
             }
-        }
-        catch (EOFException ex){
+        } catch (EOFException ex) {
             read.close();
         }
         n = ds.length;
@@ -111,36 +112,34 @@ public class Customerlist implements IFile, IList<Customer> {
     @Override
     public void save() {
         File customerdata = new File("./src/Data/Customer.bin");
-        try{
+        try {
             FileOutputStream stream = new FileOutputStream(customerdata);
             ObjectOutputStream write = new ObjectOutputStream(stream);
             for (var item : ds) {
                 write.writeObject(item);
             }
             write.close();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Cant write data from file\nError: " + ex);
         }
     }
 
     @Override
-    public void clear(){
+    public void clear() {
         File customerdata = new File("./src/Data/Customer.bin");
-        try{
+        try {
             FileOutputStream stream = new FileOutputStream(customerdata);
             ObjectOutputStream write = new ObjectOutputStream(stream);
             write.writeChars("");
             write.close();
 
             read();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Cant write data from file\nError: " + ex);
         }
     }
 
-    public void setCustomer(@NotNull Customer customer){
+    public void setCustomer(@NotNull Customer customer) {
         int index = timkiemMakh(customer.getMakh());
 
         ds[index] = customer;
@@ -191,6 +190,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         save();
     }
+
     public String Xoa_khoang_trang_thua(String s) {
         s = s.trim();
         s = s.replaceAll("\\s+", " ");
@@ -232,6 +232,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return null;
     }
+
     public void timkiemTenkh() {
         System.out.println("Ten khach hang can tim: ");
         String tenkh = Input.getString();
@@ -241,6 +242,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         System.out.println("\n");
     }
+
     public int timkiemTenkh(String tenkh) {
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(Xoa_khoang_trang_thua(tenkh)))
@@ -248,6 +250,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return -1;
     }
+
     public void timkiemTenkh_Customer() {
         System.out.println("Ten khach hang can tim: ");
         String tenkh = Input.getString();
@@ -257,6 +260,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         System.out.println("\n");
     }
+
     public Customer timkiemTenkh_Customer(String tenkh) {
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(tenkh))
@@ -264,11 +268,12 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return null;
     }
+
     public Customerlist timkiemTenkh_CustomerList() {
         System.out.print("Ten khach hang can tim: ");
         String tenkh = Input.getString();
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(Xoa_khoang_trang_thua(tenkh))) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -278,9 +283,10 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+
     public Customerlist timkiemTenkh_CustomerList(String tenkh) {
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getTenkh().contains(tenkh)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -290,6 +296,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+
     public void timkiemDiachi() {
         System.out.println("Dia chi can tim: ");
         String diachi = Input.getString();
@@ -299,6 +306,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         System.out.println("\n");
     }
+
     public int timkiemDiachi(String diachi) {
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(diachi))
@@ -306,6 +314,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return -1;
     }
+
     public void timkiemDiachi_Customer() {
         System.out.println("Dia chi can tim: ");
         String diachi = Input.getString();
@@ -315,6 +324,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         System.out.println("\n");
     }
+
     public Customer timkiemDiachi_Cuatomer(String diachi) {
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(diachi))
@@ -322,11 +332,12 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return null;
     }
+
     public Customerlist timkiemDiachi_CustomerList() {
         System.out.print("Dia chi can tim: ");
         String diachi = Input.getString();
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(Xoa_khoang_trang_thua(diachi))) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -336,9 +347,10 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+
     public Customerlist timkiemDiachi_CustomerList(String diachi) {
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getDiachi().contains(diachi)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -348,6 +360,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+
     public void timkiemSdt() {
         System.out.println("Sdt can tim: ");
         String sdt = Input.getString();
@@ -388,7 +401,7 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.print("Sdt can tim: ");
         String sdt = Input.getString();
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -401,7 +414,7 @@ public class Customerlist implements IFile, IList<Customer> {
 
     public Customerlist timkiemSdt_CustomerList(String sdt) {
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getSdt().equals(sdt)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -452,7 +465,7 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.print("Email can tim: ");
         String email = Input.getString();
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -465,7 +478,7 @@ public class Customerlist implements IFile, IList<Customer> {
 
     public Customerlist timkiemEmail_CustomerList(String email) {
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getEmail().equals(email)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -475,6 +488,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+
     public void timkiemUsername() {
         System.out.println("Username can tim: ");
         String username = Input.getString();
@@ -510,6 +524,7 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return null;
     }
+
     public void timkiemPassword() {
         System.out.println("Password can tim: ");
         String password = Input.getString();
@@ -550,7 +565,7 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.print("Password can tim: ");
         String password = Input.getString();
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -563,7 +578,7 @@ public class Customerlist implements IFile, IList<Customer> {
 
     public Customerlist timkiemPassword_Customerlist(String password) {
         Customerlist a = new Customerlist();
-        a.ds=new Customer[a.n];
+        a.ds = new Customer[a.n];
         for (int i = 0; i < n; i++) {
             if (ds[i].getPassword().equals(password)) {
                 a.ds = Arrays.copyOf(a.ds, a.n + 1);
@@ -573,23 +588,24 @@ public class Customerlist implements IFile, IList<Customer> {
         }
         return a;
     }
+
     @Override
     public void sua(String makh) {
-        int flag=0;
+        int flag = 0;
         int opt;
-        for(int i=0;i<n;++i) 	{
+        for (int i = 0; i < n; ++i) {
             if (ds[i].getMakh().equals(makh)) {
                 flag = 1;
                 break;
             }
         }
-        if(flag==1) {
-            for(int i=0;i<n;i++) {
-                if(ds[i].getMakh().equals(makh)) {
+        if (flag == 1) {
+            for (int i = 0; i < n; i++) {
+                if (ds[i].getMakh().equals(makh)) {
                     do {
                         menuSua();
-                        opt=Input.getInt();
-                        switch(opt) {
+                        opt = Input.getInt();
+                        switch (opt) {
                             case 1:
                                 doiTenKhachHang(ds[i]);
                                 break;
@@ -612,13 +628,13 @@ public class Customerlist implements IFile, IList<Customer> {
                                 break;
                         }
                     }
-                    while(opt!=0);
+                    while (opt != 0);
                 }
             }
             save();
-        }
-        else    System.out.println("Ma khach hang khong ton tai!");
+        } else System.out.println("Ma khach hang khong ton tai!");
     }
+
     public void sua() {
         System.out.print("Nhap ma cua khach hang muon sua thong tin: ");
         String makh = Input.getString();
@@ -665,7 +681,8 @@ public class Customerlist implements IFile, IList<Customer> {
             save();
         } else System.out.println("Ma khach hang khong ton tai!");
     }
-    private void menuSua(){
+
+    private void menuSua() {
         System.out.println("---------------------------");
         System.out.println("1. Sua ten khach hang:");
         System.out.println("2. Sua dia chi khach hang:");
@@ -676,36 +693,56 @@ public class Customerlist implements IFile, IList<Customer> {
         System.out.println("---------------------------");
         System.out.print("Please choose: ");
     }
-    private void doiTenKhachHang(@NotNull Customer a){
+
+    private void doiTenKhachHang(@NotNull Customer a) {
         System.out.println("Doi ten khach hang thanh:");
         String tenkh = Input.getString();
         a.setTenkh(tenkh);
     }
-    private void doiDiaChi(@NotNull Customer a){
+
+    private void doiDiaChi(@NotNull Customer a) {
         System.out.println("Doi dia chi khach hang thanh:");
         String diachi = Input.getString();
         a.setDiachi(diachi);
     }
-    private void doiSDT(@NotNull Customer a){
+
+    private void doiSDT(@NotNull Customer a) {
         System.out.println("Doi sdt khach hang thanh:");
         String sdt = Input.getString();
         a.setSdt(sdt);
     }
-    private void doiEmail(@NotNull Customer a){
+
+    private void doiEmail(@NotNull Customer a) {
         System.out.println("Doi email khach hang thanh:");
         String email = Input.getString();
         a.setEmail(email);
     }
-    private void doiMatKhau(@NotNull Customer a){
+
+    private void doiMatKhau(@NotNull Customer a) {
         System.out.println("Doi mat khau thanh:");
         String password = Input.getString();
         a.setPassword(password);
     }
-    public void tangChiTieu(String makh,double money){
-        for(int i=0;i<n;i++){
-            if(ds[i].getMakh().equals(makh)){
+
+    public void tangChiTieu(String makh, double money) {
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getMakh().equals(makh)) {
                 ds[i].tangChitieu(money);
             }
+        }
+    }
+    public void top3KhachHangChitieu() {
+
+        Arrays.sort(ds, Comparator.comparingDouble(Customer::getChitieu).reversed());
+
+        int count = Math.min(3, n);
+        Customer[] topCustomers = Arrays.copyOf(ds, count);
+
+        System.out.println("Top 3 khách hàng chi tiêu nhiều nhất:");
+        for (int i = 0; i < topCustomers.length; i++) {
+            System.out.println("Khách hàng " + (i + 1) + ":");
+            System.out.println(topCustomers[i]);
+            System.out.println("---------------------------");
         }
     }
 }
