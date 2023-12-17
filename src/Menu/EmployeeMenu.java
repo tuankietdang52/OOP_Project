@@ -519,6 +519,7 @@ public class EmployeeMenu {
             System.out.println("--------Quan ly phieu nhap------");
             System.out.println("1. Them mot phieu nhap:");
             System.out.println("2. Them nhieu phieu nhap:");
+            System.out.println("3. Nhap hang:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
@@ -532,6 +533,9 @@ public class EmployeeMenu {
                     System.out.print("So phieu nhap muon them: ");
                     k=Input.getInt();
                     dspn.them(k);
+                    break;
+                case 3:
+                    dspn.nhapHang();
                     break;
                 case 0:
                     break;
