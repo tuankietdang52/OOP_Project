@@ -17,8 +17,8 @@ import java.time.format.DateTimeFormatter;
 
 public class CustomerMenu {
     public static boolean isExit = false;
-    private Customerlist dskh = new Customerlist(true);
-    private final DSHD billList = new DSHD(true);
+    private Customerlist dskh;
+    private DSHD billList;
     private Customer currentUser;
 
     public CustomerMenu(){};
@@ -48,7 +48,6 @@ public class CustomerMenu {
         }
 
         var userCart = currentUser.getCart();
-        CartManagement cartManagement = new CartManagement(currentUser, userCart, dskh, billList);
 
         do {
             isExit = false;
@@ -68,15 +67,22 @@ public class CustomerMenu {
             System.out.print("Please choose: ");
             opt = Input.getInt();
             System.out.println("=================================");
+
+            DSSP ds = new DSSP(true);
+            dskh = new Customerlist(true);
+            billList = new DSHD(true);
+
+            CartManagement cartManagement = new CartManagement(currentUser, userCart, dskh, billList);
+
             switch(opt) {
                 case 1:
                     cartManagement.handlePrintCart();
                     break;
                 case 2:
-                    DSSP ds = new DSSP(true);
                     System.out.println(ds);
                     break;
                 case 3:
+                    System.out.println(ds);
                     cartManagement.handleAddToCart();
                     break;
                 case 4:

@@ -5,6 +5,7 @@ import Bill.HoaDon;
 import InputManage.Input;
 import Interface.IFile;
 import Interface.IList;
+import ProductContainer.DSSP;
 import Users.Customer;
 import org.jetbrains.annotations.NotNull;
 
@@ -144,22 +145,19 @@ public class DSPN implements IFile, IList<PhieuNhap> {
     }
 
     public void them() {
+        DSSP productList = new DSSP(true);
+        System.out.println(productList);
+
         ds = Arrays.copyOf(ds, n + 1);
         ds[n] = new PhieuNhap();
-        ds[n].setByInput();
+        if (!ds[n].setField()) return;
+        ds[n].them();
+
         ++n;
+
         save();
     }
-    public void nhapHang(){
-        ds = Arrays.copyOf(ds, n + 1);
-        ds[n] = new PhieuNhap();
-        ds[n].setField();
-        ++n;
-        ds[n].createMaphieunhap();
-        LocalDateTime time = LocalDateTime.now();
-        ds[n].setNgaylap(time);
-        save();
-    }
+
     @Override
     public void them(PhieuNhap phieuNhap) {
         ds = Arrays.copyOf(ds, n + 1);
@@ -169,11 +167,15 @@ public class DSPN implements IFile, IList<PhieuNhap> {
     }
 
     public void them(int k) {
+        DSSP productList = new DSSP(true);
+        System.out.println(productList);
+
         ds = Arrays.copyOf(ds, n + k);
         int i = 0;
         while (i < k) {
             ds[n] = new PhieuNhap();
-            ds[n].setByInput();
+            if (!ds[n].setField()) return;
+            ds[n].them();
             ++i;
             ++n;
         }

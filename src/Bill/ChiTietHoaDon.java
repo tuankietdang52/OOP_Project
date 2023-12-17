@@ -4,6 +4,7 @@ import InputManage.Input;
 import ProductContainer.DSSP;
 import ProductContainer.Product;
 import ProductContainer.Shirt;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -78,12 +79,13 @@ public class ChiTietHoaDon implements Serializable {
     }
 
     public void setByInput(){
-        System.out.print("Nhap ma san pham: ");
-        masp = Input.getString();
+        do{
+            System.out.print("Nhap ma san pham: ");
+            masp = Input.getString();
+        }while (!getProduct());
+
         System.out.print("So luong mua: ");
         soluongmua = Input.getInt();
-
-        getProduct();
 
         // muon test thi comment getProduct() o tren r bo comment 2 dong duoi
         //sanpham = new Shirt();
@@ -92,10 +94,17 @@ public class ChiTietHoaDon implements Serializable {
         tinhTien();
     }
 
-    private void getProduct(){
+    private @NotNull Boolean getProduct(){
         DSSP ds = new DSSP(true);
 
         this.sanpham = ds.timkiemMasp_Product(this.masp);
+
+        if (this.sanpham == null){
+            System.out.println("Khong tim thay san pham, Nhap lai:");
+            return false;
+        }
+
+        return true;
     }
 
     private void tinhTien(){

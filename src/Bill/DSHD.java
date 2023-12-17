@@ -4,13 +4,11 @@ import InputManage.Input;
 import Interface.IFile;
 import Interface.IList;
 import ProductContainer.DSSP;
-import Users.Customer;
 import Users.Customerlist;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -55,7 +53,7 @@ public class DSHD implements IFile, IList<HoaDon>{
     }
     public void xuatHDDaXacNhan(){
         for(int i =0;i<ds.length;i++){
-            if(ds[i].getTinhtrang().contains("Xac nhan")) {
+            if(ds[i].getTinhtrang().contains("Da duyet")) {
                 System.out.println("\nHoa don thu " + (i + 1) + ":");
                 System.out.println(ds[i]);
                 System.out.println("============================");
@@ -108,6 +106,7 @@ public class DSHD implements IFile, IList<HoaDon>{
     public void setDs(HoaDon[] ds) {
         this.ds = ds;
     }
+
 
     public void setElementofDs(int pos, HoaDon hoadon){
         ds[pos] = hoadon;
@@ -628,11 +627,36 @@ public class DSHD implements IFile, IList<HoaDon>{
             System.out.println("Hoa don da duoc duyet hoac khong ton tai!");
         }
     }
+
+    private void setProductFrequency(ChiTietHoaDon detail){
+        DSSP productList = new DSSP(true);
+
+        for (var product : productList.getDs()){
+            String masp = detail.getMasp();
+            if (!Objects.equals(product.getMasp(), masp)) continue;
+
+            int soldAmount = detail.getSoluongmua() + product.getSoldamount();
+            product.setSoldamount(soldAmount);
+        }
+
+        productList.save();
+    }
+
+    private void handleSetProductFrequency(@NotNull HoaDon bill){
+        for (var detail : bill.getChitiet()){
+            setProductFrequency(detail);
+        }
+    }
+
+
     public void xacNhan(@NotNull HoaDon a, String manv){
         a.setTinhtrang("Xac nhan  ");
         a.setManv(manv);
         Customerlist customerlist = new Customerlist(true);
         customerlist.tangChiTieu(a.getMakh(),a.getTongtien());
+
+        handleSetProductFrequency(a);
+
         save();
         customerlist.save();
         System.out.println("Da xac nhan!");

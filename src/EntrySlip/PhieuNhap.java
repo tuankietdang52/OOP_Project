@@ -2,6 +2,9 @@ package EntrySlip;
 
 import Bill.ChiTietHoaDon;
 import InputManage.Input;
+import ProductContainer.DSSP;
+import Users.Employee;
+import Users.EmployeeList;
 import org.jetbrains.annotations.NotNull;
 import Interface.IList;
 import org.jetbrains.annotations.NotNull;
@@ -10,6 +13,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Random;
 
 public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
@@ -105,11 +109,31 @@ public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
         System.out.print("Nhap chi tiet phieu nhap: ");
         them();
     }
-    public void setField(){
-        System.out.print("Nhap ma nhan vien: ");
-        manv = Input.getString();
+
+    public Boolean checkEmployee(String manv){
+        EmployeeList employeeList = new EmployeeList(true);
+
+        int index = employeeList.timkiemManv(manv);
+
+        return index != -1;
+    }
+
+    public Boolean setField(){
+        do{
+            System.out.print("Nhap ma nhan vien: ");
+            manv = Input.getString();
+
+            if (manv.equals("0")) return false;
+
+        } while (!checkEmployee(manv));
+
         System.out.print("Nhap ma nha cung cap: ");
         manhacungcap = Input.getString();
+
+        if (manhacungcap.equals("0")) return false;
+
+        ngaylap = LocalDateTime.now();
+        return true;
     }
     public ChiTietPhieuNhap findDetailProduct(int stt){
         for (var item : chitiet){
@@ -154,6 +178,7 @@ public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
 
         return choice == 1;
     }
+
     public void them(){
         if (chitiet == null) chitiet = new ChiTietPhieuNhap[0];
         do {
@@ -177,9 +202,26 @@ public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
     public void them(ChiTietPhieuNhap detail) {
         chitiet = increaseLength();
         chitiet[chitiet.length - 1] = detail;
+        increaseProductRemain(detail);
 
         setPhieuNhapDetail();
     }
+
+    public void increaseProductRemain(@NotNull ChiTietPhieuNhap detail){
+        DSSP productList = new DSSP(true);
+        var list = productList.getDs();
+        var productDetail = detail.getSanpham();
+
+        for (var product : list){
+            if (!Objects.equals(product.getMasp(), productDetail.getMasp())) continue;
+
+            int amount = detail.getSoluongnhap() + product.getSltonkho();
+            product.setSltonkho(amount);
+        }
+
+        productList.save();
+    }
+
     @Override
     public void sua(String Stt) {
         int index = convertToInt(Stt);
@@ -223,28 +265,37 @@ public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
     public String toString(){
         int stt = 1;
         String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-        System.out.println("+-----+---------------------------+--------+-----------+----------+");
-            System.out.printf("| Ma nhan vien : %s          Ma nha cung cap: %s          |\n"
+        System.out.println("+-----+-------------------------------------+--------+-----------+----------+");
+            System.out.printf("| Ma nhan vien : %s          Ma nha cung cap: %s                   |\n"
                     ,manv,manhacungcap);
-        System.out.printf("| Ma phieu nhap: %s                                           |\n"
+        System.out.printf("| Ma phieu nhap: %s                                                           |\n"
                 ,maphieunhap);
-        System.out.println("+-----+---------------------------+--------+-----------+----------+");
-        System.out.println("| STT |          Ten sp           |  Size  | Gioi tinh | So luong |");
-        System.out.println("+-----+---------------------------+--------+-----------+----------+");
+        System.out.println("+-----+-------------------------------------+--------+-----------+----------+");
+        System.out.println("| STT |               Ten sp                |  Size  | Gioi tinh | So luong |");
+        System.out.println("+-----+-------------------------------------+--------+-----------+----------+");
         for(int i=0;i<chitiet.length;i++){
-            System.out.printf("|  %d  | %-25s | %-6s | %-9s | %-8d |\n"
+            if (stt >= 10){
+                System.out.printf("|  %d | %-35s | %-6s | %-9s | %-8d |\n"
+                        ,stt
+                        ,chitiet[i].getSanpham().getTensp()
+                        ,chitiet[i].getSanpham().getSize()
+                        ,chitiet[i].getSanpham().getGioitinh()
+                        ,chitiet[i].getSoluongnhap());
+                stt +=1;
+                continue;
+            }
+
+            System.out.printf("|  %d  | %-35s | %-6s | %-9s | %-8d |\n"
                     ,stt
                     ,chitiet[i].getSanpham().getTensp()
                     ,chitiet[i].getSanpham().getSize()
                     ,chitiet[i].getSanpham().getGioitinh()
-                    ,chitiet[i].getSoluongnhap()
-                    ,chitiet[i].getSanpham().getDongia()
-                    ,chitiet[i].getThanhtien());
+                    ,chitiet[i].getSoluongnhap());
             stt +=1;
         }
-        System.out.println("+-----+---------------------------+--------+-----------+----------+");
-        System.out.printf("|   Ngay lap: %s          |           |          |\n",ngaymua);
-        System.out.println("+-----+---------------------------+--------+-----------+----------+");
+        System.out.println("+-----+-------------------------------------+--------+-----------+----------+");
+        System.out.printf("|   Ngay lap: %s                    |           |          |\n",ngaymua);
+        System.out.println("+-----+-------------------------------------+--------+-----------+----------+");
         return "";
     }
 }

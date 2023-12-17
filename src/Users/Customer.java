@@ -159,7 +159,7 @@ public class Customer implements Serializable, IAccount {
         System.out.println("Dia chi: " + diachi);
         System.out.println("SDT: " + sdt);
         System.out.println("Email: " + email);
-        System.out.println("Chi tieu: " + chitieu);
+        System.out.println("Chi tieu: " + (int)chitieu);
         return "";
     }
 }

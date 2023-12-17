@@ -3,6 +3,7 @@ package EntrySlip;
 import InputManage.Input;
 import ProductContainer.DSSP;
 import ProductContainer.Product;
+import org.jetbrains.annotations.NotNull;
 
 import javax.print.attribute.standard.DocumentName;
 import java.io.Serial;
@@ -67,24 +68,29 @@ public class ChiTietPhieuNhap implements Serializable {
     public void setSanpham(Product sanpham){this.sanpham = sanpham;}
 
     public void setByInput(){
-        System.out.print("Nhap ma san pham: ");
-        masp = Input.getString();
+        do{
+            System.out.print("Nhap ma san pham: ");
+            masp = Input.getString();
+        }while (!getProduct());
+
         System.out.print("So luong nhap: ");
         soluongnhap = Input.getInt();
 
-        getProduct();
-
-        // muon test thi comment getProduct() o tren r bo comment 2 dong duoi
-        //sanpham = new Shirt();
-        //sanpham.setByInput();
-
         tinhTien();
     }
-    private void getProduct(){
+    private @NotNull Boolean getProduct(){
         DSSP ds = new DSSP(true);
 
         this.sanpham = ds.timkiemMasp_Product(this.masp);
+
+        if (this.sanpham == null){
+            System.out.println("Khong tim thay san pham, Nhap lai:");
+            return false;
+        }
+
+        return true;
     }
+
     private void tinhTien(){
         thanhtien = sanpham.getDongia() * soluongnhap;
     }
