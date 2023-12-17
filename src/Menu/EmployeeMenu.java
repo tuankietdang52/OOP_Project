@@ -436,34 +436,6 @@ public class EmployeeMenu {
             }
         }while(opt != 0);
     }
-    public void menuThemHD(){
-        int opt;
-        do{
-            System.out.println("---------Quan ly hoa don--------");
-            System.out.println("1. Them mot hoa don:");
-            System.out.println("2. Them nhieu hoa don:");
-            System.out.println("0. Exit.");
-            System.out.println("--------------------------------");
-            System.out.print("Please choose: ");
-            opt = Input.getInt();
-            switch (opt){
-                case 1:
-                    dshd.them();
-                    break;
-                case 2:
-                    int k;
-                    System.out.print("So hoa don muon them: ");
-                    k=Input.getInt();
-                    dshd.them(k);
-                    break;
-                case 0:
-                    break;
-                default:
-                    System.out.println("Lua chon khong hop le!");
-                    break;
-            }
-        }while(opt != 0);
-    }
     public void menuTimkiemHD(){
         int opt;
         do{
@@ -505,37 +477,32 @@ public class EmployeeMenu {
         int opt;
         do{
             System.out.println("--------Quan ly phieu nhap------");
-            System.out.println("1. Nhap danh sach:");
-            System.out.println("2. Xuat danh sach:");
-            System.out.println("3. Them phieu nhap:");
-            System.out.println("4. Sua thong tin phieu nhap:");
-            System.out.println("5. Xoa phieu nhap:");
-            System.out.println("6. Tim kiem phieu nhap:");
+            System.out.println("1. Xuat danh sach:");
+            System.out.println("2. Them phieu nhap:");
+            System.out.println("3. Sua thong tin phieu nhap:");
+            System.out.println("4. Xoa phieu nhap:");
+            System.out.println("5. Tim kiem phieu nhap:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    dspn.nhap();
+                    System.out.println(dspn);
                     break;
                 case 2:
-                    System.out.println(dspn);
-                    //dspn.xuat();
-                    break;
-                case 3:
                     menuThemPN();
                     break;
-                case 4:
+                case 3:
                     dspn.sua();
                     break;
-                case 5:
+                case 4:
                     String mapn;
                     System.out.println("Mapn muon xoa: ");
                     mapn = Input.getString();
                     dspn.xoa(mapn);
                     break;
-                case 6:
+                case 5:
                     menuTimkiemPN();
                     break;
                 case 0:

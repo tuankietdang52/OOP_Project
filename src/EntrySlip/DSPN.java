@@ -9,6 +9,7 @@ import Users.Customer;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class DSPN implements IFile, IList<PhieuNhap> {
@@ -30,15 +31,9 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         for (int i = 0; i < n; ++i) {
             System.out.println("\nPhieu nhap thu " + (i + 1) + ":");
             System.out.println(ds[i]);
-        }
-        return "";
-    }
-    public void xuat(){
-        for(int i =0;i<ds.length;i++){
-            System.out.println("\nPhieu nhap thu " + (i + 1) + ":");
-            ds[i].xuat();
             System.out.println("============================");
         }
+        return "";
     }
     public DSPN() {
 
@@ -152,7 +147,16 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         ++n;
         save();
     }
-
+    public void nhapHang(){
+        ds = Arrays.copyOf(ds, n + 1);
+        ds[n] = new PhieuNhap();
+        ds[n].setField();
+        ++n;
+        ds[n].createMaphieunhap();
+        LocalDateTime time = LocalDateTime.now();
+        ds[n].setNgaylap(time);
+        save();
+    }
     @Override
     public void them(PhieuNhap phieuNhap) {
         ds = Arrays.copyOf(ds, n + 1);
@@ -428,9 +432,6 @@ public class DSPN implements IFile, IList<PhieuNhap> {
                             case 3:
                                 doiTongTien(ds[i]);
                                 break;
-                            case 4:
-                                doiNgayLap(ds[i]);
-                                break;
                             case 0:
                                 break;
                             default:
@@ -472,9 +473,6 @@ public class DSPN implements IFile, IList<PhieuNhap> {
                             case 3:
                                 doiTongTien(ds[i]);
                                 break;
-                            case 4:
-                                doiNgayLap(ds[i]);
-                                break;
                             case 0:
                                 break;
                             default:
@@ -492,8 +490,7 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         System.out.println("---------------------------");
         System.out.println("1. Sua ma nhan vien:");
         System.out.println("2. Sua ma nha cung cap:");
-        System.out.println("3. Sua tong ien:");
-        System.out.println("4. Sua ngay lap hoa don:");
+        System.out.println("3. Sua tong tien:");
         System.out.println("0. Exit.");
         System.out.println("---------------------------");
         System.out.print("Please choose: ");
@@ -512,8 +509,5 @@ public class DSPN implements IFile, IList<PhieuNhap> {
         System.out.println("Doi tong tien thanh:");
         double tongtien = Input.getDouble();
         a.setTongtien(tongtien);
-    }
-    private void doiNgayLap(@NotNull PhieuNhap a){
-
     }
 }
