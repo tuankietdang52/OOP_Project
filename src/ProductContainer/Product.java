@@ -3,9 +3,12 @@ package ProductContainer;
 import InputManage.Input;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public abstract class Product implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -630033193585155800L;
     private String masp;
     private String tensp;
     private ESex gioitinh;
@@ -13,6 +16,7 @@ public abstract class Product implements Serializable {
     private double dongia;
     private ESize size;
     private String chatlieu;
+    private int soldamount;
 
     public Product(){
         masp = "";
@@ -22,6 +26,7 @@ public abstract class Product implements Serializable {
         dongia = 0;
         size = null;
         chatlieu = "";
+        soldamount = 0;
     }
 
     public Product(String masp, String tensp, ESex gioitinh, int sltonkho, double dongia, String chatlieu, ESize size){
@@ -42,6 +47,7 @@ public abstract class Product implements Serializable {
         dongia = product.dongia;
         chatlieu = product.chatlieu;
         size = product.size;
+        soldamount = product.soldamount;
     }
 
     public String getMasp() {
@@ -70,6 +76,10 @@ public abstract class Product implements Serializable {
         return chatlieu;
     }
 
+    public int getSoldamount() {
+        return soldamount;
+    }
+
     public void setMasp(String masp) {
         this.masp = masp;
     }
@@ -96,6 +106,10 @@ public abstract class Product implements Serializable {
 
     public void setSltonkho(int sltonkho) {
         this.sltonkho = sltonkho;
+    }
+
+    public void setSoldamount(int soldamount) {
+        this.soldamount = soldamount;
     }
 
     public void setByInput(){

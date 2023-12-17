@@ -11,6 +11,7 @@ import java.util.*;
 public class DSSP implements IFile, IList<Product> {
     private Product[] ds;
     private int n;
+
     public void nhap() {
         System.out.print("Nhap so luong san pham: ");
         n = Input.getInt();

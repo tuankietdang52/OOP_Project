@@ -39,9 +39,20 @@ public class EmployeeMenu {
         dshd = a.dshd;
         dspn = a.dspn;
     };
+
+    public void updateData(){
+        dspn = new DSPN(true);
+        dssp = new DSSP(true);
+        dskh = new Customerlist(true);
+        dsnv = new EmployeeList(true);
+        dshd = new DSHD(true);
+    }
+
     public void showMenu(){
         int opt;
         do {
+            updateData();
+
             System.out.println("----------Employee Menu---------");
             System.out.println("1. Quan ly san pham:");
             System.out.println("2. Quan ly khach hang:");
@@ -83,6 +94,8 @@ public class EmployeeMenu {
     public void menuQLSP(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly san pham--------");
             System.out.println("1. Nhap danh sach:");
             System.out.println("2. Xuat danh sach:");
@@ -127,6 +140,8 @@ public class EmployeeMenu {
     public void menuThemSp(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly san pham--------");
             System.out.println("1. Them mot san pham:");
             System.out.println("2. Them nhieu san pham:");
@@ -134,6 +149,8 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
+            dssp = new DSSP(true);
             switch (opt){
                 case 1:
                     dssp.them();
@@ -155,6 +172,8 @@ public class EmployeeMenu {
     public void menuTimkiemSp(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly san pham--------");
             System.out.println("1. Tim kiem theo masp:");
             System.out.println("2. Tim kiem theo ten sp:");
@@ -170,6 +189,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     dssp.timkiemMasp_Product();
@@ -212,6 +232,8 @@ public class EmployeeMenu {
     public void menuQLKH(){
         int opt;
         do{
+            updateData();
+
             System.out.println("-------Quan ly khach hang-------");
             System.out.println("1. Xuat danh sach:");
             System.out.println("2. Tim kiem khach hang:");
@@ -219,6 +241,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     System.out.println(dskh);
@@ -237,6 +260,8 @@ public class EmployeeMenu {
     public void menuTimkiemKh(){
         int opt;
         do{
+            updateData();
+
             System.out.println("-------Quan ly khach hang-------");
             System.out.println("1. Tim kiem theo makh:");
             System.out.println("2. Tim kiem theo ten khach hang:");
@@ -249,6 +274,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     dskh.timkiemMakh();
@@ -282,6 +308,8 @@ public class EmployeeMenu {
     public void menuQLNV(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly nhan vien-------");
             System.out.println("1. Xuat danh sach:");
             System.out.println("2. Them nhan vien:");
@@ -292,6 +320,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     System.out.println(dsnv);
@@ -322,6 +351,8 @@ public class EmployeeMenu {
     public void menuThemNv(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly nhan vien-------");
             System.out.println("1. Them mot nhan vien:");
             System.out.println("2. Them nhieu nhan vien:");
@@ -329,6 +360,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     dsnv.them();
@@ -350,6 +382,8 @@ public class EmployeeMenu {
     public void menuTimkiemNv(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly nhan vien-------");
             System.out.println("1. Tim kiem theo manv:");
             System.out.println("2. Tim kiem theo ten nhan vien:");
@@ -362,6 +396,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     dsnv.timkiemManv();
@@ -395,6 +430,8 @@ public class EmployeeMenu {
     public void menuQLHD(){
         int opt;
         do{
+            updateData();
+
             System.out.println("---------Quan ly hoa don--------");
             System.out.println("1. Xuat danh sach:");
             System.out.println("2. Hoa don chua duyet:");
@@ -407,6 +444,7 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     System.out.println(dshd);
@@ -440,6 +478,8 @@ public class EmployeeMenu {
     public void menuTimkiemHD(){
         int opt;
         do{
+            updateData();
+
             System.out.println("---------Quan ly hoa don--------");
             System.out.println("1. Tim kiem theo mahd:");
             System.out.println("2. Tim kiem theo makh:");
@@ -477,6 +517,8 @@ public class EmployeeMenu {
     public void menuQLPN(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly phieu nhap------");
             System.out.println("1. Xuat danh sach:");
             System.out.println("2. Them phieu nhap:");
@@ -487,17 +529,24 @@ public class EmployeeMenu {
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
+                    if (dspn.getDs().length == 0){
+                        System.out.println("Chua co phieu nhap nao");
+                        break;
+                    }
                     System.out.println(dspn);
                     break;
                 case 2:
                     menuThemPN();
                     break;
                 case 3:
+                    System.out.println(dspn);
                     dspn.sua();
                     break;
                 case 4:
+                    System.out.println(dspn);
                     String mapn;
                     System.out.println("Mapn muon xoa: ");
                     mapn = Input.getString();
@@ -517,14 +566,16 @@ public class EmployeeMenu {
     public void menuThemPN(){
         int opt;
         do{
+            updateData();
+
             System.out.println("--------Quan ly phieu nhap------");
             System.out.println("1. Them mot phieu nhap:");
             System.out.println("2. Them nhieu phieu nhap:");
-            System.out.println("3. Nhap hang:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
             switch (opt){
                 case 1:
                     dspn.them();
@@ -533,10 +584,8 @@ public class EmployeeMenu {
                     int k;
                     System.out.print("So phieu nhap muon them: ");
                     k=Input.getInt();
+                    if (k == 0) break;
                     dspn.them(k);
-                    break;
-                case 3:
-                    dspn.nhapHang();
                     break;
                 case 0:
                     break;
@@ -548,7 +597,10 @@ public class EmployeeMenu {
     }
     public void menuTimkiemPN(){
         int opt;
+
         do{
+            updateData();
+
             System.out.println("--------Quan ly phieu nhap------");
             System.out.println("1. Tim kiem theo ma phieu nhap:");
             System.out.println("2. Tim kiem theo manv:");
@@ -585,34 +637,33 @@ public class EmployeeMenu {
     }
     public void menuThongKe(){
         int opt;
-        StatisticManagement statisticManagement = new StatisticManagement();
 
         do{
+            updateData();
+
             System.out.println("-------------Thong ke-----------");
             System.out.println("1. Tinh hinh kinh doanh:");
             System.out.println("2. Top 3 khach hang mua nhieu nhat:");
             System.out.println("3. Top 3 san pham ban chay nhat:");
             System.out.println("4. Tong doanh thu:");
-            System.out.println("5. Doanh thu hang thang:");
             System.out.println("0. Exit.");
             System.out.println("--------------------------------");
             System.out.print("Please choose: ");
             opt = Input.getInt();
+
+            StatisticManagement statisticManagement = new StatisticManagement();
             switch (opt){
                 case 1:
                     statisticManagement.handleStatisticByDay();
                     break;
                 case 2:
-                    System.out.println("2. Top 3 khach hang mua nhieu nhat:");
+                    statisticManagement.handleTop3Customer();
                     break;
                 case 3:
-                    System.out.println("3. Top 3 san pham ban chay nhat:");
+                    statisticManagement.handleTop3ProductSold();
                     break;
                 case 4:
-                    System.out.println("4. Tong doanh thu:");
-                    break;
-                case 5:
-                    System.out.println("5. Doanh thu hang thang:");
+                    statisticManagement.handleRevenue();
                     break;
                 case 0:
                     break;

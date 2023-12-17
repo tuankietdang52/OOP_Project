@@ -2,6 +2,7 @@ package StatisticContainer;
 
 import Bill.DSHD;
 import InputManage.Input;
+import ProductContainer.DSSP;
 import Users.Customerlist;
 import Users.Employee;
 import Users.EmployeeList;
@@ -13,6 +14,7 @@ public class StatisticManagement {
     private DSHD billList;
     private Customerlist customerList;
     private EmployeeList employeeList;
+    private DSSP productList;
 
     public StatisticManagement(){}
 
@@ -20,6 +22,7 @@ public class StatisticManagement {
         billList = new DSHD(true);
         customerList = new Customerlist(true);
         employeeList = new EmployeeList(true);
+        productList = new DSSP(true);
     }
 
     public Boolean checkValidDay(@NotNull LocalDate dateStart, @NotNull LocalDate dateEnd){
@@ -31,7 +34,7 @@ public class StatisticManagement {
 
     public void handleStatisticByDay(){
         getData();
-        Statistic statistic = new Statistic(billList, customerList, employeeList);
+        Statistic statistic = new Statistic(billList, customerList, employeeList, productList);
 
         LocalDate dateStart, dateEnd;
         boolean isValid = true;
@@ -52,5 +55,26 @@ public class StatisticManagement {
 
 
         statistic.statisticByDay(dateStart, dateEnd);
+    }
+
+    public void handleTop3Customer(){
+        getData();
+        Statistic statistic = new Statistic(billList, customerList, employeeList, productList);
+
+        statistic.top3KhachHangChitieu();
+    }
+
+    public void handleTop3ProductSold(){
+        getData();
+        Statistic statistic = new Statistic(billList, customerList, employeeList, productList);
+
+        statistic.top3ProductSold();
+    }
+
+    public void handleRevenue(){
+        getData();
+        Statistic statistic = new Statistic(billList, customerList, employeeList, productList);
+
+        statistic.calRevenue();
     }
 }
