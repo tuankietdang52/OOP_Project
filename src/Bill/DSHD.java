@@ -35,16 +35,25 @@ public class DSHD implements IFile, IList<HoaDon>{
 
     public void xuatHDChuaduyet(){
         for(int i =0;i<ds.length;i++){
-            if(ds[i].getTinhtrang().equals("Chua duyet")) {
+            if(ds[i].getTinhtrang().contains("Chua duyet")) {
                 System.out.println("\nHoa don thu " + (i + 1) + ":");
                 System.out.println(ds[i]);
                 System.out.println("============================");
             }
         }
     }
-    public void xuatHDDaduyet(){
+    public void xuatHDDaXacNhan(){
         for(int i =0;i<ds.length;i++){
-            if(ds[i].getTinhtrang().equals("Da duyet  ")) {
+            if(ds[i].getTinhtrang().contains("Xac nhan")) {
+                System.out.println("\nHoa don thu " + (i + 1) + ":");
+                System.out.println(ds[i]);
+                System.out.println("============================");
+            }
+        }
+    }
+    public void xuatHDDaHuy(){
+        for(int i =0;i<ds.length;i++){
+            if(ds[i].getTinhtrang().contains("Huy")) {
                 System.out.println("\nHoa don thu " + (i + 1) + ":");
                 System.out.println(ds[i]);
                 System.out.println("============================");
@@ -527,7 +536,7 @@ public class DSHD implements IFile, IList<HoaDon>{
     private void doiNgayLap(@NotNull HoaDon a){
 
     }
-    public void duyet(){
+    public void duyet(String manv){
         System.out.print("Ma hd muon duyet: ");
         String mahd = Input.getString();
         int flag=0;
@@ -538,20 +547,51 @@ public class DSHD implements IFile, IList<HoaDon>{
             }
         }
         if(flag == 1){
-            for(int i=0;i<n;i++){
-                if(ds[i].getMahd().equals(mahd) && ds[i].getTinhtrang().equals("Chua duyet")){
-                    ds[i].setTinhtrang("Da duyet  ");
-                    Customerlist customerlist = new Customerlist(true);
-                    customerlist.tangChiTieu(ds[i].getMakh(),ds[i].getTongtien());
-                    save();
-                    customerlist.save();
-                    System.out.println("Duyet thanh cong!");
+            int opt;
+            System.out.println("1.Xac nhan            2.Huy");
+            opt = Input.getInt();
+            switch (opt){
+                case 1:
+                    for(int i=0;i<n;i++){
+                        if(ds[i].getMahd().equals(mahd) && ds[i].getTinhtrang().equals("Chua duyet")){
+                            xacNhan(ds[i],manv);
+                            break;
+                        }
+                    }
                     break;
-                }
+                case 2:
+                    for(int i=0;i<n;i++){
+                        if(ds[i].getMahd().equals(mahd) && ds[i].getTinhtrang().equals("Chua duyet")){
+                            huy(ds[i],manv);
+                            break;
+                        }
+                    }
+                    break;
+                default:
+                    System.out.println("Quay lai");
+                    break;
             }
         }
         else{
             System.out.println("Hoa don da duoc duyet hoac khong ton tai!");
         }
+    }
+    public void xacNhan(@NotNull HoaDon a, String manv){
+        a.setTinhtrang("Xac nhan  ");
+        a.setManv(manv);
+        Customerlist customerlist = new Customerlist(true);
+        customerlist.tangChiTieu(a.getMakh(),a.getTongtien());
+        save();
+        customerlist.save();
+        System.out.println("Da xac nhan!");
+    }
+    public void huy(@NotNull HoaDon a,String manv){
+        a.setTinhtrang("Huy       ");
+        a.setManv(manv);
+        Customerlist customerlist = new Customerlist(true);
+        customerlist.tangChiTieu(a.getMakh(),a.getTongtien());
+        save();
+        customerlist.save();
+        System.out.println("Da huy!");
     }
 }

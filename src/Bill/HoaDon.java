@@ -248,15 +248,21 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
 
     @Override public String toString(){
         int stt = 1;
-        String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:s"));
-        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
-        System.out.printf("| Ma hoa don: %10s |                             Tinh trang: %s          |\n"
+        String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
+        if(tinhtrang.contains("Xac nhan") || tinhtrang.contains("Huy")){
+            System.out.printf("| Ma khach hang: %s                                     Ma nhan vien: %s               |\n"
+                    ,makh,manv);
+        }else{
+            System.out.printf("| Ma khach hang: %s |                                                                       |\n",makh);
+        }
+        System.out.printf("| Ma hoa don: %s                                      Tinh trang: %s            |\n"
                 ,mahd,tinhtrang);
-        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
-        System.out.println("| STT |        Ten sp         |  Size  | Gioi tinh | So luong |  Don gia  | Thanh tien |");
-        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
+        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
+        System.out.println("| STT |        Ten sp         |  Size  | Gioi tinh | So luong |    Don gia    |  Thanh tien  |");
+        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
         for(int i=0;i<chitiet.length;i++){
-            System.out.printf("|  %d  | %-21s | %-6s | %-9s | %-8d | %-8.2f | %-10.2f |\n"
+            System.out.printf("|  %d  | %-21s | %-6s | %-9s | %-8d |  %-12.2f | %-12.2f |\n"
                     ,stt
                     ,chitiet[i].getSanpham().getTensp()
                     ,chitiet[i].getSanpham().getSize()
@@ -266,9 +272,9 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
                     ,chitiet[i].getThanhtien());
             stt +=1;
         }
-        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
-        System.out.printf("|   Ngay lap: %s      |           |   Tong tien hoa don: | %.2f |\n",ngaymua,tongtien);
-        System.out.println("+-----+-----------------------+--------+-----------+----------+-----------+------------+");
+        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
+        System.out.printf("|   Ngay lap: %s      |           |       Tong tien hoa don: |  %.2f  |\n",ngaymua,tongtien);
+        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
         return "";
     }
 }
