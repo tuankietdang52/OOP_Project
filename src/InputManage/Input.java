@@ -109,7 +109,7 @@ public class Input {
             date = LocalDateTime.parse(inputDate, dateFormat);
         }
         catch (Exception e){
-            System.out.println("Nhap theo dinh dang: dd/MM/yyyy HH:mm:s");
+            System.out.println("Nhap theo dinh dang: dd/MM/yyyy HH:mm:ss");
             return getDateTime();
         }
 
