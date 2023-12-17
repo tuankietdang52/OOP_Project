@@ -448,9 +448,6 @@ public class DSHD implements IFile, IList<HoaDon>{
                             case 3:
                                 doiTongTien(ds[i]);
                                 break;
-                            case 4:
-                                doiNgayLap(ds[i]);
-                                break;
                             case 0:
                                 break;
                             default:
@@ -492,9 +489,6 @@ public class DSHD implements IFile, IList<HoaDon>{
                             case 3:
                                 doiTongTien(ds[i]);
                                 break;
-                            case 4:
-                                doiNgayLap(ds[i]);
-                                break;
                             case 0:
                                 break;
                             default:
@@ -512,8 +506,7 @@ public class DSHD implements IFile, IList<HoaDon>{
         System.out.println("---------------------------");
         System.out.println("1. Sua ma khach hang:");
         System.out.println("2. Sua ma nhan vien:");
-        System.out.println("3. Sua tong ien:");
-        System.out.println("4. Sua ngay lap hoa don:");
+        System.out.println("3. Sua tong tien:");
         System.out.println("0. Exit.");
         System.out.println("---------------------------");
         System.out.print("Please choose: ");
@@ -532,9 +525,6 @@ public class DSHD implements IFile, IList<HoaDon>{
         System.out.println("Doi tong tien thanh:");
         double tongtien = Input.getDouble();
         a.setTongtien(tongtien);
-    }
-    private void doiNgayLap(@NotNull HoaDon a){
-
     }
     public void duyet(String manv){
         System.out.print("Ma hd muon duyet: ");
@@ -589,7 +579,6 @@ public class DSHD implements IFile, IList<HoaDon>{
         a.setTinhtrang("Huy       ");
         a.setManv(manv);
         Customerlist customerlist = new Customerlist(true);
-        customerlist.tangChiTieu(a.getMakh(),a.getTongtien());
         save();
         customerlist.save();
         System.out.println("Da huy!");
