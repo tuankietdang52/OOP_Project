@@ -18,10 +18,6 @@ public class Main {
 
 
 
-
-
-
-
         Input.close();
     }
 }

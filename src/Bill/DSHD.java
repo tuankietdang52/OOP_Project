@@ -37,36 +37,53 @@ public class DSHD implements IFile, IList<HoaDon>{
 
     public Boolean xuatHDChuaduyet(){
         boolean isHaveBill = false;
-        int stt = 1;
+        int stt = 0;
 
         for(int i =0;i<ds.length;i++){
             if(ds[i].getTinhtrang().contains("Chua duyet")) {
+                stt++;
                 System.out.println("\nHoa don thu " + (stt) + ":");
                 System.out.println(ds[i]);
                 System.out.println("============================");
                 isHaveBill = true;
-                stt++;
             }
+        }
+
+        if (stt == 0){
+            System.out.println("Khong co hoa don nao chua duyet");
         }
 
         return isHaveBill;
     }
     public void xuatHDDaXacNhan(){
+        int stt = 0;
         for(int i =0;i<ds.length;i++){
-            if(ds[i].getTinhtrang().contains("Da duyet")) {
+            if(ds[i].getTinhtrang().contains("Xac nhan  ")) {
+                stt++;
+                System.out.println("\nHoa don thu " + stt + ":");
+                System.out.println(ds[i]);
+                System.out.println("============================");
+            }
+        }
+
+        if (stt == 0){
+            System.out.println("Khong co hoa don nao da xac nhan");
+        }
+    }
+    public void xuatHDDaHuy(){
+        int stt = 0;
+
+        for(int i =0;i<ds.length;i++){
+            if(ds[i].getTinhtrang().contains("Huy       ")) {
+                stt++;
                 System.out.println("\nHoa don thu " + (i + 1) + ":");
                 System.out.println(ds[i]);
                 System.out.println("============================");
             }
         }
-    }
-    public void xuatHDDaHuy(){
-        for(int i =0;i<ds.length;i++){
-            if(ds[i].getTinhtrang().contains("Huy")) {
-                System.out.println("\nHoa don thu " + (i + 1) + ":");
-                System.out.println(ds[i]);
-                System.out.println("============================");
-            }
+
+        if (stt == 0){
+            System.out.println("Khong co hoa don nao da huy");
         }
     }
     public DSHD() {
@@ -583,10 +600,7 @@ public class DSHD implements IFile, IList<HoaDon>{
     }
     public void duyet(String manv){
         System.out.println("------Cac hoa don chua duyet------");
-        if (!xuatHDChuaduyet()){
-            System.out.println("Tat ca hoa don da duoc duyet");
-            return;
-        }
+        if (!xuatHDChuaduyet()) return;
 
         System.out.print("Ma hd muon duyet: ");
         String mahd = Input.getString();
