@@ -3,12 +3,16 @@ package Bill;
 import InputManage.Input;
 import Interface.IFile;
 import Interface.IList;
+import ProductContainer.DSSP;
 import Users.Customer;
 import Users.Customerlist;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class DSHD implements IFile, IList<HoaDon>{
     private HoaDon[] ds;
@@ -33,14 +37,21 @@ public class DSHD implements IFile, IList<HoaDon>{
         return "";
     }
 
-    public void xuatHDChuaduyet(){
+    public Boolean xuatHDChuaduyet(){
+        boolean isHaveBill = false;
+        int stt = 1;
+
         for(int i =0;i<ds.length;i++){
             if(ds[i].getTinhtrang().contains("Chua duyet")) {
-                System.out.println("\nHoa don thu " + (i + 1) + ":");
+                System.out.println("\nHoa don thu " + (stt) + ":");
                 System.out.println(ds[i]);
                 System.out.println("============================");
+                isHaveBill = true;
+                stt++;
             }
         }
+
+        return isHaveBill;
     }
     public void xuatHDDaXacNhan(){
         for(int i =0;i<ds.length;i++){
@@ -61,7 +72,7 @@ public class DSHD implements IFile, IList<HoaDon>{
         }
     }
     public DSHD() {
-
+        ds = new HoaDon[0];
     }
 
     public DSHD(Boolean isGetData){
@@ -143,6 +154,8 @@ public class DSHD implements IFile, IList<HoaDon>{
                 write.writeObject(item);
             }
             write.close();
+
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);
@@ -422,6 +435,49 @@ public class DSHD implements IFile, IList<HoaDon>{
         }
         return a;
     }
+
+    public void showFindByDay(){
+        System.out.println("Nhap ngay thang nam (dd/MM/yyyy): ");
+        var date = Input.getDate();
+
+        var sortList = findByDay(date);
+
+        if (sortList == null){
+            System.out.println("Khong tim thay hoa don nao");
+            return;
+        }
+
+        for (var item : sortList.ds){
+            System.out.println(item);
+        }
+    }
+
+    private @NotNull Boolean compareDate(@NotNull LocalDate date1, @NotNull LocalDate date2){
+        if (date1.getYear() != date2.getYear()) return false;
+        else if (date1.getMonth() != date2.getMonth()) return false;
+
+        return date1.getDayOfMonth() == date2.getDayOfMonth();
+
+    }
+
+    public DSHD findByDay(LocalDate date){
+        DSHD sortList = new DSHD();
+
+        for (var item : ds){
+            var billDate = item.getNgaylap();
+
+            if (!compareDate(date, billDate.toLocalDate())) continue;
+
+            sortList.ds = sortList.increaseLength();
+            sortList.ds[sortList.ds.length - 1] = item;
+        }
+
+        if (sortList.ds.length == 0) return null;
+
+        return sortList;
+    }
+
+
     @Override
     public void sua(String mahd) {
         int flag=0;
@@ -460,7 +516,7 @@ public class DSHD implements IFile, IList<HoaDon>{
             }
             save();
         }
-        else    System.out.println("Ma hoa don khong ton tai!");
+        else System.out.println("Ma hoa don khong ton tai!");
     }
     public void sua() {
         System.out.print("Nhap ma hoa don muon sua thong tin: ");
@@ -527,6 +583,12 @@ public class DSHD implements IFile, IList<HoaDon>{
         a.setTongtien(tongtien);
     }
     public void duyet(String manv){
+        System.out.println("------Cac hoa don chua duyet------");
+        if (!xuatHDChuaduyet()){
+            System.out.println("Tat ca hoa don da duoc duyet");
+            return;
+        }
+
         System.out.print("Ma hd muon duyet: ");
         String mahd = Input.getString();
         int flag=0;
@@ -575,10 +637,37 @@ public class DSHD implements IFile, IList<HoaDon>{
         customerlist.save();
         System.out.println("Da xac nhan!");
     }
+
+    public void returnProductAmount(@NotNull HoaDon bill){
+        DSSP productList = new DSSP(true);
+
+        var list = productList.getDs();
+        var billdetail = bill.getChitiet();
+
+        for (var product : list){
+            for (var detail : billdetail){
+                var productBill = detail.getSanpham();
+                if (!Objects.equals(product.getMasp(), productBill.getMasp())) continue;
+
+                int buyAmount = detail.getSoluongmua();
+                int returnAmount = buyAmount + product.getSltonkho();
+
+                product.setSltonkho(returnAmount);
+            }
+        }
+
+        productList.save();
+
+    }
+
     public void huy(@NotNull HoaDon a,String manv){
         a.setTinhtrang("Huy       ");
         a.setManv(manv);
+
+        returnProductAmount(a);
+
         Customerlist customerlist = new Customerlist(true);
+
         save();
         customerlist.save();
         System.out.println("Da huy!");

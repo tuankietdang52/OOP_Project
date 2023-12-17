@@ -115,6 +115,7 @@ public class EmployeeList implements IFile, IList<Employee> {
                 write.writeObject(item);
             }
             write.close();
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);

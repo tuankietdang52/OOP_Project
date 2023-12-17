@@ -4,6 +4,7 @@ import Bill.DSHD;
 import EntrySlip.DSPN;
 import InputManage.Input;
 import ProductContainer.DSSP;
+import StatisticContainer.StatisticManagement;
 import Users.Customerlist;
 import Users.Employee;
 import Users.EmployeeList;
@@ -463,7 +464,7 @@ public class EmployeeMenu {
                     System.out.println(dshd.timkiemTongTien_DSHD());
                     break;
                 case 5:
-                    //System.out.println("5. Tim kiem theo ngay lap:");
+                    dshd.showFindByDay();
                     break;
                 case 0:
                     break;
@@ -572,7 +573,7 @@ public class EmployeeMenu {
                     System.out.println(dspn.timkiemTongTien_DSPN());
                     break;
                 case 5:
-                    //System.out.println("5. Tim kiem theo ngay lap:");
+                    dspn.showFindByDay();
                     break;
                 case 0:
                     break;
@@ -584,6 +585,8 @@ public class EmployeeMenu {
     }
     public void menuThongKe(){
         int opt;
+        StatisticManagement statisticManagement = new StatisticManagement();
+
         do{
             System.out.println("-------------Thong ke-----------");
             System.out.println("1. Tinh hinh kinh doanh:");
@@ -597,7 +600,7 @@ public class EmployeeMenu {
             opt = Input.getInt();
             switch (opt){
                 case 1:
-                    System.out.println("1. Tinh hinh kinh doanh:");
+                    statisticManagement.handleStatisticByDay();
                     break;
                 case 2:
                     System.out.println("2. Top 3 khach hang mua nhieu nhat:");
