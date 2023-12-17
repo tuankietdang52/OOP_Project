@@ -223,16 +223,16 @@ public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
     public String toString(){
         int stt = 1;
         String ngaymua = ngaylap.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
-            System.out.printf("| Ma nhan vien : %s                                     Ma nha cung cap: %s            |\n"
+        System.out.println("+-----+---------------------------+--------+-----------+----------+");
+            System.out.printf("| Ma nhan vien : %s          Ma nha cung cap: %s          |\n"
                     ,manv,manhacungcap);
-        System.out.printf("| Ma hoa don: %s                                                : %s            |\n"
+        System.out.printf("| Ma phieu nhap: %s                                           |\n"
                 ,maphieunhap);
-        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
-        System.out.println("| STT |        Ten sp         |  Size  | Gioi tinh | So luong |    Don gia    |  Thanh tien  |");
-        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
+        System.out.println("+-----+---------------------------+--------+-----------+----------+");
+        System.out.println("| STT |          Ten sp           |  Size  | Gioi tinh | So luong |");
+        System.out.println("+-----+---------------------------+--------+-----------+----------+");
         for(int i=0;i<chitiet.length;i++){
-            System.out.printf("|  %d  | %-21s | %-6s | %-9s | %-8d |  %-12.2f | %-12.2f |\n"
+            System.out.printf("|  %d  | %-25s | %-6s | %-9s | %-8d |\n"
                     ,stt
                     ,chitiet[i].getSanpham().getTensp()
                     ,chitiet[i].getSanpham().getSize()
@@ -242,9 +242,9 @@ public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
                     ,chitiet[i].getThanhtien());
             stt +=1;
         }
-        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
-        System.out.printf("|   Ngay lap: %s      |           |       Tong tien hoa don: |  %.2f  |\n",ngaymua,tongtien);
-        System.out.println("+-----+-----------------------+--------+-----------+----------+---------------+--------------+");
+        System.out.println("+-----+---------------------------+--------+-----------+----------+");
+        System.out.printf("|   Ngay lap: %s          |           |          |\n",ngaymua);
+        System.out.println("+-----+---------------------------+--------+-----------+----------+");
         return "";
     }
 }
