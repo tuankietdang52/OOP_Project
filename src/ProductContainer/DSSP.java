@@ -800,7 +800,7 @@ public class DSSP implements IFile, IList<Product> {
             if (ds[i] instanceof Pant) {
                 if (((Pant) ds[i]).getThunquan() == thunquan) {
                     a.ds = Arrays.copyOf(a.ds, a.n + 1);
-                    a.ds[a.n] = new Shirt((Shirt) ds[i]);
+                    a.ds[a.n] = new Pant((Pant) ds[i]);
                     ++a.n;
                 }
             }
@@ -815,7 +815,7 @@ public class DSSP implements IFile, IList<Product> {
             if (ds[i] instanceof Pant) {
                 if (((Pant) ds[i]).getThunquan() == thunquan) {
                     a.ds = Arrays.copyOf(a.ds, a.n + 1);
-                    a.ds[a.n] = new Shirt((Shirt) ds[i]);
+                    a.ds[a.n] = new Pant((Pant) ds[i]);
                     ++a.n;
                 }
             }

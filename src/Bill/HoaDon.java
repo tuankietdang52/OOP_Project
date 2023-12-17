@@ -254,7 +254,7 @@ public class HoaDon implements IList<ChiTietHoaDon>, Serializable {
             System.out.printf("| Ma khach hang: %s                                     Ma nhan vien: %s               |\n"
                     ,makh,manv);
         }else{
-            System.out.printf("| Ma khach hang: %s |                                                                       |\n",makh);
+            System.out.printf("| Ma khach hang: %s                                                                       |\n",makh);
         }
         System.out.printf("| Ma hoa don: %s                                      Tinh trang: %s            |\n"
                 ,mahd,tinhtrang);
