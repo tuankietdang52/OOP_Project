@@ -2,6 +2,7 @@ package EntrySlip;
 
 import Bill.ChiTietHoaDon;
 import InputManage.Input;
+import org.jetbrains.annotations.NotNull;
 import Interface.IList;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class PhieuNhap implements IList<ChiTietPhieuNhap>, Serializable {
+public class PhieuNhap implements Serializable, IList<ChiTietPhieuNhap> {
     @Serial
     private static final long serialVersionUID = 1L;
     private String maphieunhap;
@@ -35,7 +36,7 @@ public class PhieuNhap implements IList<ChiTietPhieuNhap>, Serializable {
         this.tongtien = tongtien;
         this.chitiet = chitiet;
     }
-    public PhieuNhap(PhieuNhap a){
+    public PhieuNhap(@NotNull PhieuNhap a){
         maphieunhap = a.maphieunhap;
         manv = a.manv;
         manhacungcap = a.manhacungcap;

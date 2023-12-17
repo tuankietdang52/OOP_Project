@@ -4,6 +4,8 @@ import ProductContainer.ESex;
 import ProductContainer.ESize;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.text.DateFormatter;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -111,6 +113,22 @@ public class Input {
         catch (Exception e){
             System.out.println("Nhap theo dinh dang: dd/MM/yyyy HH:mm:ss");
             return getDateTime();
+        }
+
+        return date;
+    }
+
+    public static LocalDate getDate(){
+        String inputDate = getString();
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date;
+
+        try{
+            date = LocalDate.parse(inputDate, dateFormat);
+        }
+        catch (Exception e){
+            System.out.println("Nhap theo dinh dang: dd/MM/yyyy");
+            return getDate();
         }
 
         return date;

@@ -105,6 +105,7 @@ public class DSSP implements IFile, IList<Product> {
                 write.writeObject(item);
             }
             write.close();
+            read();
         }
         catch (Exception ex){
             System.out.println("Cant write data from file\nError: " + ex);
