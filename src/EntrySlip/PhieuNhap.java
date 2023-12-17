@@ -101,6 +101,8 @@ public class PhieuNhap implements IList<ChiTietPhieuNhap>, Serializable {
         manhacungcap = Input.getString();
         System.out.print("Nhap ngay lap: ");
         ngaylap = Input.getDateTime();
+        System.out.print("Nhap chi tiet phieu nhap: ");
+        them();
     }
     public void setField(){
         System.out.print("Nhap ma nhan vien: ");
